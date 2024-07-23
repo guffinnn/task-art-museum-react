@@ -1,10 +1,8 @@
-import { JSX } from 'react'
-import './Favorites.css'
+import { JSX } from 'react';
+import './Favorites.css';
 
 function Favorites(): JSX.Element {
-  return (
-    <></>
-  )
+  return <></>;
 }
 
-export default Favorites
+export default Favorites;

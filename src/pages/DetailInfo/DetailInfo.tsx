@@ -1,10 +1,8 @@
-import { JSX } from 'react'
-import './DetailInfo.css'
+import { JSX } from 'react';
+import './DetailInfo.css';
 
 function DetailInfo(): JSX.Element {
-  return (
-    <></>
-  )
+  return <></>;
 }
 
-export default DetailInfo
+export default DetailInfo;

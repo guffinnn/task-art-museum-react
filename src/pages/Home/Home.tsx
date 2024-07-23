@@ -1,10 +1,8 @@
-import { JSX } from 'react'
-import './Home.css'
+import { JSX } from 'react';
+import './Home.css';
 
 function Home(): JSX.Element {
-  return (
-    <></>
-  )
+  return <></>;
 }
 
-export default Home
+export default Home;

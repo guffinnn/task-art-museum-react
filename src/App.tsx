@@ -1,8 +1,8 @@
-import { JSX } from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Home from './pages/Home/Home'
-import DetailInfo from './pages/DetailInfo/DetailInfo'
-import Favorites from './pages/Favorites/Favorites'
+import { JSX } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import DetailInfo from './pages/DetailInfo/DetailInfo';
+import Favorites from './pages/Favorites/Favorites';
 
 function App(): JSX.Element {
   return (
@@ -13,7 +13,7 @@ function App(): JSX.Element {
         <Route path="favorites" element={<Favorites />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
