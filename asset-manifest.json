@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/task-art-museum-react/static/css/main.31d6cfe0.css",
+    "main.js": "/task-art-museum-react/static/js/main.0e1b24cf.js",
+    "index.html": "/task-art-museum-react/index.html",
+    "main.0e1b24cf.js.map": "/task-art-museum-react/static/js/main.0e1b24cf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.0e1b24cf.js"
+  ]
+}
