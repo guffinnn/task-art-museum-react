@@ -1,0 +1,71 @@
+/*HEADER*/
+header {
+    background: linear-gradient(90deg, #343333 38.05%, #484848 69.22%, #282828 98.98%);
+}
+
+header .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 20px;
+    padding: 32px 0;
+}
+
+.header__logo {
+    width: 206px;
+    height: 63px;
+    background: url(../../assets/museum-logo.svg) no-repeat center center;
+    background-size: contain;
+}
+
+.header__text {
+    width: auto;
+    height: auto;
+
+    font-family: "Inter", serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: #FFFFFF;
+}
+
+.header__text::before {
+    content: url(../../assets/bookmark.svg);
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    top: 50%;
+    left: 0;
+    transform: translateY(0%);
+}
+
+@media (max-width: 720px) {
+    .header__logo {
+        width: 150px;
+        height: 40px;
+    }
+
+    .header__text {
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .header__text::before {
+        width: 18px;
+        height: 18px;
+    }
+}

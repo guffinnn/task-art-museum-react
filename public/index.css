@@ -1,5 +1,17 @@
 /*LEXEND DECA FONT*/
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+/*INTER FONT*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/*VARIABLES*/
+:root {
+    --primary: rgba(241, 121, 0, 1);
+    --primary-lighter: rgba(224, 164, 73, 1);
+    --primary-background: rgba(251, 215, 178, 0.3);
+    --black: rgba(57, 57, 57, 1);
+    --black-lighter: rgba(57, 57, 57, 0.5);
+    --black-background: rgba(57, 57, 57, 0.05);
+}
 
 /*NORMALIZE*/
 * {
@@ -16,4 +28,37 @@
     outline: none;
 
     background: none;
+}
+
+body {
+    width: 100%;
+}
+
+header,
+main,
+footer {
+    width: 100%;
+}
+
+.wrapper {
+    width: 1280px;
+    margin: auto;
+}
+
+@media(max-width: 1380px) {
+    .wrapper {
+        width: 980px;
+    }
+}
+
+@media(max-width: 1080px) {
+    .wrapper {
+        width: 680px;
+    }
+}
+
+@media(max-width: 720px) {
+    .wrapper {
+        width: 350px;
+    }
 }
