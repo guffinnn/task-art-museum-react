@@ -1,0 +1,19 @@
+/*SEARCH_BAR*/
+input::placeholder {
+    text-transform: capitalize;
+    color: var(--black-lighter);
+}
+
+.input__icon {
+    width: 32px;
+    height: 32px;
+    background: url(../../assets/search.svg) no-repeat center center;
+    background-size: contain;
+
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+
+    cursor: pointer;
+}
