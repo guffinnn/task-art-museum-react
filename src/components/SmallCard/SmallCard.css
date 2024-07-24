@@ -26,21 +26,6 @@
     flex-grow: 1;
 }
 
-.card__image--small {
-    grid-row: 1 / 4;
-    grid-column: 1;
-
-    position: relative;
-    width: 87px;
-    height: 100%;
-    margin-right: 8px;
-
-    background: url(../../assets/default.png) no-repeat center center;
-    background-size: cover;
-
-    cursor: pointer;
-}
-
 .text--heading {
     grid-row: 1;
     grid-column: 2;

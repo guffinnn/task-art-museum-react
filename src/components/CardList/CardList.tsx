@@ -38,6 +38,7 @@ export interface ArtInfo {
   place_of_origin: string;
   dimensions: string;
   credit_line: string;
+  image_id: string;
 }
 
 interface ApiResponse {
@@ -52,7 +53,7 @@ export const getJSON = async (
   const response = await fetch(`
     https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${limit}
   `);
-  return await response.json();
+  return response.json();
 };
 
 function CardList(): JSX.Element {
@@ -94,6 +95,7 @@ function CardList(): JSX.Element {
               title={item.title}
               artist_title={item.artist_title}
               is_public_domain={item.is_public_domain}
+              image_url={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}
             />
           ))}
         </CardListWrapper>

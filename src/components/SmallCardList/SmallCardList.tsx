@@ -1,8 +1,8 @@
 import { JSX, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import './SmallCardList.css';
 import { Loader, ArtInfo, getJSON } from '../CardList/CardList';
 import SmallCard from '../SmallCard/SmallCard';
-import styled from 'styled-components';
 
 const CardListWrapper = styled.div`
   display: flex;
@@ -14,6 +14,21 @@ const CardListWrapper = styled.div`
   position: relative;
   width: 100%;
   height: fit-content;
+`;
+
+const CardImageSmall = styled.div<{ image_url: string }>`
+  grid-row: 1 / 4;
+  grid-column: 1;
+
+  position: relative;
+  width: 87px;
+  height: 100%;
+  margin-right: 8px;
+
+  background: ${({ image_url }) => `url(${image_url})`} no-repeat center center;
+  background-size: cover;
+
+  cursor: pointer;
 `;
 
 function SmallCardList(): JSX.Element {
@@ -49,7 +64,9 @@ function SmallCardList(): JSX.Element {
               artist_title={item.artist_title}
               is_public_domain={item.is_public_domain}
             >
-              <div className="card__image--small"></div>
+              <CardImageSmall
+                image_url={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}
+              />
             </SmallCard>
           ))}
         </CardListWrapper>

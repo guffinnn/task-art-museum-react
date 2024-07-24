@@ -1,5 +1,4 @@
 import { JSX } from 'react';
-import { CardProps } from '../Card/Card';
 import './SmallCard.css';
 
 interface SmallCardProps {
