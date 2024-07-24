@@ -11,6 +11,9 @@
     --black: rgba(57, 57, 57, 1);
     --black-lighter: rgba(57, 57, 57, 0.5);
     --black-background: rgba(57, 57, 57, 0.05);
+    --white: rgba(255, 255, 255, 1);
+    --gray: rgba(240, 241, 241, 1);
+    --gray-background: rgba(249, 249, 249, 1);
 }
 
 /*NORMALIZE*/

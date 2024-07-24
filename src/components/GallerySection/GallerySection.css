@@ -1,0 +1,42 @@
+/*GALLERY_SECTION*/
+.section__text_frame {
+    width: auto;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+}
+
+h2 {
+    width: auto;
+    height: auto;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--black);
+}
+
+h3 {
+    width: auto;
+    height: auto;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+
+    color: var(--primary-lighter);
+}

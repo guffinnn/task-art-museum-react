@@ -1,5 +1,5 @@
 /*MAIN*/
-.main__section--search {
+.main__section {
     width: 100%;
     height: auto;
 
@@ -9,8 +9,16 @@
     align-content: center;
     flex-wrap: nowrap;
     flex-direction: column;
-    padding: 120px 0;
+
+    margin: 120px auto;
+}
+
+.main__section.--search {
     row-gap: 72px;
+}
+
+.main__section.--gallery {
+    row-gap: 40px;
 }
 
 h1 {
