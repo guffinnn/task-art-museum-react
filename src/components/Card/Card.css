@@ -182,11 +182,9 @@
 
     .button:active {
         background: var(--primary-background);
-        transition: background 0.45s ease-in-out;
     }
 
     .card__image:active {
         box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
-        transition: background 0.45s ease-in-out;
     }
 }
