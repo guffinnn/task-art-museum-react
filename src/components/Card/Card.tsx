@@ -1,7 +1,8 @@
 import { JSX } from 'react';
 import './Card.css';
+import SmallCard from '../SmallCard/SmallCard';
 
-interface CardProps {
+export interface CardProps {
   title: string;
   artist_title: string;
   is_public_domain: boolean;
@@ -13,16 +14,15 @@ function Card({
   is_public_domain,
 }: CardProps): JSX.Element {
   return (
-    <div className="card">
+    <div className="card card--primary">
       <div className="card__image"></div>
-      <div className="card__description">
-        <p className="text--heading">{title ?? 'Unknown'}</p>
-        <p className="text--subheading">{artist_title ?? 'Unknown'}</p>
-        <p className="text--status">
-          {is_public_domain ? 'Public' : 'Private'}
-        </p>
-        <div className="button"></div>
-      </div>
+      <SmallCard
+        title={title}
+        artist_title={artist_title}
+        is_public_domain={is_public_domain}
+      >
+        <></>
+      </SmallCard>
     </div>
   );
 }
