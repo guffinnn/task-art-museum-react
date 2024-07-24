@@ -1,10 +1,10 @@
-import { JSX, useState, useEffect } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import './CardList.css';
 import Pagination from '../Pagination/Pagination';
 import Card from '../Card/Card';
 
-const Loader = styled.div`
+export const Loader = styled.div`
   width: 100%;
   height: 100%;
   min-height: 514px;
@@ -13,7 +13,7 @@ const Loader = styled.div`
   align-items: center;
 `;
 
-const CardListWrapper = styled.div`
+export const CardListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -28,7 +28,7 @@ const CardListWrapper = styled.div`
   min-height: 514px;
 `;
 
-interface ArtInfo {
+export interface ArtInfo {
   id: number;
   title: string;
   artist_title: string;
@@ -38,7 +38,23 @@ interface ArtInfo {
   place_of_origin: string;
   dimensions: string;
   credit_line: string;
+  image_id: string;
 }
+
+interface ApiResponse {
+  data: ArtInfo[];
+  total: number;
+}
+
+export const getJSON = async (
+  currentPage: number,
+  limit: number,
+): Promise<ApiResponse> => {
+  const response = await fetch(`
+    https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${limit}
+  `);
+  return response.json();
+};
 
 function CardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
@@ -51,10 +67,7 @@ function CardList(): JSX.Element {
       setLoading(true);
 
       try {
-        const response = await fetch(`
-          https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=3
-        `);
-        const result = await response.json();
+        const result = await getJSON(currentPage, 3);
 
         setData(result.data);
         setTotalPages(result.total);
@@ -82,6 +95,7 @@ function CardList(): JSX.Element {
               title={item.title}
               artist_title={item.artist_title}
               is_public_domain={item.is_public_domain}
+              image_url={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}
             />
           ))}
         </CardListWrapper>
