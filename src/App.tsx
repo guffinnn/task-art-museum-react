@@ -9,8 +9,11 @@ function App(): JSX.Element {
     <Router>
       <Routes>
         <Route path="/task-art-museum-react" element={<Home />} />
-        <Route path="details" element={<DetailInfo />} />
-        <Route path="favorites" element={<Favorites />} />
+        <Route path="/task-art-museum-react/details" element={<DetailInfo />} />
+        <Route
+          path="/task-art-museum-react/favorites"
+          element={<Favorites />}
+        />
       </Routes>
     </Router>
   );

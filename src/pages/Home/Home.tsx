@@ -5,6 +5,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import GallerySection from '../../components/GallerySection/GallerySection';
 import CardList from '../../components/CardList/CardList';
 import SmallCardList from '../../components/SmallCardList/SmallCardList';
+import Footer from '../../components/Footer/Footer';
 
 function Home(): JSX.Element {
   return (
@@ -26,7 +27,7 @@ function Home(): JSX.Element {
           </GallerySection>
         </div>
       </main>
-      <footer></footer>
+      <Footer />
     </>
   );
 }
