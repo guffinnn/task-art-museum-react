@@ -1,8 +1,9 @@
-import React, { JSX, useState } from 'react';
+import React, { JSX, useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import './SearchBar.css';
+import useDebounce from '../../useDebounce';
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.div<{ value: string; error: string }>`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -15,6 +16,16 @@ const InputWrapper = styled.div`
 
   background: var(--black-background);
   border-radius: 16px;
+
+  &::after {
+    content: '${({ error, value }) =>
+      error.length > 0 && value.length > 0 ? error : ''}';
+    position: absolute;
+    bottom: -25px;
+    left: 16px;
+
+    color: var(--primary);
+  }
 
   @media (max-width: 720px) {
     width: calc(100vw - 40px);
@@ -39,26 +50,46 @@ const Input = styled.input`
   padding: 23px 16px;
 `;
 
-function SearchBar(): JSX.Element {
+interface SearchBarProps {
+  onSearch: (searchTerm: string) => void;
+}
+
+function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
   const [value, setValue] = useState('');
+  const [error, setError] = useState('');
+
+  // Debounce by 5 seconds (default)
+  const debouncedValue = useDebounce(value, 500);
+
+  const validateInput = (input: string) => {
+    if (input.length < 3) {
+      setError('Search term must be at least 3 characters long.');
+    } else {
+      setError('');
+    }
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    const inputValue = event.target.value;
+    setValue(inputValue);
+    validateInput(inputValue);
   };
 
-  const handleSearch = () => {
-    console.log('Search:', value);
-  };
+  useEffect(() => {
+    if (!error && debouncedValue.trim().length >= 3) {
+      onSearch(debouncedValue);
+    }
+  }, [debouncedValue]);
 
   return (
-    <InputWrapper>
+    <InputWrapper value={value} error={error}>
       <Input
         type="text"
         value={value}
         onChange={handleChange}
         placeholder="Search art, artist, work..."
       />
-      <div className="input__icon" onClick={handleSearch}></div>
+      <div className="input__icon"></div>
     </InputWrapper>
   );
 }

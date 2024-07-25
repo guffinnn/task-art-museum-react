@@ -4,7 +4,7 @@ import './SmallCardList.css';
 import { Loader, ArtInfo, getJSON } from '../CardList/CardList';
 import SmallCard from '../SmallCard/SmallCard';
 
-const CardListWrapper = styled.div`
+export const CardListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -17,7 +17,7 @@ const CardListWrapper = styled.div`
   height: fit-content;
 `;
 
-const CardImageSmall = styled.div<{ image_url: string }>`
+export const CardImageSmall = styled.div<{ image_url: string }>`
   grid-row: 1 / 4;
   grid-column: 1;
 
