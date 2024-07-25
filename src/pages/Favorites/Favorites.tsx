@@ -2,8 +2,8 @@ import { JSX } from 'react';
 import './Favorites.css';
 import Header from '../../components/Header/Header';
 import GallerySection from '../../components/GallerySection/GallerySection';
-import SmallCardList from '../../components/SmallCardList/SmallCardList';
 import Footer from '../../components/Footer/Footer';
+import FavoriteCardList from '../../components/FavoriteCardList/FavoriteCardList';
 
 function Favorites(): JSX.Element {
   return (
@@ -18,7 +18,7 @@ function Favorites(): JSX.Element {
             </h1>
           </section>
           <GallerySection title="Your favorites list" subtitle="Saved by you">
-            <SmallCardList />
+            <FavoriteCardList />
           </GallerySection>
         </div>
       </main>

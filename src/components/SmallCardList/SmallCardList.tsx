@@ -34,12 +34,7 @@ function SmallCardList(): JSX.Element {
       {!loading ? (
         <CardListWrapper>
           {memoizedData.map((item, index) => (
-            <SmallCard
-              key={index}
-              title={item.title}
-              artist_title={item.artist_title}
-              is_public_domain={item.is_public_domain}
-            >
+            <SmallCard key={index} item={item}>
               <CardImageSmall
                 image_url={URL_IMAGE({ imageId: item.image_id })}
               />
