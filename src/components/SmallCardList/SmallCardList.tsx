@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from 'react';
+import { JSX, useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import './SmallCardList.css';
 import { Loader, ArtInfo, getJSON } from '../CardList/CardList';
@@ -9,6 +9,7 @@ const CardListWrapper = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
   padding: 0;
   gap: 16px;
   position: relative;
@@ -53,11 +54,13 @@ function SmallCardList(): JSX.Element {
     fetchData();
   }, []);
 
+  const memoizedData = useMemo(() => data, [data]);
+
   return (
     <>
       {!loading ? (
         <CardListWrapper>
-          {data.map((item, index) => (
+          {memoizedData.map((item, index) => (
             <SmallCard
               key={index}
               title={item.title}

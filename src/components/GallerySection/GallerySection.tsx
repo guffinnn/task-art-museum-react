@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import { JSX, memo } from 'react';
 import './GallerySection.css';
 
 interface GallerySectionProps {
@@ -7,20 +7,18 @@ interface GallerySectionProps {
   children: JSX.Element;
 }
 
-function GallerySection({
-  title,
-  subtitle,
-  children,
-}: GallerySectionProps): JSX.Element {
-  return (
-    <section className="main__section --gallery">
-      <div className="section__text_frame">
-        <h3>{title}</h3>
-        <h2>{subtitle}</h2>
-      </div>
-      {children}
-    </section>
-  );
-}
+const GallerySection = memo(
+  ({ title, subtitle, children }: GallerySectionProps): JSX.Element => {
+    return (
+      <section className="main__section --gallery">
+        <div className="section__text_frame">
+          <h3>{title}</h3>
+          <h2>{subtitle}</h2>
+        </div>
+        {children}
+      </section>
+    );
+  },
+);
 
 export default GallerySection;
