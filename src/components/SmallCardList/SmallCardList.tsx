@@ -1,35 +1,9 @@
-import { JSX, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { JSX, useEffect, useState, useMemo } from 'react';
 import './SmallCardList.css';
-import { Loader, ArtInfo, getJSON } from '../CardList/CardList';
+import { Loader } from '../CardList/styled';
+import { CardListWrapper, CardImageSmall } from './styled';
+import { ArtInfo, getJSON, URL_IMAGE } from '../../constants/api';
 import SmallCard from '../SmallCard/SmallCard';
-
-const CardListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0;
-  gap: 16px;
-  position: relative;
-  width: 100%;
-  height: fit-content;
-`;
-
-const CardImageSmall = styled.div<{ image_url: string }>`
-  grid-row: 1 / 4;
-  grid-column: 1;
-
-  position: relative;
-  width: 87px;
-  height: 100%;
-  margin-right: 8px;
-
-  background: ${({ image_url }) => `url(${image_url})`} no-repeat center center;
-  background-size: cover;
-
-  cursor: pointer;
-`;
 
 function SmallCardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
@@ -53,19 +27,16 @@ function SmallCardList(): JSX.Element {
     fetchData();
   }, []);
 
+  const memoizedData = useMemo(() => data, [data]);
+
   return (
     <>
       {!loading ? (
         <CardListWrapper>
-          {data.map((item, index) => (
-            <SmallCard
-              key={index}
-              title={item.title}
-              artist_title={item.artist_title}
-              is_public_domain={item.is_public_domain}
-            >
+          {memoizedData.map((item, index) => (
+            <SmallCard key={index} item={item}>
               <CardImageSmall
-                image_url={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}
+                image_url={URL_IMAGE({ imageId: item.image_id })}
               />
             </SmallCard>
           ))}

@@ -1,60 +1,9 @@
-import { JSX, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import { JSX, useEffect, useState, useMemo } from 'react';
 import './CardList.css';
+import { Loader, CardListWrapper } from './styled';
+import { ArtInfo, getJSON, URL_IMAGE } from '../../constants/api';
 import Pagination from '../Pagination/Pagination';
 import Card from '../Card/Card';
-
-export const Loader = styled.div`
-  width: 100%;
-  height: 100%;
-  min-height: 514px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const CardListWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 0;
-  column-gap: 50px;
-  row-gap: 20px;
-
-  width: 100%;
-  height: fit-content;
-  min-height: 514px;
-`;
-
-export interface ArtInfo {
-  id: number;
-  title: string;
-  artist_title: string;
-  is_public_domain: boolean;
-  date_start: number;
-  date_end: number;
-  place_of_origin: string;
-  dimensions: string;
-  credit_line: string;
-  image_id: string;
-}
-
-interface ApiResponse {
-  data: ArtInfo[];
-  total: number;
-}
-
-export const getJSON = async (
-  currentPage: number,
-  limit: number,
-): Promise<ApiResponse> => {
-  const response = await fetch(`
-    https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${limit}
-  `);
-  return response.json();
-};
 
 function CardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
@@ -85,18 +34,14 @@ function CardList(): JSX.Element {
     setCurrentPage(page);
   };
 
+  const memoizedData = useMemo(() => data, [data]);
+
   return (
     <>
       {!loading ? (
         <CardListWrapper>
-          {data.map((item, index) => (
-            <Card
-              key={index}
-              title={item.title}
-              artist_title={item.artist_title}
-              is_public_domain={item.is_public_domain}
-              image_url={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}
-            />
+          {memoizedData.map((item, index) => (
+            <Card key={index} item={item} />
           ))}
         </CardListWrapper>
       ) : (

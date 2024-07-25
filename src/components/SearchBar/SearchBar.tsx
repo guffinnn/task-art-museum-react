@@ -1,65 +1,59 @@
-import React, { JSX, useState } from 'react';
-import styled from 'styled-components';
+import { JSX, useEffect } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import useDebounce from '../../useDebounce';
 import './SearchBar.css';
+import { Input, InputWrapper } from './styled';
 
-const InputWrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+interface SearchBarProps {
+  onSearch: (searchTerm: string) => void;
+}
 
-  width: 100%;
-  max-width: 762px;
-  height: 64px;
+const validationSchema = yup.object({
+  searchTerm: yup
+    .string()
+    .min(3, 'Search term must be at least 3 characters long.')
+    .required('Search term is required.'),
+});
 
-  background: var(--black-background);
-  border-radius: 16px;
+function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
+  const formik = useFormik({
+    initialValues: {
+      searchTerm: '',
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      onSearch(values.searchTerm);
+    },
+  });
 
-  @media (max-width: 720px) {
-    width: calc(100vw - 40px);
-  }
-`;
+  const debouncedValue = useDebounce(formik.values.searchTerm, 500);
 
-const Input = styled.input`
-  width: calc(100% - 48px);
-  height: auto;
-
-  font-family: 'Inter', serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: left;
-
-  color: var(--black);
-
-  border: none;
-  outline: none;
-  padding: 23px 16px;
-`;
-
-function SearchBar(): JSX.Element {
-  const [value, setValue] = useState('');
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
-  const handleSearch = () => {
-    console.log('Search:', value);
-  };
+  useEffect(() => {
+    if (!formik.errors.searchTerm && debouncedValue.trim().length >= 3) {
+      onSearch(debouncedValue);
+    }
+  }, [debouncedValue]);
 
   return (
-    <InputWrapper>
-      <Input
-        type="text"
-        value={value}
-        onChange={handleChange}
-        placeholder="Search art, artist, work..."
-      />
-      <div className="input__icon" onClick={handleSearch}></div>
-    </InputWrapper>
+    <form onSubmit={formik.handleSubmit}>
+      <InputWrapper
+        value={formik.values.searchTerm}
+        error={formik.errors.searchTerm || ''}
+      >
+        <Input
+          type="text"
+          name="searchTerm"
+          value={formik.values.searchTerm}
+          onChange={formik.handleChange}
+          placeholder="Search art, artist, work..."
+        />
+        <div
+          className="input__icon"
+          onClick={(e) => formik.handleSubmit()}
+        ></div>
+      </InputWrapper>
+    </form>
   );
 }
 
