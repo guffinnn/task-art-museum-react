@@ -1,29 +1,18 @@
 import { JSX } from 'react';
 import './Card.css';
 import { CardImage } from './styled';
+import { ArtInfo, URL_IMAGE } from '../../constants/api';
 import SmallCard from '../SmallCard/SmallCard';
 
 interface CardProps {
-  title: string;
-  artist_title: string;
-  is_public_domain: boolean;
-  image_url: string;
+  item: ArtInfo;
 }
 
-function Card({
-  title,
-  artist_title,
-  is_public_domain,
-  image_url,
-}: CardProps): JSX.Element {
+function Card({ item }: CardProps): JSX.Element {
   return (
     <div className="card card--primary">
-      <CardImage image_url={image_url} />
-      <SmallCard
-        title={title}
-        artist_title={artist_title}
-        is_public_domain={is_public_domain}
-      >
+      <CardImage image_url={URL_IMAGE({ imageId: item.image_id })} />
+      <SmallCard item={item}>
         <></>
       </SmallCard>
     </div>

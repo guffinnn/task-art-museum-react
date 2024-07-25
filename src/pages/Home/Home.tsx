@@ -69,12 +69,7 @@ function Home(): JSX.Element {
               {!loading ? (
                 <CardListWrapper>
                   {searchResults.map((item, index) => (
-                    <SmallCard
-                      key={index}
-                      title={item.title}
-                      artist_title={item.artist_title}
-                      is_public_domain={item.is_public_domain}
-                    >
+                    <SmallCard item={item} key={index}>
                       <CardImageSmall
                         image_url={URL_IMAGE({ imageId: item.image_id })}
                       />

@@ -103,7 +103,8 @@
     cursor: pointer;
 }
 
-.button:hover {
+.button:hover,
+.button.--favorite {
     background: var(--primary-background);
 }
 
@@ -136,7 +137,8 @@
         transition: none;
     }
 
-    .button:active {
+    .button:active,
+    .button.--favorite {
         background: var(--primary-background);
     }
 }

@@ -41,13 +41,7 @@ function CardList(): JSX.Element {
       {!loading ? (
         <CardListWrapper>
           {memoizedData.map((item, index) => (
-            <Card
-              key={index}
-              title={item.title}
-              artist_title={item.artist_title}
-              is_public_domain={item.is_public_domain}
-              image_url={URL_IMAGE({ imageId: item.image_id })}
-            />
+            <Card key={index} item={item} />
           ))}
         </CardListWrapper>
       ) : (
