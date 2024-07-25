@@ -24,13 +24,18 @@ const InputWrapper = styled.div<{ value: string; error: string }>`
       error.length > 0 && value.length > 0 ? error : ''}';
     position: absolute;
     bottom: -25px;
-    left: 16px;
+    left: 0;
+    margin: 0 16px;
 
     color: var(--primary);
   }
 
   @media (max-width: 720px) {
     width: calc(100vw - 40px);
+
+    &::after {
+      bottom: -45px;
+    }
   }
 `;
 
