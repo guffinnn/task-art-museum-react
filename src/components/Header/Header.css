@@ -38,7 +38,22 @@ header .wrapper {
     color: #FFFFFF;
 }
 
-.header__text::before {
+.--home::before {
+    content: url(../../assets/home.svg);
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    top: 50%;
+    left: 0;
+    transform: translateY(0%);
+}
+
+.--bookmark::before {
     content: url(../../assets/bookmark.svg);
     width: 24px;
     height: 24px;
@@ -67,12 +82,12 @@ header .wrapper {
 
 .menu {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 10px;
+    gap: 16px;
 }
 
 @media (max-width: 720px) {
@@ -111,5 +126,6 @@ header .wrapper {
         align-items: flex-end;
         justify-content: flex-start;
         align-content: flex-end;
+        row-gap: 20px;
     }
 }

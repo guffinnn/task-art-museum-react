@@ -1,4 +1,12 @@
 /*SEARCH_BAR*/
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
 input::placeholder {
     text-transform: capitalize;
     color: var(--black-lighter);

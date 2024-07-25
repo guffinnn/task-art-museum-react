@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from 'react';
+import { JSX, useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import './CardList.css';
 import Pagination from '../Pagination/Pagination';
@@ -85,11 +85,13 @@ function CardList(): JSX.Element {
     setCurrentPage(page);
   };
 
+  const memoizedData = useMemo(() => data, [data]);
+
   return (
     <>
       {!loading ? (
         <CardListWrapper>
-          {data.map((item, index) => (
+          {memoizedData.map((item, index) => (
             <Card
               key={index}
               title={item.title}

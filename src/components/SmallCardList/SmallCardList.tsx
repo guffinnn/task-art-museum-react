@@ -1,14 +1,15 @@
-import { JSX, useEffect, useState } from 'react';
+import { JSX, useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import './SmallCardList.css';
 import { Loader, ArtInfo, getJSON } from '../CardList/CardList';
 import SmallCard from '../SmallCard/SmallCard';
 
-const CardListWrapper = styled.div`
+export const CardListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
   padding: 0;
   gap: 16px;
   position: relative;
@@ -16,7 +17,7 @@ const CardListWrapper = styled.div`
   height: fit-content;
 `;
 
-const CardImageSmall = styled.div<{ image_url: string }>`
+export const CardImageSmall = styled.div<{ image_url: string }>`
   grid-row: 1 / 4;
   grid-column: 1;
 
@@ -53,11 +54,13 @@ function SmallCardList(): JSX.Element {
     fetchData();
   }, []);
 
+  const memoizedData = useMemo(() => data, [data]);
+
   return (
     <>
       {!loading ? (
         <CardListWrapper>
-          {data.map((item, index) => (
+          {memoizedData.map((item, index) => (
             <SmallCard
               key={index}
               title={item.title}
