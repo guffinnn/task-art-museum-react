@@ -10,12 +10,15 @@ import SmallCardList, {
 } from '../../components/SmallCardList/SmallCardList';
 import SmallCard from '../../components/SmallCard/SmallCard';
 import Footer from '../../components/Footer/Footer';
-import { ArtInfo } from '../../components/CardList/CardList';
+import { ArtInfo, Loader } from '../../components/CardList/CardList';
 
 function Home(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSearch = async (searchTerm: string) => {
+    setLoading(true);
+
     try {
       const response = await fetch(
         `https://api.artic.edu/api/v1/artworks/search?q=${searchTerm}&limit=9`,
@@ -36,6 +39,8 @@ function Home(): JSX.Element {
       setSearchResults(detailedArtworks);
     } catch (error) {
       console.error('Error fetching search results:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,20 +61,24 @@ function Home(): JSX.Element {
               title="Search Results"
               subtitle="Results from your search"
             >
-              <CardListWrapper>
-                {searchResults.map((item, index) => (
-                  <SmallCard
-                    key={index}
-                    title={item.title}
-                    artist_title={item.artist_title}
-                    is_public_domain={item.is_public_domain}
-                  >
-                    <CardImageSmall
-                      image_url={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}
-                    />
-                  </SmallCard>
-                ))}
-              </CardListWrapper>
+              {!loading ? (
+                <CardListWrapper>
+                  {searchResults.map((item, index) => (
+                    <SmallCard
+                      key={index}
+                      title={item.title}
+                      artist_title={item.artist_title}
+                      is_public_domain={item.is_public_domain}
+                    >
+                      <CardImageSmall
+                        image_url={`https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg`}
+                      />
+                    </SmallCard>
+                  ))}
+                </CardListWrapper>
+              ) : (
+                <Loader>Loading...</Loader>
+              )}
             </GallerySection>
           )}
           {/*SECTION WITH PAGINATION*/}
