@@ -1,4 +1,5 @@
 import { JSX } from 'react';
+import { Link } from 'react-router-dom';
 import './Card.css';
 import { CardImage } from './styled';
 import { ArtInfo, URL_IMAGE } from '../../constants/api';
@@ -11,7 +12,12 @@ interface CardProps {
 function Card({ item }: CardProps): JSX.Element {
   return (
     <div className="card card--primary">
-      <CardImage image_url={URL_IMAGE({ imageId: item.image_id })} />
+      <Link
+        to={`/task-art-museum-react/art/${item.id}`}
+        className="image__link"
+      >
+        <CardImage image_url={URL_IMAGE({ imageId: item.image_id })} />
+      </Link>
       <SmallCard item={item}>
         <></>
       </SmallCard>
