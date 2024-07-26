@@ -36,6 +36,7 @@
 
 body {
     width: 100%;
+    height: 100%;
     background: var(--gray-body-background);
 }
 
@@ -48,6 +49,11 @@ footer {
 .wrapper {
     width: 1280px;
     margin: auto;
+}
+
+.image__link {
+    width: 100%;
+    height: 100%;
 }
 
 @media(max-width: 1380px) {

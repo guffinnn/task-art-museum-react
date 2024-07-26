@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/task-art-museum-react/static/css/main.f5aba245.css",
-    "main.js": "/task-art-museum-react/static/js/main.348beb27.js",
+    "main.css": "/task-art-museum-react/static/css/main.93554b20.css",
+    "main.js": "/task-art-museum-react/static/js/main.179cd0a9.js",
     "static/media/museum-logo.svg": "/task-art-museum-react/static/media/museum-logo.7a0bd9dae0a0871be849.svg",
     "static/media/museum-logo--black.svg": "/task-art-museum-react/static/media/museum-logo--black.11db8805192537cb3a05.svg",
     "static/media/modsen-logo.svg": "/task-art-museum-react/static/media/modsen-logo.1de6d5f25ef22dbb8765.svg",
@@ -12,11 +12,11 @@
     "static/media/search.svg": "/task-art-museum-react/static/media/search.1bfdfc3d954023f54fdd.svg",
     "static/media/bookmark.svg": "/task-art-museum-react/static/media/bookmark.ff0339d7ed53747f9bd6.svg",
     "static/media/arrow-right.svg": "/task-art-museum-react/static/media/arrow-right.fbf4622f01dc166d515733ee33aa6b5a.svg",
-    "main.f5aba245.css.map": "/task-art-museum-react/static/css/main.f5aba245.css.map",
-    "main.348beb27.js.map": "/task-art-museum-react/static/js/main.348beb27.js.map"
+    "main.93554b20.css.map": "/task-art-museum-react/static/css/main.93554b20.css.map",
+    "main.179cd0a9.js.map": "/task-art-museum-react/static/js/main.179cd0a9.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5aba245.css",
-    "static/js/main.348beb27.js"
+    "static/css/main.93554b20.css",
+    "static/js/main.179cd0a9.js"
   ]
 }
