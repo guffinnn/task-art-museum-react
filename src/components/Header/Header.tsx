@@ -4,10 +4,17 @@ import './Header.css';
 
 interface HeaderProp {
   isHomePage: boolean;
+  isArt: boolean;
 }
 
 const Header = memo(
-  ({ isHomePage = true }: Partial<HeaderProp>): JSX.Element => {
+  ({ isHomePage = true, isArt = false }: Partial<HeaderProp>): JSX.Element => {
+    const favoritesPath = !isHomePage
+      ? !isArt
+        ? ''
+        : '/task-art-museum-react/favorites'
+      : 'favorites';
+
     return (
       <header>
         <div className="wrapper">
@@ -22,7 +29,7 @@ const Header = memo(
                 Home
               </Link>
             )}
-            <Link to="favorites" className="header__text --bookmark">
+            <Link to={favoritesPath} className="header__text --bookmark">
               Your favorites
             </Link>
           </nav>
