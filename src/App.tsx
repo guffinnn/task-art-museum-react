@@ -9,7 +9,7 @@ function App(): JSX.Element {
     <Router>
       <Routes>
         <Route path="/task-art-museum-react" element={<Home />} />
-        <Route path="/task-art-museum-react/details" element={<DetailInfo />} />
+        <Route path="/task-art-museum-react/art/:id" element={<DetailInfo />} />
         <Route
           path="/task-art-museum-react/favorites"
           element={<Favorites />}

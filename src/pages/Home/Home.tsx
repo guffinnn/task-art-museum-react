@@ -1,23 +1,13 @@
 import { JSX, useState } from 'react';
 import './Home.css';
-import {
-  CardListWrapper,
-  CardImageSmall,
-} from '../../components/SmallCardList/styled';
-import { Loader } from '../../components/CardList/styled';
-import {
-  ArtInfo,
-  URL_ARTWORK,
-  URL_IMAGE,
-  URL_SEARCH,
-} from '../../constants/api';
+import { ArtInfo, URL_ARTWORK, URL_SEARCH } from '../../constants/api';
 import Header from '../../components/Header/Header';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import GallerySection from '../../components/GallerySection/GallerySection';
 import CardList from '../../components/CardList/CardList';
 import SmallCardList from '../../components/SmallCardList/SmallCardList';
-import SmallCard from '../../components/SmallCard/SmallCard';
 import Footer from '../../components/Footer/Footer';
+import SearchResultsList from '../../components/SearchResultsList/SearchResultsList';
 
 function Home(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
@@ -66,19 +56,10 @@ function Home(): JSX.Element {
               title="Search Results"
               subtitle="Results from your search"
             >
-              {!loading ? (
-                <CardListWrapper>
-                  {searchResults.map((item, index) => (
-                    <SmallCard item={item} key={index}>
-                      <CardImageSmall
-                        image_url={URL_IMAGE({ imageId: item.image_id })}
-                      />
-                    </SmallCard>
-                  ))}
-                </CardListWrapper>
-              ) : (
-                <Loader>Loading...</Loader>
-              )}
+              <SearchResultsList
+                loading={loading}
+                searchResults={searchResults}
+              />
             </GallerySection>
           )}
           {/*SECTION WITH PAGINATION*/}

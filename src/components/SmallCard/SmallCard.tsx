@@ -1,4 +1,5 @@
 import { JSX } from 'react';
+import { Link } from 'react-router-dom';
 import './SmallCard.css';
 import { useFavorites } from '../../context/FavoritesContext';
 import { ArtInfo } from '../../constants/api';
@@ -14,7 +15,12 @@ function SmallCard({ item, children }: SmallCardProps): JSX.Element {
 
   return (
     <div className="card__description">
-      {children}
+      <Link
+        to={`/task-art-museum-react/art/${item.id}`}
+        className="image__link"
+      >
+        {children}
+      </Link>
       <p className="text--heading">{item.title ?? 'Unknown'}</p>
       <p className="text--subheading">{item.artist_title ?? 'Unknown'}</p>
       <p className="text--status">
