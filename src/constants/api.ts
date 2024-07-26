@@ -16,7 +16,7 @@ export const URL_ARTWORK = ({ artworkId }: Partial<UrlData>) =>
   `https://api.artic.edu/api/v1/artworks/${artworkId}`;
 
 export interface ArtInfo {
-  id: number;
+  id: number | string;
   title: string;
   artist_title: string;
   is_public_domain: boolean;
@@ -26,6 +26,7 @@ export interface ArtInfo {
   dimensions: string;
   credit_line: string;
   image_id: string;
+  theme_titles: any;
 }
 
 interface ApiResponse {
