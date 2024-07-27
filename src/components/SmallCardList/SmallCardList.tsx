@@ -4,6 +4,7 @@ import { Loader } from '../CardList/styled';
 import { CardListWrapper, CardImageSmall } from './styled';
 import { ArtInfo, getJSON, URL_IMAGE } from '../../constants/api';
 import SmallCard from '../SmallCard/SmallCard';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 function SmallCardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
@@ -30,7 +31,7 @@ function SmallCardList(): JSX.Element {
   const memoizedData = useMemo(() => data, [data]);
 
   return (
-    <>
+    <ErrorBoundary>
       {!loading ? (
         <CardListWrapper>
           {memoizedData.map((item, index) => (
@@ -44,7 +45,7 @@ function SmallCardList(): JSX.Element {
       ) : (
         <Loader>Loading...</Loader>
       )}
-    </>
+    </ErrorBoundary>
   );
 }
 

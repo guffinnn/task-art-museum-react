@@ -5,6 +5,7 @@ import { CardImageSmall, CardListWrapper } from '../SmallCardList/styled';
 import { ArtInfo, URL_IMAGE } from '../../constants/api';
 import SmallCard from '../SmallCard/SmallCard';
 import SortDropdown from '../SortDropdown/SortDropdown';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 interface SearchResultsListProps {
   loading: boolean;
@@ -38,7 +39,7 @@ function SearchResultsList({
   }, [searchResults, sortCriteria]);
 
   return (
-    <>
+    <ErrorBoundary>
       {!loading ? (
         <>
           <SortDropdown
@@ -63,7 +64,7 @@ function SearchResultsList({
       ) : (
         <Loader>Loading...</Loader>
       )}
-    </>
+    </ErrorBoundary>
   );
 }
 

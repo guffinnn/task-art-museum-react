@@ -4,6 +4,7 @@ import { Loader } from './styled';
 import { URL_IMAGE } from '../../constants/api';
 import { useFavorites } from '../../context/FavoritesContext';
 import SmallCard from '../SmallCard/SmallCard';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 function FavoriteCardList(): JSX.Element {
   const { favorites } = useFavorites();
@@ -18,7 +19,7 @@ function FavoriteCardList(): JSX.Element {
   }, [favorites]);
 
   return (
-    <>
+    <ErrorBoundary>
       {!storageIsEmpty ? (
         <>
           <CardListWrapper>
@@ -34,7 +35,7 @@ function FavoriteCardList(): JSX.Element {
       ) : (
         <Loader>No favorites yet.</Loader>
       )}
-    </>
+    </ErrorBoundary>
   );
 }
 
