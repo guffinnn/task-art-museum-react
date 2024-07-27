@@ -1,7 +1,7 @@
 import { JSX, useEffect, useState, useMemo } from 'react';
 import './CardList.css';
 import { Loader, CardListWrapper } from './styled';
-import { ArtInfo, getJSON, URL_IMAGE } from '../../constants/api';
+import { ArtInfo, getJSON } from '../../constants/api';
 import Pagination from '../Pagination/Pagination';
 import Card from '../Card/Card';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';

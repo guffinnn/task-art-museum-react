@@ -1,27 +1,38 @@
-import { JSX, useState } from 'react';
+import React, { Component, ReactNode } from 'react';
 import './ErrorBoundary.css';
 
 interface ErrorBoundaryProps {
-  children: JSX.Element;
+  children: ReactNode;
 }
 
-function ErrorBoundary({ children }: ErrorBoundaryProps): JSX.Element {
-  const [hasError, setHasError] = useState<boolean>(false);
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
 
-  const errorHandler = (error: Error | undefined): void => {
-    console.log('ErrorBoundary', error);
-    setHasError(true);
-  };
-
-  if (hasError) {
-    return (
-      <div className="error">
-        Something went wrong. Please refresh the page.
-      </div>
-    );
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = {
+      hasError: false,
+    };
   }
 
-  return <>{children}</>;
+  componentDidCatch(error: Error | null, errorInfo: React.ErrorInfo): void {
+    console.log('ErrorBoundary', error, errorInfo);
+    this.setState({ hasError: true });
+  }
+
+  render(): ReactNode {
+    if (this.state.hasError) {
+      return (
+        <div className="error">
+          Something went wrong. Please refresh the page.
+        </div>
+      );
+    }
+
+    return <>{this.props.children}</>;
+  }
 }
 
 export default ErrorBoundary;
