@@ -27,6 +27,7 @@ function SmallCard({ item, children }: SmallCardProps): JSX.Element {
         {item.is_public_domain ? 'Public' : 'Private'}
       </p>
       <div
+        data-testid="fav-button"
         className={`button ${isFavorite && '--favorite'}`}
         onClick={() => toggleFavorite(item)}
       ></div>

@@ -50,7 +50,8 @@ function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
         />
         <div
           className="input__icon"
-          onClick={(e) => formik.handleSubmit()}
+          data-testid="search-icon"
+          onClick={() => formik.handleSubmit()}
         ></div>
       </InputWrapper>
     </form>

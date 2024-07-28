@@ -14,7 +14,7 @@ export const PaginationWrapper = styled.div`
   align-self: end;
 `;
 
-export const PageButton = styled.button<{ active: boolean }>`
+export const PageButton = styled.button<{ active: 'true' | 'false' }>`
   padding: 4px 10px;
   border: none;
   border-radius: 4px;
@@ -58,5 +58,13 @@ export const ArrowButton = styled.div<{ direction: 'left' | 'right' }>`
     rotate: ${({ direction }) => (direction === 'left' ? '180deg' : '0deg')};
 
     position: absolute;
+  }
+
+  &[data-testid='arrow-left'] {
+    rotate: 180deg;
+  }
+
+  &[data-testid='arrow-right'] {
+    rotate: 0deg;
   }
 `;
