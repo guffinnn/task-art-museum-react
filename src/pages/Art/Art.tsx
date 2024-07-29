@@ -64,6 +64,7 @@ function Art(): JSX.Element {
             <section className="main__section --description">
               <CardImage image_url={URL_IMAGE({ imageId: image_id })}>
                 <div
+                  data-testid="fav-button"
                   className={`button --white ${isFavorite && '--favorite'}`}
                   onClick={clickHandler}
                 ></div>

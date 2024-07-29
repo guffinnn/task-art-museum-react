@@ -19,14 +19,15 @@ export const PageButton = styled.button<{ active: 'true' | 'false' }>`
   border: none;
   border-radius: 4px;
   background-color: ${({ active }) =>
-    active ? 'var(--primary)' : 'rgba(255, 255, 255, 0)'};
-  color: ${({ active }) => (active ? 'var(--white)' : 'var(--black)')};
+    active === 'true' ? 'var(--primary)' : 'rgba(255, 255, 255, 0)'};
+  color: ${({ active }) =>
+    active === 'true' ? 'var(--white)' : 'var(--black)'};
   cursor: pointer;
 
   font-style: normal;
-  font-weight: ${({ active }) => (active ? '600' : '300')};
+  font-weight: ${({ active }) => (active === 'true' ? '600' : '300')};
   font-size: 18px;
-  line-height: ${({ active }) => (active ? '23px' : '24px')};
+  line-height: ${({ active }) => (active === 'true' ? '23px' : '24px')};
 
   transition: all 0.45s ease-in-out;
 `;

@@ -40,16 +40,14 @@ describe('SearchBar should', () => {
   });
 
   test('do not call onSearch if input is invalid', async () => {
+    const onSearch = jest.fn();
     render(<SearchBar onSearch={onSearch} />);
     const input = screen.getByPlaceholderText('Search art, artist, work...');
     fireEvent.change(input, { target: { value: 'ab' } });
 
-    await waitFor(
-      () => {
-        expect(onSearch).not.toHaveBeenCalled();
-      },
-      { timeout: 600 },
-    );
+    await waitFor(() => {
+      expect(onSearch).not.toHaveBeenCalled();
+    });
   });
 
   test('submit form correctly', async () => {
