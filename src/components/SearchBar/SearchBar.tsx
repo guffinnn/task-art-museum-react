@@ -33,7 +33,7 @@ function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
     if (!formik.errors.searchTerm && debouncedValue.trim().length >= 3) {
       onSearch(debouncedValue);
     }
-  }, [debouncedValue]);
+  }, [debouncedValue, formik.errors.searchTerm]);
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -45,12 +45,23 @@ function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
           type="text"
           name="searchTerm"
           value={formik.values.searchTerm}
-          onChange={formik.handleChange}
+          onChange={(e) => {
+            formik.handleChange(e);
+            if (e.target.value.trim().length < 3) {
+              formik.setFieldError(
+                'searchTerm',
+                'Search term must be at least 3 characters long.',
+              );
+            } else {
+              formik.setFieldError('searchTerm', '');
+            }
+          }}
           placeholder="Search art, artist, work..."
         />
         <div
           className="input__icon"
-          onClick={(e) => formik.handleSubmit()}
+          data-testid="search-icon"
+          onClick={() => formik.handleSubmit()}
         ></div>
       </InputWrapper>
     </form>
