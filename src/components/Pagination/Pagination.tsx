@@ -31,19 +31,27 @@ function Pagination({
   return (
     <PaginationWrapper>
       {pageOffset > 0 && (
-        <ArrowButton direction="left" onClick={handlePreviousSet} />
+        <ArrowButton
+          data-testid="arrow-left"
+          direction="left"
+          onClick={handlePreviousSet}
+        />
       )}
       {pages.map((page) => (
         <PageButton
           key={page}
-          active={page === currentPage}
+          active={page === currentPage ? 'true' : 'false'}
           onClick={() => onPageChange(page)}
         >
           {page}
         </PageButton>
       ))}
       {pageOffset + pagesPerSet < totalPages && (
-        <ArrowButton direction="right" onClick={handleNextSet} />
+        <ArrowButton
+          data-testid="arrow-right"
+          direction="right"
+          onClick={handleNextSet}
+        />
       )}
     </PaginationWrapper>
   );
