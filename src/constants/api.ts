@@ -28,7 +28,7 @@ export interface ArtInfo {
   dimensions: string;
   credit_line: string;
   image_id: string;
-  theme_titles: string | Record<string, UnionType>;
+  theme_titles: string | Record<string, UnionType> | Array<string | Record<string, UnionType>>;
 }
 
 interface ApiResponse {

@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-import { ArtInfo } from '../constants/api';
-import { useFavorites } from '../context/FavoritesContext';
-import Art from '../pages/Art/Art';
+import { ArtInfo } from '@constants/api';
+import { useFavorites } from '@context/FavoritesContext';
+import Art from '@pages/Art/Art';
 
-jest.mock('../context/FavoritesContext', () => ({
+jest.mock('@context/FavoritesContext', () => ({
   useFavorites: jest.fn(),
 }));
 

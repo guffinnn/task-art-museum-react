@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
-import SearchBar from '../components/SearchBar/SearchBar';
+import SearchBar from '@components/SearchBar/SearchBar';
 
 describe('SearchBar should', () => {
   const onSearch = jest.fn();

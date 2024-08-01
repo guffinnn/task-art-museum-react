@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { JSX } from 'react';
 
-import GallerySection from '../components/GallerySection/GallerySection';
+import GallerySection from '@components/GallerySection/GallerySection';
 
 interface GallerySectionProps {
   title: string;

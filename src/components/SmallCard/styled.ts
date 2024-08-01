@@ -95,10 +95,7 @@ export const TextStatus = styled.p<{ isChild: 'true' | 'false' }>`
   color: var(--black);
 `;
 
-export const CardButton = styled.div<{
-  isFavorite: 'true' | 'false';
-  isChild: 'true' | 'false';
-}>`
+export const CardButton = styled.div<{ isChild: 'true' | 'false'; }>`
   position: relative;
   grid-row: 1 / 4;
   grid-column: ${({ isChild }) => (isChild === 'true' ? '2' : '3')};
@@ -114,16 +111,14 @@ export const CardButton = styled.div<{
   width: 59px;
   height: 59px;
 
-  background: ${({ isFavorite }) =>
-    isFavorite === 'true'
-      ? `var(--primary-background)`
-      : `var(--gray-background)`};
+  background: ${`var(--gray-background)`};
   border-radius: 999px;
   transition: background 0.45s ease-in-out;
 
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &.--favorite {
     background: var(--primary-background);
   }
 
@@ -148,7 +143,8 @@ export const CardButton = styled.div<{
       transition: none;
     }
 
-    &:active {
+    &:active,
+    &.--favorite {
       background: var(--primary-background);
     }
   }

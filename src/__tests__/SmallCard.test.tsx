@@ -2,11 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import SmallCard from '../components/SmallCard/SmallCard';
-import { ArtInfo } from '../constants/api';
-import { useFavorites } from '../context/FavoritesContext';
+import SmallCard from '@components/SmallCard/SmallCard';
+import { ArtInfo } from '@constants/api';
+import { useFavorites } from '@context/FavoritesContext';
 
-jest.mock('../context/FavoritesContext', () => ({
+jest.mock('@context/FavoritesContext', () => ({
   useFavorites: jest.fn(),
 }));
 
@@ -59,7 +59,7 @@ describe('SmallCard should', () => {
     );
 
     const favoriteButton = screen.getByTestId('fav-button');
-    expect(favoriteButton.className).toBe('button --favorite');
+    expect(favoriteButton.className).toMatch(/--favorite/i);
   });
 
   test('call toggleFavorite on button click', () => {

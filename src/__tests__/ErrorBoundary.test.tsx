@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React, { JSX } from 'react';
 
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 
 describe('ErrorBoundary', () => {
   it('should render error message when an error occurs', () => {

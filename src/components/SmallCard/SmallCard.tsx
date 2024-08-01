@@ -38,7 +38,7 @@ function SmallCard({
       </TextStatus>
       <CardButton
         data-testid="fav-button"
-        isFavorite={isFavorite ? 'true' : 'false'}
+        className={isFavorite ? '--favorite' : ''}
         isChild={isChild}
         onClick={() => toggleFavorite(item)}
       ></CardButton>
