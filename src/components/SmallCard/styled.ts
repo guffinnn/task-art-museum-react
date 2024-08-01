@@ -1,4 +1,4 @@
-import bookmarkPrimary from '@assets/bookmark--primary.svg';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const CardDescription = styled.div<{ isChild: 'true' | 'false' }>`
@@ -94,61 +94,9 @@ export const TextStatus = styled.p<{ isChild: 'true' | 'false' }>`
   color: var(--black);
 `;
 
-export const CardButton = styled.div<{
-  isFavorite: 'true' | 'false';
-  isChild: 'true' | 'false';
-}>`
-  position: relative;
+export const ImageLink = styled(Link)`
   grid-row: 1 / 4;
-  grid-column: ${({ isChild }) => (isChild === 'true' ? '2' : '3')};
-  align-self: center;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 17px;
-  gap: 11px;
-
-  width: 59px;
-  height: 59px;
-
-  background: ${({ isFavorite }) =>
-    isFavorite === 'true'
-      ? `var(--primary-background)`
-      : `var(--gray-background)`};
-  border-radius: 999px;
-  transition: background 0.45s ease-in-out;
-
-  cursor: pointer;
-
-  &:hover {
-    background: var(--primary-background);
-  }
-
-  &::before {
-    content: url(${bookmarkPrimary});
-    position: absolute;
-
-    width: 24px;
-    height: 24px;
-    margin-bottom: -5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media (hover: none), (pointer: coarse) {
-    transition: none;
-
-    &:hover,
-    &:focus {
-      background: var(--gray-background);
-      transition: none;
-    }
-
-    &:active {
-      background: var(--primary-background);
-    }
-  }
+  grid-column: 1;
+  width: 100%;
+  height: 100%;
 `;

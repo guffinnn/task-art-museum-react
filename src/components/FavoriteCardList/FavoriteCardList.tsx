@@ -1,4 +1,5 @@
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { Loader } from '@components/FavoriteCardList/styled';
 import SmallCard from '@components/SmallCard/SmallCard';
 import {
   CardImageSmall,
@@ -7,8 +8,6 @@ import {
 import { URL_IMAGE } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { JSX, useEffect, useState } from 'react';
-
-import { Loader } from './styled';
 
 function FavoriteCardList(): JSX.Element {
   const { favorites } = useFavorites();

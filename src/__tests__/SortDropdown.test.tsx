@@ -1,6 +1,5 @@
+import SortDropdown from '@components/SortDropdown/SortDropdown';
 import { fireEvent, render, screen } from '@testing-library/react';
-
-import SortDropdown from '../components/SortDropdown/SortDropdown';
 
 describe('SortDropdown should', () => {
   const mockSetSortCriteria = jest.fn();

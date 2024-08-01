@@ -1,8 +1,7 @@
+import { FavoritesProvider } from '@context/FavoritesContext';
+import Favorites from '@pages/Favorites/Favorites';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-
-import { FavoritesProvider } from '../context/FavoritesContext';
-import Favorites from '../pages/Favorites/Favorites';
 
 describe('Favorites should', () => {
   test('render correctly', () => {

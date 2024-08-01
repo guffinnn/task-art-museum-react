@@ -1,15 +1,19 @@
-import './Art.css';
-
 import { Loader } from '@components/CardList/styled';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
 import { ArtInfo, URL_ARTWORK, URL_IMAGE } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
-import { Wrapper } from '@styles/global';
+import { CardButton, Wrapper } from '@styles/global';
 import React, { JSX, ReactNode, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { CardImage } from './styled';
+import {
+  CardImage,
+  InfoContainer,
+  Main,
+  MainSection,
+  StyledText,
+} from './styled';
 
 const isKnown = (value: ReactNode) => value ?? 'Unknown';
 
@@ -68,36 +72,40 @@ function Art(): JSX.Element {
   return (
     <>
       <Header isHomePage={false} isArt={true} />
-      <main id="main">
+      <Main>
         <Wrapper>
           {!loading ? (
-            <section className="main__section --description">
+            <MainSection className="--description">
               <CardImage image_url={URL_IMAGE({ imageId: image_id })}>
-                <div
+                <CardButton
                   data-testid="fav-button"
-                  className={`button --white ${isFavorite && '--favorite'}`}
+                  className={`--white ${isFavorite && '--favorite'}`}
                   onClick={clickHandler}
-                ></div>
+                />
               </CardImage>
-              <div className="info__container --main">
-                <p className="text --heading">{isKnown(title)}</p>
-                <p className="text --subheading">{isKnown(artist_title)}</p>
-                <p className="text --bold">{`${isKnown(date_start)}–${isKnown(date_end)}`}</p>
-              </div>
-              <div className="info__container --overview">
-                <p className="text --heading">Overview</p>
-                <p className="text">
+              <InfoContainer className="--main">
+                <StyledText className="--heading">{isKnown(title)}</StyledText>
+                <StyledText className="--subheading">
+                  {isKnown(artist_title)}
+                </StyledText>
+                <StyledText className="--bold">{`${isKnown(date_start)}–${isKnown(date_end)}`}</StyledText>
+              </InfoContainer>
+              <InfoContainer className="--overview">
+                <StyledText className="--heading">Overview</StyledText>
+                <StyledText>
                   <span>Artist nationality: </span>
                   {isKnown(place_of_origin)}
-                </p>
-                <p className="text">
+                </StyledText>
+                <StyledText>
                   <span>Dimensions: </span>
                   {dimensions?.split(';').map((part, index) => {
                     const [title, value] = part.split(':');
 
                     return value ? (
                       <>
-                        <span className="text--bold">{title?.trim()}:</span>{' '}
+                        <span className="StyledText--bold">
+                          {title?.trim()}:
+                        </span>{' '}
                         {value?.trim()}
                         {index < dimensions.split(';').length - 1 && '; '}
                       </>
@@ -105,25 +113,25 @@ function Art(): JSX.Element {
                       <>{title?.trim()}</>
                     );
                   })}
-                </p>
-                <p className="text">
+                </StyledText>
+                <StyledText>
                   <span>Credit Line: </span>
                   {isKnown(credit_line)}
-                </p>
-                <p className="text">
+                </StyledText>
+                <StyledText>
                   <span>Repository: </span>
                   {isKnown(joinedThemeTitles)}
-                </p>
-                <p className="text">
+                </StyledText>
+                <StyledText>
                   {is_public_domain ? 'Public' : 'Private'}
-                </p>
-              </div>
-            </section>
+                </StyledText>
+              </InfoContainer>
+            </MainSection>
           ) : (
             <Loader>Loading...</Loader>
           )}
         </Wrapper>
-      </main>
+      </Main>
       <Footer />
     </>
   );

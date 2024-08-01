@@ -1,13 +1,12 @@
+import SmallCardList from '@components/SmallCardList/SmallCardList';
+import { ArtInfo, getJSON } from '@constants/api';
+import { FavoritesProvider } from '@context/FavoritesContext';
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import SmallCardList from '../components/SmallCardList/SmallCardList';
-import { ArtInfo, getJSON } from '../constants/api';
-import { FavoritesProvider } from '../context/FavoritesContext';
-
-jest.mock('../constants/api', () => ({
-  ...jest.requireActual('../constants/api'),
+jest.mock('@constants/api', () => ({
+  ...jest.requireActual('@constants/api'),
   getJSON: jest.fn(),
 }));
 

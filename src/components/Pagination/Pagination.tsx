@@ -1,8 +1,9 @@
-import './Pagination.css';
-
+import {
+  ArrowButton,
+  PageButton,
+  PaginationWrapper,
+} from '@components/Pagination/styled';
 import { JSX, useState } from 'react';
-
-import { ArrowButton, PageButton, PaginationWrapper } from './styled';
 
 interface PaginationProps {
   currentPage: number;

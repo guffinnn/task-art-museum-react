@@ -1,5 +1,9 @@
-import './GallerySection.css';
-
+import {
+  Section,
+  SectionTextFrame,
+  Subtitle,
+  Title,
+} from '@components/GallerySection/styled';
 import { JSX, memo } from 'react';
 
 interface GallerySectionProps {
@@ -14,13 +18,13 @@ function GallerySection({
   children,
 }: GallerySectionProps): JSX.Element {
   return (
-    <section className="main__section --gallery">
-      <div className="section__text_frame">
-        <h3>{title}</h3>
-        <h2>{subtitle}</h2>
-      </div>
+    <Section>
+      <SectionTextFrame>
+        <Subtitle>{title}</Subtitle>
+        <Title>{subtitle}</Title>
+      </SectionTextFrame>
       {children}
-    </section>
+    </Section>
   );
 }
 

@@ -1,14 +1,14 @@
 import {
-  CardButton,
   CardDescription,
+  ImageLink,
   TextHeading,
   TextStatus,
   TextSubheading,
 } from '@components/SmallCard/styled';
 import { ArtInfo } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
+import { CardButton } from '@styles/global';
 import { JSX } from 'react';
-import { Link } from 'react-router-dom';
 
 interface SmallCardProps {
   item: ArtInfo;
@@ -26,12 +26,9 @@ function SmallCard({
 
   return (
     <CardDescription isChild={isChild}>
-      <Link
-        to={`/task-art-museum-react/art/${item.id}`}
-        className="image__link"
-      >
+      <ImageLink to={`/task-art-museum-react/art/${item.id}`}>
         {children}
-      </Link>
+      </ImageLink>
       <TextHeading isChild={isChild}>{item.title ?? 'Unknown'}</TextHeading>
       <TextSubheading isChild={isChild}>
         {item.artist_title ?? 'Unknown'}
@@ -41,7 +38,7 @@ function SmallCard({
       </TextStatus>
       <CardButton
         data-testid="fav-button"
-        isFavorite={isFavorite ? 'true' : 'false'}
+        className={isFavorite ? '--favorite' : ''}
         isChild={isChild}
         onClick={() => toggleFavorite(item)}
       ></CardButton>

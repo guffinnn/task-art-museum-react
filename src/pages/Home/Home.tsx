@@ -1,5 +1,3 @@
-import './Home.css';
-
 import CardList from '@components/CardList/CardList';
 import Footer from '@components/Footer/Footer';
 import GallerySection from '@components/GallerySection/GallerySection';
@@ -8,7 +6,7 @@ import SearchBar from '@components/SearchBar/SearchBar';
 import SearchResultsList from '@components/SearchResultsList/SearchResultsList';
 import SmallCardList from '@components/SmallCardList/SmallCardList';
 import { ArtInfo, URL_ARTWORK, URL_SEARCH } from '@constants/api';
-import { Wrapper } from '@styles/global';
+import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
 import { JSX, useState } from 'react';
 
 function Home(): JSX.Element {
@@ -46,13 +44,12 @@ function Home(): JSX.Element {
       <Header />
       <main>
         <Wrapper>
-          <section className="main__section --search">
-            <h1>
-              let&apos;s find some <span className="text--primary">art</span>{' '}
-              here!
-            </h1>
+          <MainSection className="--search">
+            <Title>
+              let&apos;s find some <PrimaryText>art</PrimaryText> here!
+            </Title>
             <SearchBar onSearch={handleSearch} />
-          </section>
+          </MainSection>
           {/*OUTPUT SEARCH RESULTS*/}
           {searchResults.length > 0 && (
             <GallerySection

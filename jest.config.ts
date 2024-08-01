@@ -1,4 +1,6 @@
 import type { Config } from 'jest';
+import { pathsToModuleNameMapper } from 'ts-jest';
+import { compilerOptions } from './tsconfig.json';
 
 const config: Config = {
   verbose: true,
@@ -15,12 +17,11 @@ const config: Config = {
       statements: 30,
     },
   },
-  coveragePathIgnorePatterns: [
-    '/node_modules/',
-  ],
+  coveragePathIgnorePatterns: ['/node_modules/'],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': '<rootDir>/jest-css-modules.ts',
     '\\.svg$': '<rootDir>/jest-svg-transform.ts',
+    ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/src/' }),
   },
   testEnvironment: 'jsdom',
   transform: {

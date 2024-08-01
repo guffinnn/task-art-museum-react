@@ -1,10 +1,8 @@
-import './Favorites.css';
-
 import FavoriteCardList from '@components/FavoriteCardList/FavoriteCardList';
 import Footer from '@components/Footer/Footer';
 import GallerySection from '@components/GallerySection/GallerySection';
 import Header from '@components/Header/Header';
-import { Wrapper } from '@styles/global';
+import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
 import { JSX } from 'react';
 
 function Favorites(): JSX.Element {
@@ -13,12 +11,12 @@ function Favorites(): JSX.Element {
       <Header isHomePage={false} />
       <main>
         <Wrapper>
-          <section className="main__section --search">
-            <h1>
+          <MainSection className="--search">
+            <Title>
               here are your{' '}
-              <span className="text--primary --bookmark">favorites</span>
-            </h1>
-          </section>
+              <PrimaryText className="--bookmark">favorites</PrimaryText>
+            </Title>
+          </MainSection>
           <GallerySection title="Your favorites list" subtitle="Saved by you">
             <FavoriteCardList />
           </GallerySection>
