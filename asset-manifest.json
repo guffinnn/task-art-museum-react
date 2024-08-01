@@ -1,22 +1,19 @@
 {
   "files": {
-    "main.css": "/task-art-museum-react/static/css/main.4d482d9c.css",
-    "main.js": "/task-art-museum-react/static/js/main.0079b57b.js",
-    "static/media/museum-logo--black.svg": "/task-art-museum-react/static/media/museum-logo--black.7ab5edf03fd6dd7237c3.svg",
-    "static/media/museum-logo.svg": "/task-art-museum-react/static/media/museum-logo.7a0bd9dae0a0871be849.svg",
-    "static/media/modsen-logo.svg": "/task-art-museum-react/static/media/modsen-logo.ce537654a5b7d42f1484.svg",
+    "main.js": "/task-art-museum-react/static/js/main.179722e6.js",
+    "static/media/museum-logo--black.svg": "/task-art-museum-react/static/media/museum-logo--black.7ab5edf03fd6dd7237c36a4b50391596.svg",
+    "static/media/museum-logo.svg": "/task-art-museum-react/static/media/museum-logo.7a0bd9dae0a0871be849b3fd9d213210.svg",
+    "static/media/modsen-logo.svg": "/task-art-museum-react/static/media/modsen-logo.ce537654a5b7d42f148463e4281fdaca.svg",
     "index.html": "/task-art-museum-react/index.html",
-    "static/media/home.svg": "/task-art-museum-react/static/media/home.6b15244d46321178e817.svg",
-    "static/media/bookmark--primary--big.svg": "/task-art-museum-react/static/media/bookmark--primary--big.10cedc5a4c3b0ae709f6.svg",
-    "static/media/bookmark--primary.svg": "/task-art-museum-react/static/media/bookmark--primary.d41d2efcacdd34028167.svg",
-    "static/media/search.svg": "/task-art-museum-react/static/media/search.1bfdfc3d954023f54fdd.svg",
-    "static/media/bookmark.svg": "/task-art-museum-react/static/media/bookmark.ff0339d7ed53747f9bd6.svg",
+    "static/media/home.svg": "/task-art-museum-react/static/media/home.6b15244d46321178e817730f0ec05b33.svg",
+    "static/media/bookmark--primary--big.svg": "/task-art-museum-react/static/media/bookmark--primary--big.10cedc5a4c3b0ae709f616fe4f5f6536.svg",
+    "static/media/bookmark--primary.svg": "/task-art-museum-react/static/media/bookmark--primary.d41d2efcacdd3402816744a87e4ca13b.svg",
+    "static/media/search.svg": "/task-art-museum-react/static/media/search.1bfdfc3d954023f54fdd260a0178580b.svg",
+    "static/media/bookmark.svg": "/task-art-museum-react/static/media/bookmark.ff0339d7ed53747f9bd6b3055e8312cc.svg",
     "static/media/arrow-right.svg": "/task-art-museum-react/static/media/arrow-right.fbf4622f01dc166d515733ee33aa6b5a.svg",
-    "main.4d482d9c.css.map": "/task-art-museum-react/static/css/main.4d482d9c.css.map",
-    "main.0079b57b.js.map": "/task-art-museum-react/static/js/main.0079b57b.js.map"
+    "main.179722e6.js.map": "/task-art-museum-react/static/js/main.179722e6.js.map"
   },
   "entrypoints": [
-    "static/css/main.4d482d9c.css",
-    "static/js/main.0079b57b.js"
+    "static/js/main.179722e6.js"
   ]
 }
