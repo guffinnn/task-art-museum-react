@@ -1,3 +1,4 @@
+import searchIcon from '@assets/search.svg';
 import styled from 'styled-components';
 
 export const InputWrapper = styled.div<{ value: string; error: string }>`
@@ -50,4 +51,31 @@ export const Input = styled.input`
   border: none;
   outline: none;
   padding: 23px 16px;
+
+  &::placeholder {
+    text-transform: capitalize;
+    color: var(--black-lighter);
+  }
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+`;
+
+export const InputIcon = styled.div`
+  width: 32px;
+  height: 32px;
+  background: url(${searchIcon}) no-repeat center center;
+  background-size: contain;
+
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+
+  cursor: pointer;
 `;

@@ -1,5 +1,4 @@
-import './ErrorBoundary.css';
-
+import { ErrorContainer } from '@components/ErrorBoundary/styled';
 import React, { Component, ReactNode } from 'react';
 
 interface ErrorBoundaryProps {
@@ -26,9 +25,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="error">
+        <ErrorContainer>
           Something went wrong. Please refresh the page.
-        </div>
+        </ErrorContainer>
       );
     }
 

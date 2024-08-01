@@ -1,5 +1,6 @@
-/*SORT_DROPDOWN*/
-.sort__dropdown {
+import styled from 'styled-components';
+
+export const SortDropdownContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -7,9 +8,9 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-}
+`;
 
-.sort__dropdown label {
+export const Label = styled.label`
   font-family: 'Inter', serif;
   font-style: normal;
   font-weight: 400;
@@ -17,11 +18,10 @@
   line-height: 20px;
   display: flex;
   align-items: center;
-
   color: var(--primary-lighter);
-}
+`;
 
-.sort__dropdown select {
+export const Select = styled.select`
   display: flex;
   padding: 6px 4px;
   justify-content: space-between;
@@ -29,12 +29,10 @@
   align-self: stretch;
   border: 1px solid var(--black-background);
   background: var(--white);
-
   font-family: 'Inter', serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 130%;
-
   flex: 1 0 0;
-}
+`;

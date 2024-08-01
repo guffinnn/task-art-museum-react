@@ -1,10 +1,9 @@
 import Card from '@components/Card/Card';
+import { CardListWrapper, Loader } from '@components/CardList/styled';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import Pagination from '@components/Pagination/Pagination';
 import { ArtInfo, getJSON } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
-
-import { CardListWrapper, Loader } from './styled';
 
 function CardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);

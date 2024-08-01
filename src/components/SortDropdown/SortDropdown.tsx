@@ -1,5 +1,8 @@
-import './SortDropdown.css';
-
+import {
+  Label,
+  Select,
+  SortDropdownContainer,
+} from '@components/SortDropdown/styled';
 import { JSX } from 'react';
 
 interface SortDropdownProps {
@@ -12,9 +15,9 @@ function SortDropdown({
   setSortCriteria,
 }: SortDropdownProps): JSX.Element {
   return (
-    <div className="sort__dropdown">
-      <label htmlFor="sort">Sorting parameters:</label>
-      <select
+    <SortDropdownContainer>
+      <Label htmlFor="sort">Sorting parameters:</Label>
+      <Select
         id="sort"
         value={sortCriteria}
         onChange={(e) => setSortCriteria(e.target.value)}
@@ -23,8 +26,8 @@ function SortDropdown({
         <option value="date_reverse">Newest first</option>
         <option value="alphabet">A &gt; Z</option>
         <option value="alphabet_reverse">Z &gt; A</option>
-      </select>
-    </div>
+      </Select>
+    </SortDropdownContainer>
   );
 }
 

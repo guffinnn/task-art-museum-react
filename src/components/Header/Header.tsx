@@ -1,7 +1,13 @@
-import './Header.css';
-
+import {
+  HeaderContainer,
+  HeaderLogo,
+  HeaderText,
+  Menu,
+  MenuIcon,
+  MenuToggle,
+} from '@components/Header/styled';
+import { Wrapper } from '@styles/global';
 import { JSX, memo } from 'react';
-import { Link } from 'react-router-dom';
 
 interface HeaderProp {
   isHomePage: boolean;
@@ -19,25 +25,23 @@ function Header({
     : 'favorites';
 
   return (
-    <header>
-      <div className="wrapper">
-        <div className="header__logo"></div>
-        <input type="checkbox" id="menu-toggle" className="menu-toggle" />
-        <label htmlFor="menu-toggle" className="menu-icon">
-          ☰
-        </label>
-        <nav className="menu">
+    <HeaderContainer>
+      <Wrapper modificator={'header'}>
+        <HeaderLogo></HeaderLogo>
+        <MenuToggle type="checkbox" id="menu-toggle" />
+        <MenuIcon htmlFor="menu-toggle">☰</MenuIcon>
+        <Menu>
           {!isHomePage && (
-            <Link to="/task-art-museum-react" className="header__text --home">
+            <HeaderText to="/task-art-museum-react" className="--home">
               Home
-            </Link>
+            </HeaderText>
           )}
-          <Link to={favoritesPath} className="header__text --bookmark">
+          <HeaderText to={favoritesPath} className="--bookmark">
             Your favorites
-          </Link>
-        </nav>
-      </div>
-    </header>
+          </HeaderText>
+        </Menu>
+      </Wrapper>
+    </HeaderContainer>
   );
 }
 
