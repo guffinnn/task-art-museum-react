@@ -1,5 +1,4 @@
 import {
-  CardButton,
   CardDescription,
   ImageLink,
   TextHeading,
@@ -8,6 +7,7 @@ import {
 } from '@components/SmallCard/styled';
 import { ArtInfo } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
+import { CardButton } from '@styles/global';
 import { JSX } from 'react';
 
 interface SmallCardProps {

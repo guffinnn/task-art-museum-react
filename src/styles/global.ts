@@ -1,3 +1,5 @@
+import bookmarkPrimary from '@assets/bookmark--primary.svg';
+import bigBookmark from '@assets/bookmark--primary--big.svg';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { ThemeType } from './theme';
@@ -35,7 +37,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   body {
     width: 100%;
     height: 100%;
-    background: ${({ theme }) => theme.background};
+    background: ${({ theme }) => theme.colors.grayBodyBackground};
   }
 
   header,
@@ -73,5 +75,157 @@ export const Wrapper = styled.div<{ modificator?: string }>`
 
   @media (max-width: 720px) {
     width: 350px;
+  }
+`;
+
+export const MainSection = styled.section`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin: 120px auto;
+
+  &.--search {
+    row-gap: 72px;
+  }
+
+  &.--gallery {
+    row-gap: 40px;
+  }
+`;
+
+export const Title = styled.h1`
+  width: 100%;
+  max-width: 684px;
+  height: fit-content;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 80px;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--black);
+
+  @media (max-width: 720px) {
+    font-size: 32px;
+    line-height: 48px;
+  }
+`;
+
+export const PrimaryText = styled.span`
+  color: var(--primary);
+
+  &.--bookmark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    &::before {
+      content: url(${bigBookmark});
+      width: 74px;
+      height: 74px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    @media (max-width: 720px) {
+      &::before {
+        width: 40px;
+        height: 40px;
+        transform: scale(0.6);
+        margin-bottom: -8px;
+      }
+    }
+  }
+`;
+
+export const CardButton = styled.div<{ isChild?: 'true' | 'false' }>`
+  position: relative;
+  grid-row: 1 / 4;
+  grid-column: ${({ isChild }) => (isChild === 'true' ? '2' : '3')};
+  align-self: center;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 17px;
+  gap: 11px;
+
+  width: 59px;
+  height: 59px;
+
+  background: ${`var(--gray-background)`};
+  border-radius: 999px;
+  transition: background 0.45s ease-in-out;
+
+  cursor: pointer;
+
+  &:hover,
+  &.--favorite {
+    background: var(--primary-background);
+  }
+
+  &::before {
+    content: url(${bookmarkPrimary});
+    position: absolute;
+
+    width: 24px;
+    height: 24px;
+    margin-bottom: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    transition: none;
+
+    &:hover,
+    &:focus {
+      background: var(--gray-background);
+      transition: none;
+    }
+
+    &:active,
+    &.--favorite {
+      background: var(--primary-background);
+    }
+  }
+
+  &.--white {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-16px, 16px);
+    background: var(--white);
+  }
+
+  &.--white:hover,
+  &.--white.--favorite {
+    background: var(--primary-background);
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    transition: none;
+
+    &.--white:hover,
+    &.--white:focus {
+      background: var(--gray-background);
+      transition: none;
+    }
+
+    &.--white:active,
+    &.--white.--favorite {
+      background: var(--primary-background);
+      transition: none;
+    }
   }
 `;
