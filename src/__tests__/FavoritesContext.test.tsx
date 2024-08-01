@@ -1,13 +1,18 @@
+import { act, render, screen } from '@testing-library/react';
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
-import { FavoritesProvider, useFavorites } from '../context/FavoritesContext';
+
 import { ArtInfo } from '../constants/api';
+import { FavoritesProvider, useFavorites } from '../context/FavoritesContext';
 
 const TestComponent = () => {
   const { favorites, toggleFavorite } = useFavorites();
   return (
     <div>
-      <button onClick={() => toggleFavorite({ id: '1', title: 'Art 1' } as ArtInfo)}>Toggle Favorite</button>
+      <button
+        onClick={() => toggleFavorite({ id: '1', title: 'Art 1' } as ArtInfo)}
+      >
+        Toggle Favorite
+      </button>
       <div data-testid="favorites-count">{favorites.length}</div>
     </div>
   );
@@ -18,7 +23,7 @@ describe('FavoritesContext should', () => {
     render(
       <FavoritesProvider>
         <TestComponent />
-      </FavoritesProvider>
+      </FavoritesProvider>,
     );
 
     const button = screen.getByText('Toggle Favorite');
@@ -41,7 +46,7 @@ describe('FavoritesContext should', () => {
     const { getByText, getByTestId } = render(
       <FavoritesProvider>
         <TestComponent />
-      </FavoritesProvider>
+      </FavoritesProvider>,
     );
 
     const button = getByText('Toggle Favorite');
@@ -55,7 +60,7 @@ describe('FavoritesContext should', () => {
     render(
       <FavoritesProvider>
         <TestComponent />
-      </FavoritesProvider>
+      </FavoritesProvider>,
     );
 
     expect(favoritesCount.textContent).toBe('1');

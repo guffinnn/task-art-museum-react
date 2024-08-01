@@ -1,8 +1,10 @@
-import { JSX, useEffect } from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import useDebounce from '../../useDebounce';
 import './SearchBar.css';
+
+import useDebounce from '@hooks/useDebounce';
+import { useFormik } from 'formik';
+import { JSX, useEffect } from 'react';
+import * as yup from 'yup';
+
 import { Input, InputWrapper } from './styled';
 
 interface SearchBarProps {
