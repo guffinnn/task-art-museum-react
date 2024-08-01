@@ -43,16 +43,25 @@ export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   footer {
     width: 100%;
   }
-
-  .image__link {
-      width: 100%;
-      height: 100%;
-  }
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ modificator?: string }>`
   width: 1280px;
   margin: auto;
+
+  ${({ modificator }) =>
+    modificator &&
+    `
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 20px;
+    padding: 32px 0;
+  `};
 
   @media (max-width: 1380px) {
     width: 980px;

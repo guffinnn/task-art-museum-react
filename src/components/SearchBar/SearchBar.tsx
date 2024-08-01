@@ -1,11 +1,13 @@
-import './SearchBar.css';
-
+import {
+  Form,
+  Input,
+  InputIcon,
+  InputWrapper,
+} from '@components/SearchBar/styled';
 import useDebounce from '@hooks/useDebounce';
 import { useFormik } from 'formik';
 import { JSX, useEffect } from 'react';
 import * as yup from 'yup';
-
-import { Input, InputWrapper } from './styled';
 
 interface SearchBarProps {
   onSearch: (searchTerm: string) => void;
@@ -38,7 +40,7 @@ function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
   }, [debouncedValue, formik.errors.searchTerm]);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}>
       <InputWrapper
         value={formik.values.searchTerm}
         error={formik.errors.searchTerm || ''}
@@ -60,13 +62,12 @@ function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
           }}
           placeholder="Search art, artist, work..."
         />
-        <div
-          className="input__icon"
+        <InputIcon
           data-testid="search-icon"
           onClick={() => formik.handleSubmit()}
-        ></div>
+        />
       </InputWrapper>
-    </form>
+    </Form>
   );
 }
 

@@ -1,4 +1,5 @@
 import bookmarkPrimary from '@assets/bookmark--primary.svg';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const CardDescription = styled.div<{ isChild: 'true' | 'false' }>`
@@ -151,4 +152,11 @@ export const CardButton = styled.div<{
       background: var(--primary-background);
     }
   }
+`;
+
+export const ImageLink = styled(Link)`
+  grid-row: 1 / 4;
+  grid-column: 1;
+  width: 100%;
+  height: 100%;
 `;

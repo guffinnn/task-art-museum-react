@@ -1,15 +1,19 @@
-import './Footer.css';
-
+import {
+  FooterContainer,
+  FooterLogoModsen,
+  FooterLogoMuseum,
+} from '@components/Footer/styled';
+import { Wrapper } from '@styles/global';
 import { JSX } from 'react';
 
 function Footer(): JSX.Element {
   return (
-    <footer>
-      <div className="wrapper">
-        <div className="footer__logo--gallery"></div>
-        <div className="footer__logo--modsen"></div>
-      </div>
-    </footer>
+    <FooterContainer>
+      <Wrapper modificator={'footer'}>
+        <FooterLogoMuseum></FooterLogoMuseum>
+        <FooterLogoModsen></FooterLogoModsen>
+      </Wrapper>
+    </FooterContainer>
   );
 }
 

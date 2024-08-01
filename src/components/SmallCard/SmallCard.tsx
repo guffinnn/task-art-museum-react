@@ -1,6 +1,7 @@
 import {
   CardButton,
   CardDescription,
+  ImageLink,
   TextHeading,
   TextStatus,
   TextSubheading,
@@ -8,7 +9,6 @@ import {
 import { ArtInfo } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { JSX } from 'react';
-import { Link } from 'react-router-dom';
 
 interface SmallCardProps {
   item: ArtInfo;
@@ -26,12 +26,9 @@ function SmallCard({
 
   return (
     <CardDescription isChild={isChild}>
-      <Link
-        to={`/task-art-museum-react/art/${item.id}`}
-        className="image__link"
-      >
+      <ImageLink to={`/task-art-museum-react/art/${item.id}`}>
         {children}
-      </Link>
+      </ImageLink>
       <TextHeading isChild={isChild}>{item.title ?? 'Unknown'}</TextHeading>
       <TextSubheading isChild={isChild}>
         {item.artist_title ?? 'Unknown'}
