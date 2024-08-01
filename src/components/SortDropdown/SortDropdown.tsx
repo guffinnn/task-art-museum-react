@@ -1,5 +1,6 @@
-import { JSX, useState } from 'react';
 import './SortDropdown.css';
+
+import { JSX } from 'react';
 
 interface SortDropdownProps {
   sortCriteria: string;

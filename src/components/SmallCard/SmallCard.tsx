@@ -1,8 +1,10 @@
+import './SmallCard.css';
+
 import { JSX } from 'react';
 import { Link } from 'react-router-dom';
-import './SmallCard.css';
-import { useFavorites } from '../../context/FavoritesContext';
+
 import { ArtInfo } from '../../constants/api';
+import { useFavorites } from '../../context/FavoritesContext';
 
 interface SmallCardProps {
   item: ArtInfo;

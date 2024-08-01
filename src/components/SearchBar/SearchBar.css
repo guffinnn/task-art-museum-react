@@ -1,27 +1,27 @@
 /*SEARCH_BAR*/
 form {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
 }
 
 input::placeholder {
-    text-transform: capitalize;
-    color: var(--black-lighter);
+  text-transform: capitalize;
+  color: var(--black-lighter);
 }
 
 .input__icon {
-    width: 32px;
-    height: 32px;
-    background: url(../../assets/search.svg) no-repeat center center;
-    background-size: contain;
+  width: 32px;
+  height: 32px;
+  background: url(../../assets/search.svg) no-repeat center center;
+  background-size: contain;
 
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
 
-    cursor: pointer;
+  cursor: pointer;
 }

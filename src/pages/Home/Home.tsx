@@ -1,13 +1,15 @@
-import { JSX, useState } from 'react';
 import './Home.css';
-import { ArtInfo, URL_ARTWORK, URL_SEARCH } from '../../constants/api';
+
+import { JSX, useState } from 'react';
+
+import CardList from '../../components/CardList/CardList';
+import Footer from '../../components/Footer/Footer';
+import GallerySection from '../../components/GallerySection/GallerySection';
 import Header from '../../components/Header/Header';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import GallerySection from '../../components/GallerySection/GallerySection';
-import CardList from '../../components/CardList/CardList';
-import SmallCardList from '../../components/SmallCardList/SmallCardList';
-import Footer from '../../components/Footer/Footer';
 import SearchResultsList from '../../components/SearchResultsList/SearchResultsList';
+import SmallCardList from '../../components/SmallCardList/SmallCardList';
+import { ArtInfo, URL_ARTWORK, URL_SEARCH } from '../../constants/api';
 
 function Home(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
@@ -46,7 +48,8 @@ function Home(): JSX.Element {
         <div className="wrapper">
           <section className="main__section --search">
             <h1>
-              let's find some <span className="text--primary">art</span> here!
+              let&apos;s find some <span className="text--primary">art</span>{' '}
+              here!
             </h1>
             <SearchBar onSearch={handleSearch} />
           </section>

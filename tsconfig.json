@@ -14,7 +14,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@assets/": ["assets/"],
+      "@components/": ["components/"],
+      "@constants/": ["constants/"],
+      "@context": ["context/"],
+      "@pages": ["pages/"],
+      "@hooks": ["hooks/"],
+      "@utils/": ["utils/"],
+      "@types/": ["types/"]
+    }
   },
-  "include": ["src", "custom.d.ts", "jest.setup.ts"]
+  "include": ["src", "custom.d.ts", "jest.setup.ts",
+    "eslint.config.mjs"
+  ]
 }

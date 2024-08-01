@@ -1,10 +1,12 @@
-import { JSX, useEffect, useState, useMemo } from 'react';
 import './SmallCardList.css';
-import { Loader } from '../CardList/styled';
-import { CardListWrapper, CardImageSmall } from './styled';
+
+import { JSX, useEffect, useMemo, useState } from 'react';
+
 import { ArtInfo, getJSON, URL_IMAGE } from '../../constants/api';
-import SmallCard from '../SmallCard/SmallCard';
+import { Loader } from '../CardList/styled';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import SmallCard from '../SmallCard/SmallCard';
+import { CardImageSmall, CardListWrapper } from './styled';
 
 function SmallCardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);

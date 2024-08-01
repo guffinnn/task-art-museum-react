@@ -1,9 +1,11 @@
+import './Card.css';
+
 import { JSX } from 'react';
 import { Link } from 'react-router-dom';
-import './Card.css';
-import { CardImage } from './styled';
+
 import { ArtInfo, URL_IMAGE } from '../../constants/api';
 import SmallCard from '../SmallCard/SmallCard';
+import { CardImage } from './styled';
 
 interface CardProps {
   item: ArtInfo;

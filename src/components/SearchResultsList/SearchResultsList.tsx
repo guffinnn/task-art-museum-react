@@ -1,10 +1,11 @@
 import { JSX, useMemo, useState } from 'react';
-import { Loader } from '../CardList/styled';
-import { CardImageSmall, CardListWrapper } from '../SmallCardList/styled';
+
 import { ArtInfo, URL_IMAGE } from '../../constants/api';
-import SmallCard from '../SmallCard/SmallCard';
-import SortDropdown from '../SortDropdown/SortDropdown';
+import { Loader } from '../CardList/styled';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import SmallCard from '../SmallCard/SmallCard';
+import { CardImageSmall, CardListWrapper } from '../SmallCardList/styled';
+import SortDropdown from '../SortDropdown/SortDropdown';
 
 interface SearchResultsListProps {
   loading: boolean;

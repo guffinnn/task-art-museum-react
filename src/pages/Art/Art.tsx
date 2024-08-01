@@ -1,14 +1,16 @@
-import React, { JSX, useEffect, useState } from 'react';
 import './Art.css';
-import { Loader } from '../../components/CardList/styled';
-import { CardImage } from './styled';
-import { useParams } from 'react-router-dom';
-import { ArtInfo, URL_ARTWORK, URL_IMAGE } from '../../constants/api';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import { useFavorites } from '../../context/FavoritesContext';
 
-const isKnown = (value: any) => value ?? 'Unknown';
+import React, { JSX, ReactNode, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { Loader } from '../../components/CardList/styled';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
+import { ArtInfo, URL_ARTWORK, URL_IMAGE } from '../../constants/api';
+import { useFavorites } from '../../context/FavoritesContext';
+import { CardImage } from './styled';
+
+const isKnown = (value: ReactNode) => value ?? 'Unknown';
 
 function Art(): JSX.Element {
   const { id } = useParams();
@@ -54,6 +56,13 @@ function Art(): JSX.Element {
 
     return toggleFavorite(artwork);
   };
+
+  const themeTitlesArray =
+    typeof theme_titles === 'object' && theme_titles !== null
+      ? Object.values(theme_titles)
+      : [theme_titles];
+
+  const joinedThemeTitles = themeTitlesArray.join(', ');
 
   return (
     <>
@@ -102,7 +111,7 @@ function Art(): JSX.Element {
                 </p>
                 <p className="text">
                   <span>Repository: </span>
-                  {isKnown(theme_titles?.join(', '))}
+                  {isKnown(joinedThemeTitles)}
                 </p>
                 <p className="text">
                   {is_public_domain ? 'Public' : 'Private'}

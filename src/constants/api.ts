@@ -15,6 +15,8 @@ export const URL_SEARCH = ({ searchTerm }: Partial<UrlData>) =>
 export const URL_ARTWORK = ({ artworkId }: Partial<UrlData>) =>
   `https://api.artic.edu/api/v1/artworks/${artworkId}`;
 
+type UnionType = string | number | boolean | null;
+
 export interface ArtInfo {
   id: number | string;
   title: string;
@@ -26,7 +28,7 @@ export interface ArtInfo {
   dimensions: string;
   credit_line: string;
   image_id: string;
-  theme_titles: any;
+  theme_titles: string | Record<string, UnionType>;
 }
 
 interface ApiResponse {

@@ -1,9 +1,11 @@
-import { JSX } from 'react';
 import './Favorites.css';
-import Header from '../../components/Header/Header';
-import GallerySection from '../../components/GallerySection/GallerySection';
-import Footer from '../../components/Footer/Footer';
+
+import { JSX } from 'react';
+
 import FavoriteCardList from '../../components/FavoriteCardList/FavoriteCardList';
+import Footer from '../../components/Footer/Footer';
+import GallerySection from '../../components/GallerySection/GallerySection';
+import Header from '../../components/Header/Header';
 
 function Favorites(): JSX.Element {
   return (
