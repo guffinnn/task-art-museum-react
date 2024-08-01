@@ -1,5 +1,19 @@
 import styled from 'styled-components';
 
+export const CardContainer = styled.div`
+  position: relative;
+  width: 387px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 70px;
+
+  @media (max-width: 720px) {
+    width: 350px;
+  }
+`;
+
 export const CardImage = styled.div<{ image_url: string }>`
   position: relative;
   width: 100%;

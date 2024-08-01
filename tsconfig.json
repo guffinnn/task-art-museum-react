@@ -15,18 +15,18 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "./src",
     "paths": {
-      "@assets/": ["assets/"],
-      "@components/": ["components/"],
-      "@constants/": ["constants/"],
-      "@context": ["context/"],
-      "@pages": ["pages/"],
-      "@hooks": ["hooks/"],
-      "@utils/": ["utils/"],
-      "@types/": ["types/"]
+      "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/*"],
+      "@constants/*": ["./constants/*"],
+      "@context/*": ["./context/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@pages/*": ["./pages/*"],
+      "@styles/*": ["./styles/*"],
+      "@types/*": ["./types/*"],
+      "@utils/*": ["./utils/*"],
     }
   },
-  "include": ["src", "custom.d.ts", "jest.setup.ts",
-    "eslint.config.mjs"
-  ]
+  "include": ["src", "custom.d.ts", "jest.setup.ts", "eslint.config.mjs", "craco.config.ts"]
 }

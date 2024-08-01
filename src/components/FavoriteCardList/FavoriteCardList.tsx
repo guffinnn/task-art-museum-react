@@ -1,10 +1,13 @@
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import SmallCard from '@components/SmallCard/SmallCard';
+import {
+  CardImageSmall,
+  CardListWrapper,
+} from '@components/SmallCardList/styled';
+import { URL_IMAGE } from '@constants/api';
+import { useFavorites } from '@context/FavoritesContext';
 import { JSX, useEffect, useState } from 'react';
 
-import { URL_IMAGE } from '../../constants/api';
-import { useFavorites } from '../../context/FavoritesContext';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import SmallCard from '../SmallCard/SmallCard';
-import { CardImageSmall, CardListWrapper } from '../SmallCardList/styled';
 import { Loader } from './styled';
 
 function FavoriteCardList(): JSX.Element {

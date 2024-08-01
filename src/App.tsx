@@ -1,9 +1,8 @@
+import Art from '@pages/Art/Art';
+import Favorites from '@pages/Favorites/Favorites';
+import Home from '@pages/Home/Home';
 import { JSX } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-import Art from './pages/Art/Art';
-import Favorites from './pages/Favorites/Favorites';
-import Home from './pages/Home/Home';
 
 function App(): JSX.Element {
   return (

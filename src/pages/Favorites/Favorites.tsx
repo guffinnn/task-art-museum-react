@@ -1,18 +1,18 @@
 import './Favorites.css';
 
+import FavoriteCardList from '@components/FavoriteCardList/FavoriteCardList';
+import Footer from '@components/Footer/Footer';
+import GallerySection from '@components/GallerySection/GallerySection';
+import Header from '@components/Header/Header';
+import { Wrapper } from '@styles/global';
 import { JSX } from 'react';
-
-import FavoriteCardList from '../../components/FavoriteCardList/FavoriteCardList';
-import Footer from '../../components/Footer/Footer';
-import GallerySection from '../../components/GallerySection/GallerySection';
-import Header from '../../components/Header/Header';
 
 function Favorites(): JSX.Element {
   return (
     <>
       <Header isHomePage={false} />
       <main>
-        <div className="wrapper">
+        <Wrapper>
           <section className="main__section --search">
             <h1>
               here are your{' '}
@@ -22,7 +22,7 @@ function Favorites(): JSX.Element {
           <GallerySection title="Your favorites list" subtitle="Saved by you">
             <FavoriteCardList />
           </GallerySection>
-        </div>
+        </Wrapper>
       </main>
       <Footer />
     </>

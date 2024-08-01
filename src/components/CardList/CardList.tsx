@@ -1,11 +1,9 @@
-import './CardList.css';
-
+import Card from '@components/Card/Card';
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import Pagination from '@components/Pagination/Pagination';
+import { ArtInfo, getJSON } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
 
-import { ArtInfo, getJSON } from '../../constants/api';
-import Card from '../Card/Card';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-import Pagination from '../Pagination/Pagination';
 import { CardListWrapper, Loader } from './styled';
 
 function CardList(): JSX.Element {
