@@ -1,9 +1,10 @@
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { FavoritesProvider, useFavorites } from '../context/FavoritesContext';
-import { ArtInfo } from '../constants/api';
+
 import SmallCard from '../components/SmallCard/SmallCard';
+import { ArtInfo } from '../constants/api';
+import { useFavorites } from '../context/FavoritesContext';
 
 jest.mock('../context/FavoritesContext', () => ({
   useFavorites: jest.fn(),

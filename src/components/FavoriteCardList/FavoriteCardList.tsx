@@ -1,10 +1,14 @@
-import { JSX, useEffect, useMemo, useState } from 'react';
-import { CardImageSmall, CardListWrapper } from '../SmallCardList/styled';
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import SmallCard from '@components/SmallCard/SmallCard';
+import {
+  CardImageSmall,
+  CardListWrapper,
+} from '@components/SmallCardList/styled';
+import { URL_IMAGE } from '@constants/api';
+import { useFavorites } from '@context/FavoritesContext';
+import { JSX, useEffect, useState } from 'react';
+
 import { Loader } from './styled';
-import { URL_IMAGE } from '../../constants/api';
-import { useFavorites } from '../../context/FavoritesContext';
-import SmallCard from '../SmallCard/SmallCard';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 function FavoriteCardList(): JSX.Element {
   const { favorites } = useFavorites();

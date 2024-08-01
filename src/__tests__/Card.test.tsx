@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { FavoritesProvider } from '../context/FavoritesContext';
 import { MemoryRouter } from 'react-router-dom';
-import { ArtInfo } from '../constants/api';
+
 import Card from '../components/Card/Card';
+import { ArtInfo } from '../constants/api';
+import { FavoritesProvider } from '../context/FavoritesContext';
 
 const item: ArtInfo = {
   id: 1,

@@ -1,5 +1,7 @@
-import { JSX, useState } from 'react';
 import './Pagination.css';
+
+import { JSX, useState } from 'react';
+
 import { ArrowButton, PageButton, PaginationWrapper } from './styled';
 
 interface PaginationProps {

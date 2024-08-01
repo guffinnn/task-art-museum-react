@@ -1,10 +1,10 @@
-import { JSX, useEffect, useState, useMemo } from 'react';
-import './CardList.css';
-import { Loader, CardListWrapper } from './styled';
-import { ArtInfo, getJSON } from '../../constants/api';
-import Pagination from '../Pagination/Pagination';
-import Card from '../Card/Card';
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
+import Card from '@components/Card/Card';
+import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import Pagination from '@components/Pagination/Pagination';
+import { ArtInfo, getJSON } from '@constants/api';
+import { JSX, useEffect, useMemo, useState } from 'react';
+
+import { CardListWrapper, Loader } from './styled';
 
 function CardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);

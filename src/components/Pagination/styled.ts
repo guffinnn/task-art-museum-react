@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import arrowRight from '../../assets/arrow-right.svg';
 
 export const PaginationWrapper = styled.div`
