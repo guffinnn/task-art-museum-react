@@ -38,3 +38,4 @@ jest/
 # Miscellaneous
 *.env
 *.local
+.idea/
