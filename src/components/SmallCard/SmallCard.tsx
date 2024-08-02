@@ -5,10 +5,10 @@ import {
   TextStatus,
   TextSubheading,
 } from '@components/SmallCard/styled';
-import { ArtInfo } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { CardButton } from '@styles/global';
 import { JSX } from 'react';
+import { ArtInfo } from '@custom-types/artInfo';
 
 interface SmallCardProps {
   item: ArtInfo;

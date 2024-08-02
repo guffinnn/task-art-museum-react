@@ -2,8 +2,9 @@ import Card from '@components/Card/Card';
 import { CardListWrapper, Loader } from '@components/CardList/styled';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import Pagination from '@components/Pagination/Pagination';
-import { ArtInfo, getJSON } from '@constants/api';
+import { getJSON } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
+import { ArtInfo } from '@custom-types/artInfo';
 
 function CardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);

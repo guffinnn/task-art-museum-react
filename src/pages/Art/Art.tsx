@@ -1,7 +1,7 @@
 import { Loader } from '@components/CardList/styled';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
-import { ArtInfo, URL_ARTWORK, URL_IMAGE } from '@constants/api';
+import { URL_ARTWORK, URL_IMAGE } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { CardButton, Wrapper } from '@styles/global';
 import React, { JSX, ReactNode, useEffect, useState } from 'react';
@@ -14,6 +14,7 @@ import {
   MainSection,
   StyledText,
 } from './styled';
+import { ArtInfo } from '@custom-types/artInfo';
 
 const isKnown = (value: ReactNode) => value ?? 'Unknown';
 

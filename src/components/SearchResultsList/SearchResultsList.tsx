@@ -6,8 +6,9 @@ import {
   CardListWrapper,
 } from '@components/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
-import { ArtInfo, URL_IMAGE } from '@constants/api';
+import { URL_IMAGE } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
+import { ArtInfo } from '@custom-types/artInfo';
 
 interface SearchResultsListProps {
   loading: boolean;

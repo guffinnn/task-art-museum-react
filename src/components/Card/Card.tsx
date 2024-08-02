@@ -1,8 +1,9 @@
 import { CardContainer, CardImage } from '@components/Card/styled';
 import SmallCard from '@components/SmallCard/SmallCard';
 import { ImageLink } from '@components/SmallCard/styled';
-import { ArtInfo, URL_IMAGE } from '@constants/api';
+import { URL_IMAGE } from '@constants/api';
 import { JSX } from 'react';
+import { ArtInfo } from '@custom-types/artInfo';
 
 interface CardProps {
   item: ArtInfo;

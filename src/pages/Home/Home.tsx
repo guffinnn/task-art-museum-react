@@ -5,9 +5,10 @@ import Header from '@components/Header/Header';
 import SearchBar from '@components/SearchBar/SearchBar';
 import SearchResultsList from '@components/SearchResultsList/SearchResultsList';
 import SmallCardList from '@components/SmallCardList/SmallCardList';
-import { ArtInfo, URL_ARTWORK, URL_SEARCH } from '@constants/api';
+import { URL_ARTWORK, URL_SEARCH } from '@constants/api';
 import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
 import { JSX, useRef, useState } from 'react';
+import { ArtInfo } from '@custom-types/artInfo';
 
 function Home(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);

@@ -6,8 +6,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-
-import { ArtInfo } from '../constants/api';
+import { ArtInfo } from '@custom-types/artInfo';
 
 interface FavoritesContextProps {
   favorites: ArtInfo[];

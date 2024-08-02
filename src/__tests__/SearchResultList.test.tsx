@@ -1,8 +1,8 @@
 import SearchResultsList from '@components/SearchResultsList/SearchResultsList';
-import { ArtInfo } from '@constants/api';
 import { FavoritesProvider } from '@context/FavoritesContext';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { ArtInfo } from '@custom-types/artInfo';
 
 const mockSearchResults: ArtInfo[] = [
   {
