@@ -1,8 +1,8 @@
 import Card from '@components/Card/Card';
 import { FavoritesProvider } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { ArtInfo } from '@custom-types/artInfo';
 
 const item: ArtInfo = {
   id: 1,

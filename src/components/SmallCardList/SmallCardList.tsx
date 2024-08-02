@@ -5,9 +5,9 @@ import {
   CardImageSmall,
   CardListWrapper,
 } from '@components/SmallCardList/styled';
-import { JSX, useEffect, useMemo, useState } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
 import { getGlobalData, urlImage } from '@utils/api/api';
+import { JSX, useEffect, useMemo, useState } from 'react';
 
 function SmallCardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);

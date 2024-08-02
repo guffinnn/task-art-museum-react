@@ -3,7 +3,17 @@ import {
   PageButton,
   PaginationWrapper,
 } from '@components/Pagination/styled';
-import { JSX, useState } from 'react';
+import {
+  DEFAULT_TOTAL_PAGES,
+  INITIAL_PAGE_OFFSET,
+  PAGES_PER_SET,
+} from '@constants/values';
+import {
+  getPages,
+  handleNextSet,
+  handlePreviousSet,
+} from '@helpers/paginationHelpers';
+import { JSX, memo, useCallback, useMemo, useState } from 'react';
 
 interface PaginationProps {
   currentPage: number;
@@ -13,38 +23,46 @@ interface PaginationProps {
 
 function Pagination({
   currentPage,
-  totalPages = 12,
+  totalPages = DEFAULT_TOTAL_PAGES,
   onPageChange,
 }: PaginationProps): JSX.Element {
-  const [pageOffset, setPageOffset] = useState(0);
-  const pagesPerSet = 4;
-  const pages = Array.from(
-    { length: Math.min(pagesPerSet, totalPages - pageOffset) },
-    (_, i) => i + 1 + pageOffset,
+  const [pageOffset, setPageOffset] = useState(INITIAL_PAGE_OFFSET);
+  const pagesPerSet = PAGES_PER_SET;
+
+  const pages = useMemo(
+    () => getPages(pageOffset, pagesPerSet, totalPages),
+    [pageOffset, totalPages],
   );
 
-  const handleNextSet = () => {
-    setPageOffset((prevOffset) => prevOffset + pagesPerSet);
-  };
+  const handlePreviousClick = useCallback(() => {
+    handlePreviousSet(pageOffset, pagesPerSet, setPageOffset);
+  }, [pageOffset, pagesPerSet]);
 
-  const handlePreviousSet = () => {
-    setPageOffset((prevOffset) => Math.max(prevOffset - pagesPerSet, 0));
-  };
+  const handleNextClick = useCallback(() => {
+    handleNextSet(pageOffset, pagesPerSet, setPageOffset);
+  }, [pageOffset, pagesPerSet]);
+
+  const handlePageChange = useCallback(
+    (page: number) => {
+      onPageChange(page);
+    },
+    [onPageChange],
+  );
 
   return (
     <PaginationWrapper>
-      {pageOffset > 0 && (
+      {pageOffset > INITIAL_PAGE_OFFSET && (
         <ArrowButton
           data-testid="arrow-left"
           direction="left"
-          onClick={handlePreviousSet}
+          onClick={handlePreviousClick}
         />
       )}
       {pages.map((page) => (
         <PageButton
           key={page}
           active={page === currentPage ? 'true' : 'false'}
-          onClick={() => onPageChange(page)}
+          onClick={() => handlePageChange(page)}
         >
           {page}
         </PageButton>
@@ -53,11 +71,11 @@ function Pagination({
         <ArrowButton
           data-testid="arrow-right"
           direction="right"
-          onClick={handleNextSet}
+          onClick={handleNextClick}
         />
       )}
     </PaginationWrapper>
   );
 }
 
-export default Pagination;
+export default memo(Pagination);

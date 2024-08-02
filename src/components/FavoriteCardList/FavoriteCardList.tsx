@@ -5,36 +5,30 @@ import {
   CardImageSmall,
   CardListWrapper,
 } from '@components/SmallCardList/styled';
+import { EMPTY_LIST_LENGTH } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';
-import { JSX, useEffect, useState } from 'react';
+import { ArtInfo } from '@custom-types/artInfo';
 import { urlImage } from '@utils/api/api';
+import React, { memo, useCallback } from 'react';
+import { JSX } from 'react';
 
 function FavoriteCardList(): JSX.Element {
   const { favorites } = useFavorites();
-  const [storageIsEmpty, setStorageIsEmpty] = useState<boolean>(true);
+  const storageIsEmpty = favorites.length === EMPTY_LIST_LENGTH;
 
-  useEffect(() => {
-    if (favorites.length > 0) {
-      setStorageIsEmpty(false);
-    } else {
-      setStorageIsEmpty(true);
-    }
-  }, [favorites]);
+  const renderFavoriteCard = useCallback(
+    (item: ArtInfo, index: number) => (
+      <SmallCard key={index} item={item}>
+        <CardImageSmall imageUrl={urlImage({ imageId: item.imageId })} />
+      </SmallCard>
+    ),
+    [favorites],
+  );
 
   return (
     <ErrorBoundary>
       {!storageIsEmpty ? (
-        <>
-          <CardListWrapper>
-            {favorites.map((item, index) => (
-              <SmallCard key={index} item={item}>
-                <CardImageSmall
-                  imageUrl={urlImage({ imageId: item.imageId })}
-                />
-              </SmallCard>
-            ))}
-          </CardListWrapper>
-        </>
+        <CardListWrapper>{favorites.map(renderFavoriteCard)}</CardListWrapper>
       ) : (
         <Loader>No favorites yet.</Loader>
       )}
@@ -42,4 +36,4 @@ function FavoriteCardList(): JSX.Element {
   );
 }
 
-export default FavoriteCardList;
+export default memo(FavoriteCardList);

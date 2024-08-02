@@ -1,9 +1,9 @@
-import { toCamelCase } from '@utils/camelCase';
-import { RequestParams } from '@custom-types/requestParams';
+import defaultImage from '@assets/default.png';
 import { ApiResponse } from '@custom-types/apiResponse';
 import { ArtInfo } from '@custom-types/artInfo';
+import { RequestParams } from '@custom-types/requestParams';
 import { UrlData } from '@custom-types/urlData';
-import defaultImage from '@assets/default.png';
+import { toCamelCase } from '@utils/camelCase';
 
 export const urlGlobal = ({ currentPage, limit }: Partial<UrlData>) =>
   `https://api.artic.edu/api/v1/artworks?page=${currentPage}&limit=${limit}`;

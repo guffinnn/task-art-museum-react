@@ -1,7 +1,7 @@
 import { FavoritesProvider, useFavorites } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import { act, render, screen } from '@testing-library/react';
 import React from 'react';
-import { ArtInfo } from '@custom-types/artInfo';
 
 const TestComponent = () => {
   const { favorites, toggleFavorite } = useFavorites();

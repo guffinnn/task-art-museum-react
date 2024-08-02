@@ -1,3 +1,9 @@
+import { ArtInfo } from '@custom-types/artInfo';
+import {
+  getSavedFavorites,
+  saveFavorites,
+  updateFavorites,
+} from '@utils/favorites/favoritesUtils';
 import {
   createContext,
   JSX,
@@ -6,12 +12,6 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { ArtInfo } from '@custom-types/artInfo';
-import {
-  getSavedFavorites,
-  saveFavorites,
-  updateFavorites,
-} from '@utils/favorites/favoritesUtils';
 
 interface FavoritesContextProps {
   favorites: ArtInfo[];

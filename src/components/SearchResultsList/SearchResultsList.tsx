@@ -6,10 +6,15 @@ import {
   CardListWrapper,
 } from '@components/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
-import { JSX, useEffect, useMemo, useState } from 'react';
+import { DEFAULT_SORT_CRITERIA, MESSAGES, NO_RESULTS } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
+import {
+  handleLoadingState,
+  handleSortCriteriaChange,
+} from '@helpers/searchResultsListHelpers';
 import { sortResults } from '@helpers/sortHelpers';
 import { urlImage } from '@utils/api/api';
+import { JSX, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 interface SearchResultsListProps {
   loading: boolean;
@@ -22,7 +27,9 @@ function SearchResultsList({
   searchResults,
   setLoading,
 }: SearchResultsListProps): JSX.Element {
-  const [sortCriteria, setSortCriteria] = useState<string>('date');
+  const [sortCriteria, setSortCriteria] = useState<string>(
+    DEFAULT_SORT_CRITERIA,
+  );
 
   const sortedResults = useMemo(
     () => sortResults(searchResults, sortCriteria),
@@ -30,20 +37,23 @@ function SearchResultsList({
   );
 
   useEffect(() => {
-    if (!loading && searchResults.length === 0) {
-      setLoading(false);
-    }
+    handleLoadingState({ loading, searchResults, setLoading });
   }, [searchResults, loading, setLoading]);
+
+  const handleSortChange = useCallback(
+    (criteria: string) => handleSortCriteriaChange(criteria, setSortCriteria),
+    [],
+  );
 
   return (
     <ErrorBoundary>
       {loading ? (
-        <Loader>Loading...</Loader>
-      ) : searchResults.length > 0 ? (
+        <Loader>{MESSAGES.LOADING}</Loader>
+      ) : searchResults.length > NO_RESULTS ? (
         <>
           <SortDropdown
             sortCriteria={sortCriteria}
-            setSortCriteria={setSortCriteria}
+            setSortCriteria={handleSortChange}
           />
           <CardListWrapper>
             {sortedResults.map((item, index) => (
@@ -56,10 +66,10 @@ function SearchResultsList({
           </CardListWrapper>
         </>
       ) : (
-        <Loader>No results found.</Loader>
+        <Loader>{MESSAGES.NO_RESULTS}</Loader>
       )}
     </ErrorBoundary>
   );
 }
 
-export default SearchResultsList;
+export default memo(SearchResultsList);

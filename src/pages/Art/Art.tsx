@@ -2,7 +2,9 @@ import { Loader } from '@components/CardList/styled';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
 import { useFavorites } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import { CardButton, Wrapper } from '@styles/global';
+import { getArtworkData, urlImage } from '@utils/api/api';
 import React, { JSX, ReactNode, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -13,8 +15,6 @@ import {
   MainSection,
   StyledText,
 } from './styled';
-import { ArtInfo } from '@custom-types/artInfo';
-import { getArtworkData, urlImage } from '@utils/api/api';
 
 const isKnown = (value: ReactNode) => value ?? 'Unknown';
 

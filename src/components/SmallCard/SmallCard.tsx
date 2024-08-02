@@ -6,9 +6,9 @@ import {
   TextSubheading,
 } from '@components/SmallCard/styled';
 import { useFavorites } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import { CardButton } from '@styles/global';
 import { JSX } from 'react';
-import { ArtInfo } from '@custom-types/artInfo';
 
 interface SmallCardProps {
   item: ArtInfo;

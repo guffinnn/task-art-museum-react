@@ -1,5 +1,5 @@
 import { ErrorContainer } from '@components/ErrorBoundary/styled';
-import React, { Component, ReactNode } from 'react';
+import React, { Component, memo, ReactNode } from 'react';
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -35,4 +35,4 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 }
 
-export default ErrorBoundary;
+export default memo(ErrorBoundary);

@@ -1,9 +1,9 @@
 import { CardContainer, CardImage } from '@components/Card/styled';
 import SmallCard from '@components/SmallCard/SmallCard';
 import { ImageLink } from '@components/SmallCard/styled';
-import { JSX } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
 import { urlImage } from '@utils/api/api';
+import { JSX, memo } from 'react';
 
 interface CardProps {
   item: ArtInfo;
@@ -24,4 +24,4 @@ function Card({ item }: CardProps): JSX.Element {
   );
 }
 
-export default Card;
+export default memo(Card);

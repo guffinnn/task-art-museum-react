@@ -1,9 +1,9 @@
 import SmallCardList from '@components/SmallCardList/SmallCardList';
 import { FavoritesProvider } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { ArtInfo } from '@custom-types/artInfo';
 
 jest.mock('', () => ({
   ...jest.requireActual(''),
