@@ -43,14 +43,16 @@ function SearchResultsList({
   }, [searchResults, sortCriteria]);
 
   useEffect(() => {
-    if (loading) {
+    if (!loading && searchResults.length === 0) {
       setLoading(false);
     }
   }, [searchResults, loading, setLoading]);
 
   return (
     <ErrorBoundary>
-      {!loading ? (
+      {loading ? (
+        <Loader>Loading...</Loader>
+      ) : searchResults.length > 0 ? (
         <>
           <SortDropdown
             sortCriteria={sortCriteria}
@@ -67,7 +69,7 @@ function SearchResultsList({
           </CardListWrapper>
         </>
       ) : (
-        <Loader>Loading...</Loader>
+        <Loader>No results found.</Loader>
       )}
     </ErrorBoundary>
   );

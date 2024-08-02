@@ -13,11 +13,13 @@ function Home(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const requestCount = useRef(0);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSearch = async (searchTerm: string) => {
     setLoading(true);
     requestCount.current += 1;
     console.log(`Request count: ${requestCount.current}`);
+    setSearchTerm(searchTerm);
 
     try {
       const response = await fetch(URL_SEARCH({ searchTerm }));
@@ -54,7 +56,7 @@ function Home(): JSX.Element {
             <SearchBar onSearch={handleSearch} setLoading={setLoading} />
           </MainSection>
           {/*OUTPUT SEARCH RESULTS*/}
-          {searchResults.length > 0 && (
+          {searchTerm.trim().length >= 3 && (
             <GallerySection
               title="Search Results"
               subtitle="Results from your search"
