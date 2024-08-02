@@ -31,10 +31,10 @@ function SmallCard({
       </ImageLink>
       <TextHeading isChild={isChild}>{item.title ?? 'Unknown'}</TextHeading>
       <TextSubheading isChild={isChild}>
-        {item.artist_title ?? 'Unknown'}
+        {item.artistTitle ?? 'Unknown'}
       </TextSubheading>
       <TextStatus isChild={isChild}>
-        {item.is_public_domain ? 'Public' : 'Private'}
+        {item.isPublicDomain ? 'Public' : 'Private'}
       </TextStatus>
       <CardButton
         data-testid="fav-button"

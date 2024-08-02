@@ -1,7 +1,7 @@
 import { CardContainer, CardImage } from '@components/Card/styled';
 import SmallCard from '@components/SmallCard/SmallCard';
 import { ImageLink } from '@components/SmallCard/styled';
-import { URL_IMAGE } from '@constants/api';
+import { urlImage } from '@constants/api';
 import { JSX } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
 
@@ -10,10 +10,12 @@ interface CardProps {
 }
 
 function Card({ item }: CardProps): JSX.Element {
+  const imageUrl = urlImage({ imageId: item.imageId });
+
   return (
     <CardContainer>
       <ImageLink to={`/task-art-museum-react/art/${item.id}`}>
-        <CardImage image_url={URL_IMAGE({ imageId: item.image_id })} />
+        <CardImage imageUrl={imageUrl} />
       </ImageLink>
       <SmallCard item={item} isChild={'true'}>
         <></>

@@ -5,7 +5,7 @@ import {
   CardImageSmall,
   CardListWrapper,
 } from '@components/SmallCardList/styled';
-import { getJSON, URL_IMAGE } from '@constants/api';
+import { getJSON, urlImage } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
 
@@ -39,9 +39,7 @@ function SmallCardList(): JSX.Element {
         <CardListWrapper>
           {memoizedData.map((item, index) => (
             <SmallCard key={index} item={item}>
-              <CardImageSmall
-                image_url={URL_IMAGE({ imageId: item.image_id })}
-              />
+              <CardImageSmall imageUrl={urlImage({ imageId: item.imageId })} />
             </SmallCard>
           ))}
         </CardListWrapper>

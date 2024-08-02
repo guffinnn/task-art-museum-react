@@ -14,7 +14,7 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const CardImage = styled.div<{ image_url: string }>`
+export const CardImage = styled.div<{ imageUrl: string }>`
   position: relative;
   width: 100%;
   height: 444px;
@@ -22,7 +22,7 @@ export const CardImage = styled.div<{ image_url: string }>`
   top: 0;
   left: 0;
 
-  background: ${({ image_url }) => `url(${image_url})`} no-repeat center center;
+  background: ${({ imageUrl }) => `url(${imageUrl})`} no-repeat center center;
   background-size: cover;
   z-index: 0;
   transition: all 0.45s ease-in-out;

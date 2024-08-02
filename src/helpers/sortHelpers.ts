@@ -1,15 +1,12 @@
 import { ArtInfo } from '@custom-types/artInfo';
 
-export const sortResults = (
-  results: ArtInfo[],
-  criteria: string,
-): ArtInfo[] => {
+export function sortResults(results: ArtInfo[], criteria: string): ArtInfo[] {
   return [...results].sort((a, b) => {
     switch (criteria) {
       case 'date':
-        return new Date(a.date_end).getTime() - new Date(b.date_end).getTime();
+        return new Date(a.dateEnd).getTime() - new Date(b.dateEnd).getTime();
       case 'date_reverse':
-        return new Date(b.date_end).getTime() - new Date(a.date_end).getTime();
+        return new Date(b.dateEnd).getTime() - new Date(a.dateEnd).getTime();
       case 'alphabet':
         return a.title.localeCompare(b.title);
       case 'alphabet_reverse':
@@ -18,4 +15,4 @@ export const sortResults = (
         return 0;
     }
   });
-};
+}

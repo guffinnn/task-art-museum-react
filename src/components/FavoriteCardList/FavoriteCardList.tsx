@@ -5,7 +5,7 @@ import {
   CardImageSmall,
   CardListWrapper,
 } from '@components/SmallCardList/styled';
-import { URL_IMAGE } from '@constants/api';
+import { urlImage } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { JSX, useEffect, useState } from 'react';
 
@@ -29,7 +29,7 @@ function FavoriteCardList(): JSX.Element {
             {favorites.map((item, index) => (
               <SmallCard key={index} item={item}>
                 <CardImageSmall
-                  image_url={URL_IMAGE({ imageId: item.image_id })}
+                  imageUrl={urlImage({ imageId: item.imageId })}
                 />
               </SmallCard>
             ))}

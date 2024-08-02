@@ -1,7 +1,7 @@
 import { Loader } from '@components/CardList/styled';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
-import { URL_ARTWORK, URL_IMAGE } from '@constants/api';
+import { urlArtwork, urlImage } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { CardButton, Wrapper } from '@styles/global';
 import React, { JSX, ReactNode, useEffect, useState } from 'react';
@@ -15,6 +15,7 @@ import {
   StyledText,
 } from './styled';
 import { ArtInfo } from '@custom-types/artInfo';
+import { toCamelCase } from '@utils/camelCase';
 
 const isKnown = (value: ReactNode) => value ?? 'Unknown';
 
@@ -28,9 +29,9 @@ function Art(): JSX.Element {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(URL_ARTWORK({ artworkId: id }));
+      const response = await fetch(urlArtwork({ artworkId: id }));
       const result = await response.json();
-      setArtwork(result.data);
+      setArtwork(toCamelCase(result.data));
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -45,16 +46,16 @@ function Art(): JSX.Element {
   }, [id]);
 
   const {
-    artist_title,
+    artistTitle,
     title,
-    date_start,
-    date_end,
-    place_of_origin,
+    dateStart,
+    dateEnd,
+    placeOfOrigin,
     dimensions,
-    credit_line,
-    theme_titles,
-    is_public_domain,
-    image_id,
+    creditLine,
+    themeTitles,
+    isPublicDomain,
+    imageId,
   } = artwork || {};
 
   const clickHandler = () => {
@@ -64,9 +65,9 @@ function Art(): JSX.Element {
   };
 
   const themeTitlesArray =
-    typeof theme_titles === 'object' && theme_titles !== null
-      ? Object.values(theme_titles)
-      : [theme_titles];
+    typeof themeTitles === 'object' && themeTitles !== null
+      ? Object.values(themeTitles)
+      : [themeTitles];
 
   const joinedThemeTitles = themeTitlesArray.join(', ');
 
@@ -77,7 +78,7 @@ function Art(): JSX.Element {
         <Wrapper>
           {!loading ? (
             <MainSection className="--description">
-              <CardImage image_url={URL_IMAGE({ imageId: image_id })}>
+              <CardImage image_url={urlImage({ imageId: imageId })}>
                 <CardButton
                   data-testid="fav-button"
                   className={`--white ${isFavorite && '--favorite'}`}
@@ -87,15 +88,15 @@ function Art(): JSX.Element {
               <InfoContainer className="--main">
                 <StyledText className="--heading">{isKnown(title)}</StyledText>
                 <StyledText className="--subheading">
-                  {isKnown(artist_title)}
+                  {isKnown(artistTitle)}
                 </StyledText>
-                <StyledText className="--bold">{`${isKnown(date_start)}–${isKnown(date_end)}`}</StyledText>
+                <StyledText className="--bold">{`${isKnown(dateStart)}–${isKnown(dateEnd)}`}</StyledText>
               </InfoContainer>
               <InfoContainer className="--overview">
                 <StyledText className="--heading">Overview</StyledText>
                 <StyledText>
                   <span>Artist nationality: </span>
-                  {isKnown(place_of_origin)}
+                  {isKnown(placeOfOrigin)}
                 </StyledText>
                 <StyledText>
                   <span>Dimensions: </span>
@@ -117,15 +118,13 @@ function Art(): JSX.Element {
                 </StyledText>
                 <StyledText>
                   <span>Credit Line: </span>
-                  {isKnown(credit_line)}
+                  {isKnown(creditLine)}
                 </StyledText>
                 <StyledText>
                   <span>Repository: </span>
                   {isKnown(joinedThemeTitles)}
                 </StyledText>
-                <StyledText>
-                  {is_public_domain ? 'Public' : 'Private'}
-                </StyledText>
+                <StyledText>{isPublicDomain ? 'Public' : 'Private'}</StyledText>
               </InfoContainer>
             </MainSection>
           ) : (

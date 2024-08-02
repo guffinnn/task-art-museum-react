@@ -6,7 +6,7 @@ import {
   CardListWrapper,
 } from '@components/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
-import { URL_IMAGE } from '@constants/api';
+import { urlImage } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
 import { sortResults } from '@helpers/sortHelpers';
@@ -49,7 +49,7 @@ function SearchResultsList({
             {sortedResults.map((item, index) => (
               <SmallCard item={item} key={index}>
                 <CardImageSmall
-                  image_url={URL_IMAGE({ imageId: item.image_id })}
+                  imageUrl={urlImage({ imageId: item.imageId })}
                 />
               </SmallCard>
             ))}

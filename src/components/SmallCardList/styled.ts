@@ -13,7 +13,7 @@ export const CardListWrapper = styled.div`
   height: fit-content;
 `;
 
-export const CardImageSmall = styled.div<{ image_url: string }>`
+export const CardImageSmall = styled.div<{ imageUrl: string }>`
   grid-row: 1 / 4;
   grid-column: 1;
 
@@ -22,7 +22,7 @@ export const CardImageSmall = styled.div<{ image_url: string }>`
   height: 100%;
   margin-right: 8px;
 
-  background: ${({ image_url }) => `url(${image_url})`} no-repeat center center;
+  background: ${({ imageUrl }) => `url(${imageUrl})`} no-repeat center center;
   background-size: cover;
 
   cursor: pointer;
