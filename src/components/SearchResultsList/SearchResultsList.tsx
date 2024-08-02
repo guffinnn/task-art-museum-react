@@ -7,7 +7,7 @@ import {
 } from '@components/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
 import { ArtInfo, URL_IMAGE } from '@constants/api';
-import { JSX, useMemo, useState, useEffect } from 'react';
+import { JSX, useEffect, useMemo, useState } from 'react';
 
 interface SearchResultsListProps {
   loading: boolean;
@@ -16,9 +16,9 @@ interface SearchResultsListProps {
 }
 
 function SearchResultsList({
- loading,
- searchResults,
- setLoading,
+  loading,
+  searchResults,
+  setLoading,
 }: SearchResultsListProps): JSX.Element {
   const [sortCriteria, setSortCriteria] = useState<string>('date');
 
