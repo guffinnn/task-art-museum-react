@@ -38,3 +38,8 @@ jest/
 # Miscellaneous
 *.env
 *.local
+.idea/
+
+# Husky
+.husky/_/
+
