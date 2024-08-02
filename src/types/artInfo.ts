@@ -1,7 +1,7 @@
 import { UnionType } from '@custom-types/unionType';
 
 export interface ArtInfo {
-  id: number | string;
+  id: string;
   title: string;
   artistTitle: string;
   isPublicDomain: boolean;
