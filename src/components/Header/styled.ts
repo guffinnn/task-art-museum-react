@@ -111,7 +111,8 @@ export const HeaderText = styled(Link)`
     font-size: 14px;
     line-height: 18px;
 
-    &::before {
+    &.--bookmark::before,
+    &.--home::before {
       width: 18px;
       height: 18px;
       transform: scale(0.7);
