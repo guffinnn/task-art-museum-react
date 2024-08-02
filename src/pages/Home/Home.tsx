@@ -7,14 +7,17 @@ import SearchResultsList from '@components/SearchResultsList/SearchResultsList';
 import SmallCardList from '@components/SmallCardList/SmallCardList';
 import { ArtInfo, URL_ARTWORK, URL_SEARCH } from '@constants/api';
 import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
-import { JSX, useState } from 'react';
+import { JSX, useRef, useState } from 'react';
 
 function Home(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const requestCount = useRef(0);
 
   const handleSearch = async (searchTerm: string) => {
     setLoading(true);
+    requestCount.current += 1;
+    console.log(`Request count: ${requestCount.current}`);
 
     try {
       const response = await fetch(URL_SEARCH({ searchTerm }));
@@ -48,7 +51,7 @@ function Home(): JSX.Element {
             <Title>
               let&apos;s find some <PrimaryText>art</PrimaryText> here!
             </Title>
-            <SearchBar onSearch={handleSearch} />
+            <SearchBar onSearch={handleSearch} setLoading={setLoading} />
           </MainSection>
           {/*OUTPUT SEARCH RESULTS*/}
           {searchResults.length > 0 && (
@@ -58,6 +61,7 @@ function Home(): JSX.Element {
             >
               <SearchResultsList
                 loading={loading}
+                setLoading={setLoading}
                 searchResults={searchResults}
               />
             </GallerySection>
