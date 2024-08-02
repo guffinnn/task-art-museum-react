@@ -7,16 +7,18 @@ import {
 } from '@components/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
 import { ArtInfo, URL_IMAGE } from '@constants/api';
-import { JSX, useMemo, useState } from 'react';
+import { JSX, useEffect, useMemo, useState } from 'react';
 
 interface SearchResultsListProps {
   loading: boolean;
   searchResults: ArtInfo[];
+  setLoading: (loading: boolean) => void;
 }
 
 function SearchResultsList({
   loading,
   searchResults,
+  setLoading,
 }: SearchResultsListProps): JSX.Element {
   const [sortCriteria, setSortCriteria] = useState<string>('date');
 
@@ -40,9 +42,17 @@ function SearchResultsList({
     });
   }, [searchResults, sortCriteria]);
 
+  useEffect(() => {
+    if (!loading && searchResults.length === 0) {
+      setLoading(false);
+    }
+  }, [searchResults, loading, setLoading]);
+
   return (
     <ErrorBoundary>
-      {!loading ? (
+      {loading ? (
+        <Loader>Loading...</Loader>
+      ) : searchResults.length > 0 ? (
         <>
           <SortDropdown
             sortCriteria={sortCriteria}
@@ -59,7 +69,7 @@ function SearchResultsList({
           </CardListWrapper>
         </>
       ) : (
-        <Loader>Loading...</Loader>
+        <Loader>No results found.</Loader>
       )}
     </ErrorBoundary>
   );

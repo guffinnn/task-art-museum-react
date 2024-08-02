@@ -30,7 +30,8 @@ export const InputWrapper = styled.div<{ value: string; error: string }>`
     width: calc(100vw - 40px);
 
     &::after {
-      bottom: -45px;
+      bottom: -20px;
+      font-size: 13px;
     }
   }
 `;
