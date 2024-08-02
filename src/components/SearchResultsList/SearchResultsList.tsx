@@ -6,10 +6,10 @@ import {
   CardListWrapper,
 } from '@components/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
-import { urlImage } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
 import { sortResults } from '@helpers/sortHelpers';
+import { urlImage } from '@utils/api/api';
 
 interface SearchResultsListProps {
   loading: boolean;

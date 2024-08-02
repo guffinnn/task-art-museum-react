@@ -5,9 +5,9 @@ import {
   CardImageSmall,
   CardListWrapper,
 } from '@components/SmallCardList/styled';
-import { urlImage } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { JSX, useEffect, useState } from 'react';
+import { urlImage } from '@utils/api/api';
 
 function FavoriteCardList(): JSX.Element {
   const { favorites } = useFavorites();

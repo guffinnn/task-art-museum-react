@@ -5,11 +5,10 @@ import Header from '@components/Header/Header';
 import SearchBar from '@components/SearchBar/SearchBar';
 import SearchResultsList from '@components/SearchResultsList/SearchResultsList';
 import SmallCardList from '@components/SmallCardList/SmallCardList';
-import { urlArtwork, urlSearch } from '@constants/api';
 import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
 import { JSX, useRef, useState } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
-import { toCamelCase } from '@utils/camelCase';
+import { getArtworkData, searchArtworks } from '@utils/api/api';
 
 function Home(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
@@ -24,17 +23,12 @@ function Home(): JSX.Element {
     setSearchTerm(searchTerm);
 
     try {
-      const response = await fetch(urlSearch({ searchTerm }));
-      const result = await response.json();
-      const artworks = toCamelCase(result.data);
+      const result = await searchArtworks(searchTerm);
+      const artworks = result.data;
 
       const detailedArtworks = await Promise.all(
-        artworks.map(async (artwork: { id: number }) => {
-          const detailResponse = await fetch(
-            urlArtwork({ artworkId: artwork.id }),
-          );
-          const detailResult = await detailResponse.json();
-          return toCamelCase(detailResult.data);
+        artworks.map(async (artwork: { id: string }) => {
+          return getArtworkData(artwork.id);
         }),
       );
 

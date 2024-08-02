@@ -1,42 +1,41 @@
 import SmallCardList from '@components/SmallCardList/SmallCardList';
-import { getJSON } from '@constants/api';
 import { FavoritesProvider } from '@context/FavoritesContext';
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { ArtInfo } from '@custom-types/artInfo';
 
-jest.mock('@constants/api', () => ({
-  ...jest.requireActual('@constants/api'),
+jest.mock('', () => ({
+  ...jest.requireActual(''),
   getJSON: jest.fn(),
 }));
 
 const mockData: ArtInfo[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Art A',
-    artist_title: 'Artist A',
-    is_public_domain: true,
-    date_start: 2020,
-    date_end: 2023,
-    place_of_origin: 'Place A',
+    artistTitle: 'Artist A',
+    isPublicDomain: true,
+    dateStart: 2020,
+    dateEnd: 2023,
+    placeOfOrigin: 'Place A',
     dimensions: '10x10',
-    credit_line: 'Credit A',
-    image_id: 'image1',
-    theme_titles: [],
+    creditLine: 'Credit A',
+    imageId: 'image1',
+    themeTitles: [],
   },
   {
-    id: 2,
+    id: '2',
     title: 'Art B',
-    artist_title: 'Artist B',
-    is_public_domain: true,
-    date_start: 2019,
-    date_end: 2022,
-    place_of_origin: 'Place B',
+    artistTitle: 'Artist B',
+    isPublicDomain: true,
+    dateStart: 2019,
+    dateEnd: 2022,
+    placeOfOrigin: 'Place B',
     dimensions: '20x20',
-    credit_line: 'Credit B',
-    image_id: 'image2',
-    theme_titles: [],
+    creditLine: 'Credit B',
+    imageId: 'image2',
+    themeTitles: [],
   },
 ];
 

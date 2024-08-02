@@ -5,9 +5,9 @@ import {
   CardImageSmall,
   CardListWrapper,
 } from '@components/SmallCardList/styled';
-import { getJSON, urlImage } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
+import { getGlobalData, urlImage } from '@utils/api/api';
 
 function SmallCardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
@@ -18,7 +18,7 @@ function SmallCardList(): JSX.Element {
       setLoading(true);
 
       try {
-        const result = await getJSON(9, 9);
+        const result = await getGlobalData(9, 9);
 
         setData(result.data);
       } catch (error) {

@@ -1,7 +1,6 @@
 import { Loader } from '@components/CardList/styled';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
-import { urlArtwork, urlImage } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
 import { CardButton, Wrapper } from '@styles/global';
 import React, { JSX, ReactNode, useEffect, useState } from 'react';
@@ -15,7 +14,7 @@ import {
   StyledText,
 } from './styled';
 import { ArtInfo } from '@custom-types/artInfo';
-import { toCamelCase } from '@utils/camelCase';
+import { getArtworkData, urlImage } from '@utils/api/api';
 
 const isKnown = (value: ReactNode) => value ?? 'Unknown';
 
@@ -27,11 +26,14 @@ function Art(): JSX.Element {
   const isFavorite = favorites.some((fav) => fav.id === artwork?.id);
 
   const fetchData = async () => {
+    if (!id) {
+      throw Error('Error: id is undefined');
+    }
+
     setLoading(true);
     try {
-      const response = await fetch(urlArtwork({ artworkId: id }));
-      const result = await response.json();
-      setArtwork(toCamelCase(result.data));
+      const result = await getArtworkData(id);
+      setArtwork(result);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
@@ -40,9 +42,7 @@ function Art(): JSX.Element {
   };
 
   useEffect(() => {
-    if (id) {
-      fetchData();
-    }
+    fetchData();
   }, [id]);
 
   const {
