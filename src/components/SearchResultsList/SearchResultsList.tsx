@@ -9,6 +9,7 @@ import SortDropdown from '@components/SortDropdown/SortDropdown';
 import { URL_IMAGE } from '@constants/api';
 import { JSX, useEffect, useMemo, useState } from 'react';
 import { ArtInfo } from '@custom-types/artInfo';
+import { sortResults } from '@helpers/sortHelpers';
 
 interface SearchResultsListProps {
   loading: boolean;
@@ -23,25 +24,10 @@ function SearchResultsList({
 }: SearchResultsListProps): JSX.Element {
   const [sortCriteria, setSortCriteria] = useState<string>('date');
 
-  const sortedResults = useMemo(() => {
-    return [...searchResults].sort((a, b) => {
-      switch (sortCriteria) {
-        case 'date':
-          return (
-            new Date(a.date_end).getTime() - new Date(b.date_end).getTime()
-          );
-        case 'date_reverse':
-          return (
-            new Date(b.date_end).getTime() - new Date(a.date_end).getTime()
-          );
-        case 'alphabet':
-          return a.title.localeCompare(b.title);
-        case 'alphabet_reverse':
-          return b.title.localeCompare(a.title);
-      }
-      return 0;
-    });
-  }, [searchResults, sortCriteria]);
+  const sortedResults = useMemo(
+    () => sortResults(searchResults, sortCriteria),
+    [searchResults, sortCriteria],
+  );
 
   useEffect(() => {
     if (!loading && searchResults.length === 0) {
