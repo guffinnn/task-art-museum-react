@@ -1,7 +1,8 @@
 export const PATH = {
-  TO_HOME: '/task-art-museum-react',
+  TO_HOME: '/',
   FROM_HOME_TO_FAVORITES: 'favorites',
-  TO_FAVORITES: '/task-art-museum-react/favorites',
-  TO_ART: '/task-art-museum-react/art/:id',
+  TO_FAVORITES: '/favorites',
+  TO_ART: '/art/:id',
+  FROM_CARD_TO_ART: '/art',
   EMPTY: '',
 };
