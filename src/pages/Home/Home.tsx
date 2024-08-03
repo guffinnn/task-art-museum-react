@@ -12,7 +12,7 @@ import { fetchSearchResults } from '@helpers/homeHelpers';
 import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
 import { JSX, memo, useCallback, useRef, useState } from 'react';
 
-function Home(): JSX.Element {
+function HomePage(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const requestCount = useRef(0);
@@ -73,4 +73,4 @@ function Home(): JSX.Element {
   );
 }
 
-export default memo(Home);
+export const Home = memo(HomePage);

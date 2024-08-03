@@ -11,7 +11,7 @@ interface ArtOverviewProps {
   isPublicDomain: boolean | undefined;
 }
 
-const ArtOverview = ({
+export const ArtOverview = ({
   placeOfOrigin,
   dimensions,
   creditLine,
@@ -41,5 +41,3 @@ const ArtOverview = ({
     </StyledText>
   </>
 );
-
-export default ArtOverview;

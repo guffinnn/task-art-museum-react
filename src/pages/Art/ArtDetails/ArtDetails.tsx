@@ -8,7 +8,7 @@ interface ArtDetailsProps {
   dateEnd: number | undefined;
 }
 
-const ArtDetails = ({
+export const ArtDetails = ({
   title,
   artistTitle,
   dateStart,
@@ -20,5 +20,3 @@ const ArtDetails = ({
     <StyledText className="--bold">{`${isKnown(dateStart)}–${isKnown(dateEnd)}`}</StyledText>
   </>
 );
-
-export default ArtDetails;

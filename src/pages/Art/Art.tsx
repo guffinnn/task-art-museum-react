@@ -9,14 +9,14 @@ import {
   getThemeTitlesArray,
   useFavoriteStatus,
 } from '@helpers/artHelpers';
-import ArtDetails from '@pages/Art/ArtDetails/ArtDetails';
-import ArtOverview from '@pages/Art/ArtOverview/ArtOverview';
+import { ArtDetails } from '@pages/Art/ArtDetails/ArtDetails';
+import { ArtOverview } from '@pages/Art/ArtOverview/ArtOverview';
 import { CardImage, InfoContainer, Main, MainSection } from '@pages/Art/styled';
 import { CardButton, Wrapper } from '@styles/global';
 import React, { JSX, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function Art(): JSX.Element {
+export function Art(): JSX.Element {
   const { id } = useParams();
   const [artwork, setArtwork] = useState<ArtInfo | null>(null);
   const [loading, setLoading] = useState(false);
@@ -88,5 +88,3 @@ function Art(): JSX.Element {
     </>
   );
 }
-
-export default Art;

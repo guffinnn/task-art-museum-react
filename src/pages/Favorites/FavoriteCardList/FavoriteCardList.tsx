@@ -7,7 +7,7 @@ import { renderSmallCards } from '@utils/renderSmallCards';
 import React from 'react';
 import { JSX } from 'react';
 
-function FavoriteCardList(): JSX.Element {
+export function FavoriteCardList(): JSX.Element {
   const { favorites } = useFavorites();
   const storageIsEmpty = favorites.length === EMPTY_LIST_LENGTH;
 
@@ -21,5 +21,3 @@ function FavoriteCardList(): JSX.Element {
     </ErrorBoundary>
   );
 }
-
-export default FavoriteCardList;
