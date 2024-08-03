@@ -6,6 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import { readFileSync } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,56 +16,52 @@ const compat = new FlatCompat({
     allConfig: js.configs.all
 });
 
-export default [...compat.extends(
-  "eslint:recommended",
-  "plugin:@typescript-eslint/recommended",
-  "plugin:react/recommended",
-  "plugin:prettier/recommended",
-), {
-    plugins: {
-        "@typescript-eslint": typescriptEslint,
-        "simple-import-sort": simpleImportSort,
-        prettier,
-    },
+const tsconfig = JSON.parse(readFileSync(new URL('./tsconfig.json', import.meta.url), 'utf-8'));
 
-    languageOptions: {
-        parser: tsParser,
-    },
+const aliases = Object.entries(tsconfig.compilerOptions.paths).map(([key, value]) => [
+    key.replace('/*', ''),
+    path.resolve(__dirname, 'src', value[0].replace('/*', ''))
+]);
 
-    settings: {
-        react: {
-            version: "detect",
+export default [
+    ...compat.extends(
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended"
+    ),
+    {
+        plugins: {
+            "@typescript-eslint": typescriptEslint,
+            "simple-import-sort": simpleImportSort,
+            prettier,
         },
-        "import/resolver": {
-            typescript: {
-                alwaysTryTypes: true,
-                project: path.resolve(__dirname, './tsconfig.json'),
+        languageOptions: {
+            parser: tsParser,
+        },
+        settings: {
+            react: {
+                version: "detect",
             },
-            alias: {
-                map: [
-                    ['@api', path.resolve(__dirname, './src/api')],
-                    ['@assets', path.resolve(__dirname, './src/assets')],
-                    ['@components', path.resolve(__dirname, './src/components')],
-                    ['@constants', path.resolve(__dirname, './src/constants')],
-                    ['@context', path.resolve(__dirname, './src/context')],
-                    ['@hooks', path.resolve(__dirname, './src/hooks')],
-                    ['@pages', path.resolve(__dirname, './src/pages')],
-                    ['@styles', path.resolve(__dirname, './src/styles')],
-                    ['@types', path.resolve(__dirname, './src/types')],
-                    ['@utils', path.resolve(__dirname, './src/utils')],
-                ],
-                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            "import/resolver": {
+                typescript: {
+                    alwaysTryTypes: true,
+                    project: path.resolve(__dirname, './tsconfig.json'),
+                },
+                alias: {
+                    map: aliases,
+                    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                },
             },
         },
-    },
-
-    rules: {
-        "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error",
-        "prettier/prettier": "error",
-        "react/react-in-jsx-scope": "off",
-        "react/no-unescaped-entities": "off",
-        "react/display-name": "off",
-        "react/prop-types": "off"
-    },
-}];
+        rules: {
+            "simple-import-sort/imports": "error",
+            "simple-import-sort/exports": "error",
+            "prettier/prettier": "error",
+            "react/react-in-jsx-scope": "off",
+            "react/no-unescaped-entities": "off",
+            "react/display-name": "off",
+            "react/prop-types": "off",
+        },
+    }
+];
