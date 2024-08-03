@@ -3,7 +3,7 @@ import {
   getSavedFavorites,
   saveFavorites,
   updateFavorites,
-} from '@utils/favorites/favoritesUtils';
+} from '@helpers/favoritesHelpers';
 import {
   createContext,
   JSX,

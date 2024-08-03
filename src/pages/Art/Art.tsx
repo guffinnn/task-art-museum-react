@@ -1,48 +1,31 @@
+import { urlImage } from '@api/images';
+import ArtDetails from '@components/ArtDetails/ArtDetails';
+import ArtOverview from '@components/ArtOverview/ArtOverview';
 import { Loader } from '@components/CardList/styled';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
-import { useFavorites } from '@context/FavoritesContext';
+import { MESSAGES } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
-import { CardButton, Wrapper } from '@styles/global';
-import { getArtworkData, urlImage } from '@utils/api/api';
-import React, { JSX, ReactNode, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
 import {
-  CardImage,
-  InfoContainer,
-  Main,
-  MainSection,
-  StyledText,
-} from './styled';
-
-const isKnown = (value: ReactNode) => value ?? 'Unknown';
+  fetchArtworkData,
+  getThemeTitlesArray,
+  useFavoriteStatus,
+} from '@helpers/artHelpers';
+import { CardImage, InfoContainer, Main, MainSection } from '@pages/Art/styled';
+import { CardButton, Wrapper } from '@styles/global';
+import React, { JSX, useEffect, useMemo, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function Art(): JSX.Element {
   const { id } = useParams();
   const [artwork, setArtwork] = useState<ArtInfo | null>(null);
   const [loading, setLoading] = useState(false);
-  const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = favorites.some((fav) => fav.id === artwork?.id);
-
-  const fetchData = async () => {
-    if (!id) {
-      throw Error('Error: id is undefined');
-    }
-
-    setLoading(true);
-    try {
-      const result = await getArtworkData(id);
-      setArtwork(result);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { isFavorite, clickHandler } = useFavoriteStatus(artwork);
 
   useEffect(() => {
-    fetchData();
+    if (id) {
+      fetchArtworkData(id, setLoading, setArtwork);
+    }
   }, [id]);
 
   const {
@@ -58,17 +41,10 @@ function Art(): JSX.Element {
     imageId,
   } = artwork || {};
 
-  const clickHandler = () => {
-    if (artwork === null) return;
-
-    return toggleFavorite(artwork);
-  };
-
-  const themeTitlesArray =
-    typeof themeTitles === 'object' && themeTitles !== null
-      ? Object.values(themeTitles)
-      : [themeTitles];
-
+  const themeTitlesArray = useMemo(
+    () => getThemeTitlesArray(themeTitles),
+    [themeTitles],
+  );
   const joinedThemeTitles = themeTitlesArray.join(', ');
 
   return (
@@ -86,49 +62,25 @@ function Art(): JSX.Element {
                 />
               </CardImage>
               <InfoContainer className="--main">
-                <StyledText className="--heading">{isKnown(title)}</StyledText>
-                <StyledText className="--subheading">
-                  {isKnown(artistTitle)}
-                </StyledText>
-                <StyledText className="--bold">{`${isKnown(dateStart)}–${isKnown(dateEnd)}`}</StyledText>
+                <ArtDetails
+                  title={title}
+                  artistTitle={artistTitle}
+                  dateStart={dateStart}
+                  dateEnd={dateEnd}
+                />
               </InfoContainer>
               <InfoContainer className="--overview">
-                <StyledText className="--heading">Overview</StyledText>
-                <StyledText>
-                  <span>Artist nationality: </span>
-                  {isKnown(placeOfOrigin)}
-                </StyledText>
-                <StyledText>
-                  <span>Dimensions: </span>
-                  {dimensions?.split(';').map((part, index) => {
-                    const [title, value] = part.split(':');
-
-                    return value ? (
-                      <>
-                        <span className="StyledText--bold">
-                          {title?.trim()}:
-                        </span>{' '}
-                        {value?.trim()}
-                        {index < dimensions.split(';').length - 1 && '; '}
-                      </>
-                    ) : (
-                      <>{title?.trim()}</>
-                    );
-                  })}
-                </StyledText>
-                <StyledText>
-                  <span>Credit Line: </span>
-                  {isKnown(creditLine)}
-                </StyledText>
-                <StyledText>
-                  <span>Repository: </span>
-                  {isKnown(joinedThemeTitles)}
-                </StyledText>
-                <StyledText>{isPublicDomain ? 'Public' : 'Private'}</StyledText>
+                <ArtOverview
+                  placeOfOrigin={placeOfOrigin}
+                  dimensions={dimensions}
+                  creditLine={creditLine}
+                  joinedThemeTitles={joinedThemeTitles}
+                  isPublicDomain={isPublicDomain}
+                />
               </InfoContainer>
             </MainSection>
           ) : (
-            <Loader>Loading...</Loader>
+            <Loader>{MESSAGES.LOADING}</Loader>
           )}
         </Wrapper>
       </Main>
