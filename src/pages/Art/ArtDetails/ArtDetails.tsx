@@ -1,5 +1,5 @@
-import { StyledText } from '@components/ArtDetails/styled';
 import { isKnown } from '@helpers/artHelpers';
+import { StyledText } from '@pages/Art/ArtDetails/styled';
 
 interface ArtDetailsProps {
   title: string | undefined;

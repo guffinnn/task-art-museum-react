@@ -1,7 +1,7 @@
 import { fetchGlobalData } from '@api/fetchGlobalData';
-import Card from '@components/Card/Card';
-import { CardListWrapper, Loader } from '@components/CardList/styled';
+import Card from '@components/cards/Card/Card';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { CardListWrapper, Loader } from '@components/lists/CardList/styled';
 import Pagination from '@components/Pagination/Pagination';
 import {
   INITIAL_CURRENT_PAGE,

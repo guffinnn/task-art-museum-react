@@ -1,7 +1,7 @@
-import { StyledText } from '@components/ArtDetails/styled';
 import { MESSAGES } from '@constants/art';
 import { DEFAULT_TEXT } from '@constants/values';
 import { formatDimensions, isKnown } from '@helpers/artHelpers';
+import { StyledText } from '@pages/Art/ArtDetails/styled';
 
 interface ArtOverviewProps {
   placeOfOrigin: string | undefined;

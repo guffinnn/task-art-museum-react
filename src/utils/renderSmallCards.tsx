@@ -1,6 +1,6 @@
 import { urlImage } from '@api/images';
-import SmallCard from '@components/SmallCard/SmallCard';
-import { CardImageSmall } from '@components/SmallCardList/styled';
+import SmallCard from '@components/cards/SmallCard/SmallCard';
+import { CardImageSmall } from '@components/lists/SmallCardList/styled';
 import { ArtInfo } from '@custom-types/artInfo';
 import { JSX } from 'react';
 

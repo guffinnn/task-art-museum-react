@@ -4,7 +4,7 @@ import {
   TextHeading,
   TextStatus,
   TextSubheading,
-} from '@components/SmallCard/styled';
+} from '@components/cards/SmallCard/styled';
 import { PATH } from '@constants/paths';
 import { DEFAULT_TEXT } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';

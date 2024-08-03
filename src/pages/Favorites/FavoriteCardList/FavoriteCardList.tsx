@@ -1,8 +1,8 @@
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
-import { Loader } from '@components/FavoriteCardList/styled';
-import { CardListWrapper } from '@components/SmallCardList/styled';
+import { CardListWrapper } from '@components/lists/SmallCardList/styled';
 import { EMPTY_LIST_LENGTH, MESSAGES } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';
+import { Loader } from '@pages/Favorites/FavoriteCardList/styled';
 import { renderSmallCards } from '@utils/renderSmallCards';
 import React from 'react';
 import { JSX } from 'react';

@@ -1,7 +1,7 @@
 import { urlImage } from '@api/images';
-import { CardContainer, CardImage } from '@components/Card/styled';
-import SmallCard from '@components/SmallCard/SmallCard';
-import { ImageLink } from '@components/SmallCard/styled';
+import { CardContainer, CardImage } from '@components/cards/Card/styled';
+import SmallCard from '@components/cards/SmallCard/SmallCard';
+import { ImageLink } from '@components/cards/SmallCard/styled';
 import { PATH } from '@constants/paths';
 import { ArtInfo } from '@custom-types/artInfo';
 import { JSX } from 'react';

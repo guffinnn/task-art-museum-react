@@ -1,4 +1,4 @@
-import SearchResultsList from '@components/SearchResultsList/SearchResultsList';
+import SearchResultsList from '@components/lists/SearchResultsList/SearchResultsList';
 import { FavoritesProvider } from '@context/FavoritesContext';
 import { ArtInfo } from '@custom-types/artInfo';
 import { fireEvent, render, screen } from '@testing-library/react';

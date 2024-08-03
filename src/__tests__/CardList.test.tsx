@@ -1,4 +1,4 @@
-import CardList from '@components/CardList/CardList';
+import CardList from '@components/lists/CardList/CardList';
 import { render, screen } from '@testing-library/react';
 
 test('Should render CardList', () => {

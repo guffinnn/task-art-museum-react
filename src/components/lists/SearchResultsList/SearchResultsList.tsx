@@ -1,6 +1,6 @@
-import { Loader } from '@components/CardList/styled';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
-import { CardListWrapper } from '@components/SmallCardList/styled';
+import { Loader } from '@components/lists/CardList/styled';
+import { CardListWrapper } from '@components/lists/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
 import { DEFAULT_SORT_CRITERIA, MESSAGES, NO_RESULTS } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';

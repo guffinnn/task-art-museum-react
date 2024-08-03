@@ -1,8 +1,8 @@
-import FavoriteCardList from '@components/FavoriteCardList/FavoriteCardList';
 import Footer from '@components/Footer/Footer';
 import GallerySection from '@components/GallerySection/GallerySection';
 import Header from '@components/Header/Header';
 import { MESSAGES } from '@constants/favorites';
+import FavoriteCardList from '@pages/Favorites/FavoriteCardList/FavoriteCardList';
 import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
 import { JSX } from 'react';
 

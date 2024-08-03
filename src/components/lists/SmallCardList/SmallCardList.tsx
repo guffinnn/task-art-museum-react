@@ -1,7 +1,7 @@
 import { fetchGlobalData } from '@api/fetchGlobalData';
-import { Loader } from '@components/CardList/styled';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
-import { CardListWrapper } from '@components/SmallCardList/styled';
+import { Loader } from '@components/lists/CardList/styled';
+import { CardListWrapper } from '@components/lists/SmallCardList/styled';
 import { MESSAGES } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
 import { renderSmallCards } from '@utils/renderSmallCards';

@@ -1,10 +1,10 @@
-import CardList from '@components/CardList/CardList';
 import Footer from '@components/Footer/Footer';
 import GallerySection from '@components/GallerySection/GallerySection';
 import Header from '@components/Header/Header';
+import CardList from '@components/lists/CardList/CardList';
+import SearchResultsList from '@components/lists/SearchResultsList/SearchResultsList';
+import SmallCardList from '@components/lists/SmallCardList/SmallCardList';
 import SearchBar from '@components/SearchBar/SearchBar';
-import SearchResultsList from '@components/SearchResultsList/SearchResultsList';
-import SmallCardList from '@components/SmallCardList/SmallCardList';
 import { MESSAGES } from '@constants/home';
 import { MIN_SEARCH_TERM_LENGTH } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';

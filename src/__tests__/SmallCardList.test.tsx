@@ -1,4 +1,4 @@
-import SmallCardList from '@components/SmallCardList/SmallCardList';
+import SmallCardList from '@components/lists/SmallCardList/SmallCardList';
 import { FavoritesProvider } from '@context/FavoritesContext';
 import { ArtInfo } from '@custom-types/artInfo';
 import { render, screen, waitFor } from '@testing-library/react';
