@@ -21,7 +21,7 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-function Pagination({
+function PaginationComponent({
   currentPage,
   totalPages = DEFAULT_TOTAL_PAGES,
   onPageChange,
@@ -78,4 +78,4 @@ function Pagination({
   );
 }
 
-export default memo(Pagination);
+export const Pagination = memo(PaginationComponent);

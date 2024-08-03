@@ -15,7 +15,7 @@ interface HeaderProps {
   isArt?: boolean;
 }
 
-function Header({
+export function Header({
   isHomePage = true,
   isArt = false,
 }: HeaderProps): JSX.Element {
@@ -50,5 +50,3 @@ function Header({
     </HeaderContainer>
   );
 }
-
-export default Header;

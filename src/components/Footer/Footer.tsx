@@ -6,7 +6,7 @@ import {
 import { Wrapper } from '@styles/global';
 import { JSX } from 'react';
 
-function Footer(): JSX.Element {
+export function Footer(): JSX.Element {
   return (
     <FooterContainer>
       <Wrapper modificator={'footer'}>
@@ -16,5 +16,3 @@ function Footer(): JSX.Element {
     </FooterContainer>
   );
 }
-
-export default Footer;

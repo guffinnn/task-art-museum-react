@@ -23,7 +23,7 @@ interface SmallCardProps {
   children?: JSX.Element;
 }
 
-function SmallCard({
+function SmallCardComponent({
   item,
   isChild = false,
   children,
@@ -61,4 +61,4 @@ function SmallCard({
   );
 }
 
-export default memo(SmallCard);
+export const SmallCard = memo(SmallCardComponent);

@@ -12,7 +12,7 @@ interface GallerySectionProps {
   children: JSX.Element;
 }
 
-function GallerySection({
+export function GallerySection({
   title,
   subtitle,
   children,
@@ -27,5 +27,3 @@ function GallerySection({
     </Section>
   );
 }
-
-export default GallerySection;

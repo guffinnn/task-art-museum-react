@@ -1,7 +1,7 @@
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
 import { Loader } from '@components/lists/CardList/styled';
 import { CardListWrapper } from '@components/lists/SmallCardList/styled';
-import SortDropdown from '@components/SortDropdown/SortDropdown';
+import { SortDropdown } from '@components/SortDropdown/SortDropdown';
 import { DEFAULT_SORT_CRITERIA, MESSAGES, NO_RESULTS } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
 import {
@@ -18,7 +18,7 @@ interface SearchResultsListProps {
   setLoading: (loading: boolean) => void;
 }
 
-function SearchResultsList({
+function SearchResultsListComponent({
   loading,
   searchResults,
   setLoading,
@@ -60,4 +60,4 @@ function SearchResultsList({
   );
 }
 
-export default memo(SearchResultsList);
+export const SearchResultsList = memo(SearchResultsListComponent);

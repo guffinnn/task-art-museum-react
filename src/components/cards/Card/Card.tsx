@@ -1,6 +1,6 @@
 import { urlImage } from '@api/images';
 import { CardContainer, CardImage } from '@components/cards/Card/styled';
-import SmallCard from '@components/cards/SmallCard/SmallCard';
+import { SmallCard } from '@components/cards/SmallCard/SmallCard';
 import { ImageLink } from '@components/cards/SmallCard/styled';
 import { PATH } from '@constants/paths';
 import { ArtInfo } from '@custom-types/artInfo';
@@ -10,7 +10,7 @@ interface CardProps {
   item: ArtInfo;
 }
 
-function Card({ item }: CardProps): JSX.Element {
+export function Card({ item }: CardProps): JSX.Element {
   const imageUrl = urlImage({ imageId: item.imageId });
 
   return (
@@ -22,5 +22,3 @@ function Card({ item }: CardProps): JSX.Element {
     </CardContainer>
   );
 }
-
-export default Card;

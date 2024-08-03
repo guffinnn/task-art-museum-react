@@ -28,7 +28,10 @@ const validationSchema = yup.object({
     .required(ERROR.REQUIRED),
 });
 
-function SearchBar({ onSearch, setLoading }: SearchBarProps): JSX.Element {
+export function SearchBar({
+  onSearch,
+  setLoading,
+}: SearchBarProps): JSX.Element {
   const formik = useFormik({
     initialValues: {
       searchTerm: INITIAL_SEARCH_TERM,
@@ -80,5 +83,3 @@ function SearchBar({ onSearch, setLoading }: SearchBarProps): JSX.Element {
     </Form>
   );
 }
-
-export default SearchBar;

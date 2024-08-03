@@ -1,8 +1,8 @@
 import { fetchGlobalData } from '@api/fetchGlobalData';
-import Card from '@components/cards/Card/Card';
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { Card } from '@components/cards/Card/Card';
+import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
 import { CardListWrapper, Loader } from '@components/lists/CardList/styled';
-import Pagination from '@components/Pagination/Pagination';
+import { Pagination } from '@components/Pagination/Pagination';
 import {
   INITIAL_CURRENT_PAGE,
   INITIAL_TOTAL_PAGES,
@@ -18,7 +18,7 @@ import React, {
   useState,
 } from 'react';
 
-function CardList(): JSX.Element {
+export function CardListComponent(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(INITIAL_CURRENT_PAGE);
@@ -57,4 +57,4 @@ function CardList(): JSX.Element {
   );
 }
 
-export default memo(CardList);
+export const CardList = memo(CardListComponent);

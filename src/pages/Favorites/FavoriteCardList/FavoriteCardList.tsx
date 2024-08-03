@@ -1,4 +1,4 @@
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
 import { CardListWrapper } from '@components/lists/SmallCardList/styled';
 import { EMPTY_LIST_LENGTH, MESSAGES } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';

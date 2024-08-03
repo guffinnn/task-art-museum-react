@@ -1,5 +1,5 @@
 import { fetchGlobalData } from '@api/fetchGlobalData';
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
 import { Loader } from '@components/lists/CardList/styled';
 import { CardListWrapper } from '@components/lists/SmallCardList/styled';
 import { MESSAGES } from '@constants/values';
@@ -7,7 +7,7 @@ import { ArtInfo } from '@custom-types/artInfo';
 import { renderSmallCards } from '@utils/renderSmallCards';
 import { JSX, useEffect, useMemo, useState } from 'react';
 
-function SmallCardList(): JSX.Element {
+export function SmallCardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -27,5 +27,3 @@ function SmallCardList(): JSX.Element {
     </ErrorBoundary>
   );
 }
-
-export default SmallCardList;

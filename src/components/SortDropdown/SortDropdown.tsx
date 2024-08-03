@@ -12,7 +12,7 @@ interface SortDropdownProps {
   setSortCriteria: (sortCriteria: string) => void;
 }
 
-function SortDropdown({
+function SortDropdownComponent({
   sortCriteria,
   setSortCriteria,
 }: SortDropdownProps): JSX.Element {
@@ -39,4 +39,4 @@ function SortDropdown({
   );
 }
 
-export default memo(SortDropdown);
+export const SortDropdown = memo(SortDropdownComponent);

@@ -1,6 +1,6 @@
 import { urlImage } from '@api/images';
-import Footer from '@components/Footer/Footer';
-import Header from '@components/Header/Header';
+import { Footer } from '@components/Footer/Footer';
+import { Header } from '@components/Header/Header';
 import { Loader } from '@components/lists/CardList/styled';
 import { MESSAGES } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
