@@ -1,11 +1,5 @@
-import { ArtInfo } from '@custom-types/artInfo';
+import { HandleLoadingStateParams } from '@custom-types/handleLoadingStateParams';
 import React from 'react';
-
-interface HandleLoadingStateParams {
-  loading: boolean;
-  searchResults: ArtInfo[];
-  setLoading: (loading: boolean) => void;
-}
 
 export const handleLoadingState = ({
   loading,

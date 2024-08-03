@@ -1,13 +1,5 @@
 import { MIN_SEARCH_TERM_LENGTH } from '@constants/values';
-import React from 'react';
-
-interface HandleSearchParams {
-  debouncedValue: string;
-  formikErrors: string;
-  setLoading: (loading: boolean) => void;
-  isLoading: React.MutableRefObject<boolean>;
-  onSearch: (searchTerm: string) => void;
-}
+import { HandleSearchParams } from '@custom-types/handleSearchParams';
 
 export const handleSearch = ({
   debouncedValue,
