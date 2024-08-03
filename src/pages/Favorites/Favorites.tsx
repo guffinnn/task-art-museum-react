@@ -1,11 +1,12 @@
-import FavoriteCardList from '@components/FavoriteCardList/FavoriteCardList';
-import Footer from '@components/Footer/Footer';
-import GallerySection from '@components/GallerySection/GallerySection';
-import Header from '@components/Header/Header';
+import { Footer } from '@components/Footer/Footer';
+import { GallerySection } from '@components/GallerySection/GallerySection';
+import { Header } from '@components/Header/Header';
+import { MESSAGES } from '@constants/favorites';
+import { FavoriteCardList } from '@pages/Favorites/FavoriteCardList/FavoriteCardList';
 import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
 import { JSX } from 'react';
 
-function Favorites(): JSX.Element {
+export function Favorites(): JSX.Element {
   return (
     <>
       <Header isHomePage={false} />
@@ -13,11 +14,16 @@ function Favorites(): JSX.Element {
         <Wrapper>
           <MainSection className="--search">
             <Title>
-              here are your{' '}
-              <PrimaryText className="--bookmark">favorites</PrimaryText>
+              {MESSAGES.TITLE}{' '}
+              <PrimaryText className="--bookmark">
+                {MESSAGES.SUBTITLE}
+              </PrimaryText>
             </Title>
           </MainSection>
-          <GallerySection title="Your favorites list" subtitle="Saved by you">
+          <GallerySection
+            title={MESSAGES.GALLERY_TITLE}
+            subtitle={MESSAGES.GALLERY_SUBTITLE}
+          >
             <FavoriteCardList />
           </GallerySection>
         </Wrapper>
@@ -26,5 +32,3 @@ function Favorites(): JSX.Element {
     </>
   );
 }
-
-export default Favorites;

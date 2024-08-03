@@ -4,7 +4,7 @@ import {
   Subtitle,
   Title,
 } from '@components/GallerySection/styled';
-import { JSX, memo } from 'react';
+import { JSX } from 'react';
 
 interface GallerySectionProps {
   title: string;
@@ -12,7 +12,7 @@ interface GallerySectionProps {
   children: JSX.Element;
 }
 
-function GallerySection({
+export function GallerySection({
   title,
   subtitle,
   children,
@@ -27,5 +27,3 @@ function GallerySection({
     </Section>
   );
 }
-
-export default memo(GallerySection);

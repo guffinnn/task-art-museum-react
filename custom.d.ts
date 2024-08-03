@@ -1,4 +1,9 @@
 declare module '*.svg' {
-  const content: any;
+  const content: never;
   export default content;
+}
+
+declare module '*.png' {
+  const value: string;
+  export default value;
 }

@@ -1,6 +1,6 @@
-import Card from '@components/Card/Card';
-import { ArtInfo } from '@constants/api';
+import Card from '@components/cards/Card/Card';
 import { FavoritesProvider } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 

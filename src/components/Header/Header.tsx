@@ -6,23 +6,29 @@ import {
   MenuIcon,
   MenuToggle,
 } from '@components/Header/styled';
+import { PATH } from '@constants/paths';
 import { Wrapper } from '@styles/global';
-import { JSX, memo } from 'react';
+import { JSX } from 'react';
 
-interface HeaderProp {
-  isHomePage: boolean;
-  isArt: boolean;
+interface HeaderProps {
+  isHomePage?: boolean;
+  isArt?: boolean;
 }
 
-function Header({
+export function Header({
   isHomePage = true,
   isArt = false,
-}: Partial<HeaderProp>): JSX.Element {
-  const favoritesPath = !isHomePage
-    ? !isArt
-      ? ''
-      : '/task-art-museum-react/favorites'
-    : 'favorites';
+}: HeaderProps): JSX.Element {
+  const home = PATH.TO_HOME;
+  const favorites = (): string => {
+    if (!isHomePage) {
+      if (!isArt) {
+        return PATH.EMPTY;
+      }
+      return PATH.TO_FAVORITES;
+    }
+    return PATH.FROM_HOME_TO_FAVORITES;
+  };
 
   return (
     <HeaderContainer>
@@ -32,11 +38,11 @@ function Header({
         <MenuIcon htmlFor="menu-toggle">☰</MenuIcon>
         <Menu>
           {!isHomePage && (
-            <HeaderText to="/task-art-museum-react" className="--home">
+            <HeaderText to={home} className="--home">
               Home
             </HeaderText>
           )}
-          <HeaderText to={favoritesPath} className="--bookmark">
+          <HeaderText to={favorites()} className="--bookmark">
             Your favorites
           </HeaderText>
         </Menu>
@@ -44,5 +50,3 @@ function Header({
     </HeaderContainer>
   );
 }
-
-export default memo(Header);

@@ -1,4 +1,6 @@
 import { ErrorContainer } from '@components/ErrorBoundary/styled';
+import { ERROR } from '@constants/errors';
+import { MESSAGES } from '@constants/values';
 import React, { Component, ReactNode } from 'react';
 
 interface ErrorBoundaryProps {
@@ -9,7 +11,10 @@ interface ErrorBoundaryState {
   hasError: boolean;
 }
 
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = {
@@ -17,22 +22,16 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
-  componentDidCatch(error: Error | null, errorInfo: React.ErrorInfo): void {
-    console.log('ErrorBoundary', error, errorInfo);
+  componentDidCatch(error: Error | null): void {
+    console.log(ERROR.BOUNDARY, error);
     this.setState({ hasError: true });
   }
 
   render(): ReactNode {
     if (this.state.hasError) {
-      return (
-        <ErrorContainer>
-          Something went wrong. Please refresh the page.
-        </ErrorContainer>
-      );
+      return <ErrorContainer>{MESSAGES.ERROR_OCCURRED}</ErrorContainer>;
     }
 
     return <>{this.props.children}</>;
   }
 }
-
-export default ErrorBoundary;

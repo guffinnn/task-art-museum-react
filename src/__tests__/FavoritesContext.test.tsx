@@ -1,5 +1,5 @@
-import { ArtInfo } from '@constants/api';
 import { FavoritesProvider, useFavorites } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import { act, render, screen } from '@testing-library/react';
 import React from 'react';
 

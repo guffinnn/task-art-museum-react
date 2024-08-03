@@ -3,32 +3,40 @@ import {
   Select,
   SortDropdownContainer,
 } from '@components/SortDropdown/styled';
-import { JSX } from 'react';
+import { LABEL_TEXT } from '@constants/values';
+import { getSortOptions } from '@helpers/sortDropdownHelpers';
+import React, { JSX, memo, useCallback, useMemo } from 'react';
 
 interface SortDropdownProps {
   sortCriteria: string;
   setSortCriteria: (sortCriteria: string) => void;
 }
 
-function SortDropdown({
+function SortDropdownComponent({
   sortCriteria,
   setSortCriteria,
 }: SortDropdownProps): JSX.Element {
+  const sortOptions = useMemo(() => getSortOptions(), []);
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSortCriteria(e.target.value);
+    },
+    [setSortCriteria],
+  );
+
   return (
     <SortDropdownContainer>
-      <Label htmlFor="sort">Sorting parameters:</Label>
-      <Select
-        id="sort"
-        value={sortCriteria}
-        onChange={(e) => setSortCriteria(e.target.value)}
-      >
-        <option value="date">Oldest first</option>
-        <option value="date_reverse">Newest first</option>
-        <option value="alphabet">A &gt; Z</option>
-        <option value="alphabet_reverse">Z &gt; A</option>
+      <Label htmlFor="sort">{LABEL_TEXT}</Label>
+      <Select id="sort" value={sortCriteria} onChange={handleChange}>
+        {sortOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </Select>
     </SortDropdownContainer>
   );
 }
 
-export default SortDropdown;
+export const SortDropdown = memo(SortDropdownComponent);

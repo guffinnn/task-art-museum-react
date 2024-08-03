@@ -17,14 +17,16 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
+      "@api/*": ["./api/*"],
       "@assets/*": ["./assets/*"],
       "@components/*": ["./components/*"],
       "@constants/*": ["./constants/*"],
       "@context/*": ["./context/*"],
+      "@custom-types/*": ["./types/*"],
+      "@helpers/*": ["./helpers/*"],
       "@hooks/*": ["./hooks/*"],
       "@pages/*": ["./pages/*"],
       "@styles/*": ["./styles/*"],
-      "@types/*": ["./types/*"],
       "@utils/*": ["./utils/*"]
     }
   },

@@ -57,7 +57,6 @@ export const ArrowButton = styled.div<{ direction: 'left' | 'right' }>`
     display: flex;
     justify-content: center;
     align-items: center;
-    rotate: ${({ direction }) => (direction === 'left' ? '180deg' : '0deg')};
 
     position: absolute;
   }

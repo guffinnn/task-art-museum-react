@@ -1,3 +1,9 @@
+import { ArtInfo } from '@custom-types/artInfo';
+import {
+  getSavedFavorites,
+  saveFavorites,
+  updateFavorites,
+} from '@helpers/favoritesHelpers';
 import {
   createContext,
   JSX,
@@ -6,8 +12,6 @@ import {
   useEffect,
   useState,
 } from 'react';
-
-import { ArtInfo } from '../constants/api';
 
 interface FavoritesContextProps {
   favorites: ArtInfo[];
@@ -31,24 +35,15 @@ export function FavoritesProvider({
 }: {
   children: ReactNode;
 }): JSX.Element {
-  const [favorites, setFavorites] = useState<ArtInfo[]>(() => {
-    const savedFavorites = localStorage.getItem('favorites');
-    return savedFavorites ? JSON.parse(savedFavorites) : [];
-  });
+  const [favorites, setFavorites] = useState<ArtInfo[]>(getSavedFavorites);
 
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    saveFavorites(favorites);
   }, [favorites]);
 
   const toggleFavorite = (item: ArtInfo) => {
-    setFavorites((prevFavorites) => {
-      const isFavorite = prevFavorites.some((fav) => fav.id === item.id);
-      if (isFavorite) {
-        return prevFavorites.filter((fav) => fav.id !== item.id);
-      } else {
-        return [...prevFavorites, item];
-      }
-    });
+    const updatedFavorites = updateFavorites(favorites, item);
+    setFavorites(updatedFavorites);
   };
 
   return (

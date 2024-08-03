@@ -1,5 +1,5 @@
-import { ArtInfo } from '@constants/api';
 import { useFavorites } from '@context/FavoritesContext';
+import { ArtInfo } from '@custom-types/artInfo';
 import Art from '@pages/Art/Art';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';

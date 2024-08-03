@@ -1,5 +1,5 @@
-import FavoriteCardList from '@components/FavoriteCardList/FavoriteCardList';
 import { FavoritesProvider } from '@context/FavoritesContext';
+import FavoriteCardList from '@pages/Favorites/FavoriteCardList/FavoriteCardList';
 import { render, screen } from '@testing-library/react';
 
 test('Should render FavoriteCardList', () => {
