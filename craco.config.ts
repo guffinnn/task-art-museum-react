@@ -1,20 +1,24 @@
-import path from 'node:path';
+import { CracoConfig } from '@craco/types';
+import path from 'path';
 
-module.exports = {
+import { compilerOptions } from './tsconfig.json';
+
+const aliases = Object.entries(compilerOptions.paths).reduce(
+  (acc, [key, value]) => {
+    acc[key.replace('/*', '')] = path.resolve(
+      __dirname,
+      'src',
+      value[0].replace('/*', ''),
+    );
+    return acc;
+  },
+  {} as Record<string, string>,
+);
+
+const config: CracoConfig = {
   webpack: {
-    alias: {
-      '@api': path.resolve(__dirname, './src/api'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@components': path.resolve(__dirname, './src/components'),
-      '@constants': path.resolve(__dirname, './src/constants'),
-      '@context': path.resolve(__dirname, './src/context'),
-      '@custom-types': path.resolve(__dirname, './src/types'),
-      '@helpers': path.resolve(__dirname, './src/helpers'),
-      '@hooks': path.resolve(__dirname, './src/hooks'),
-      '@pages': path.resolve(__dirname, './src/pages'),
-      '@styles': path.resolve(__dirname, './src/styles'),
-      '@types': path.resolve(__dirname, './src/types'),
-      '@utils': path.resolve(__dirname, './src/utils'),
-    },
+    alias: aliases,
   },
 };
+
+export default config;

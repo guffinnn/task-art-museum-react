@@ -27,6 +27,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@craco/types": "^7.1.0",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.8.0",
     "@testing-library/dom": "^10.4.0",
