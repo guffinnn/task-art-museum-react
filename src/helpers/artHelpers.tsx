@@ -67,14 +67,15 @@ export const formatDimensions = (
 
   return dimensions.split(';').map((part, index) => {
     const [title, value] = part.split(':');
+    const key = `${title?.trim()}-${value?.trim()}`;
     return value ? (
-      <React.Fragment key={index}>
+      <React.Fragment key={key}>
         <span className="StyledText--bold">{title?.trim()}:</span>{' '}
         {value?.trim()}
         {index < dimensions.split(';').length - 1 && '; '}
       </React.Fragment>
     ) : (
-      <React.Fragment key={index}>{title?.trim()}</React.Fragment>
+      <React.Fragment key={key}>{title?.trim()}</React.Fragment>
     );
   });
 };

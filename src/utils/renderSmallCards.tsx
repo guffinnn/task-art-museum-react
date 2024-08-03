@@ -5,8 +5,8 @@ import { ArtInfo } from '@custom-types/artInfo';
 import { JSX } from 'react';
 
 export const renderSmallCards = (items: ArtInfo[]): JSX.Element[] => {
-  return items.map((item, index) => (
-    <SmallCard key={index} item={item}>
+  return items.map((item) => (
+    <SmallCard key={item.id} item={item}>
       <CardImageSmall imageUrl={urlImage({ imageId: item.imageId })} />
     </SmallCard>
   ));

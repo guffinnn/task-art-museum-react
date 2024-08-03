@@ -33,7 +33,7 @@ export function CardListComponent(): JSX.Element {
   }, []);
 
   const renderCard = useCallback(
-    (item: ArtInfo, index: number) => <Card key={index} item={item} />,
+    (item: ArtInfo) => <Card key={item.id} item={item} />,
     [data],
   );
 
