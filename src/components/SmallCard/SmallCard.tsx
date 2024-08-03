@@ -5,45 +5,60 @@ import {
   TextStatus,
   TextSubheading,
 } from '@components/SmallCard/styled';
+import { PATH } from '@constants/paths';
+import { DEFAULT_TEXT } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';
 import { ArtInfo } from '@custom-types/artInfo';
+import {
+  getClassName,
+  getText,
+  handleToggleFavorite,
+} from '@helpers/smallCardHelpers';
 import { CardButton } from '@styles/global';
-import { JSX } from 'react';
+import { JSX, memo, useCallback, useMemo } from 'react';
 
 interface SmallCardProps {
   item: ArtInfo;
-  isChild?: 'true' | 'false';
-  children: JSX.Element;
+  isChild?: boolean;
+  children?: JSX.Element;
 }
 
 function SmallCard({
   item,
-  isChild = 'false',
+  isChild = false,
   children,
 }: SmallCardProps): JSX.Element {
   const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = favorites.some((fav) => fav.id === item.id);
+  const isFavorite = useMemo(
+    () => favorites.some((fav) => fav.id === item.id),
+    [favorites, item.id],
+  );
+
+  const handleFavoriteClick = useCallback(() => {
+    handleToggleFavorite(item, toggleFavorite);
+  }, [item, toggleFavorite]);
 
   return (
-    <CardDescription isChild={isChild}>
-      <ImageLink to={`/task-art-museum-react/art/${item.id}`}>
+    <CardDescription className={getClassName('', isChild)}>
+      <ImageLink to={`${PATH.FROM_CARD_TO_ART}/${item.id}`}>
         {children}
       </ImageLink>
-      <TextHeading isChild={isChild}>{item.title ?? 'Unknown'}</TextHeading>
-      <TextSubheading isChild={isChild}>
-        {item.artistTitle ?? 'Unknown'}
+      <TextHeading className={getClassName('', isChild)}>
+        {getText(item.title, DEFAULT_TEXT.UNKNOWN)}
+      </TextHeading>
+      <TextSubheading className={getClassName('', isChild)}>
+        {getText(item.artistTitle, DEFAULT_TEXT.UNKNOWN)}
       </TextSubheading>
-      <TextStatus isChild={isChild}>
-        {item.isPublicDomain ? 'Public' : 'Private'}
+      <TextStatus className={getClassName('', isChild)}>
+        {item.isPublicDomain ? DEFAULT_TEXT.PUBLIC : DEFAULT_TEXT.PRIVATE}
       </TextStatus>
       <CardButton
         data-testid="fav-button"
-        className={isFavorite ? '--favorite' : ''}
-        isChild={isChild}
-        onClick={() => toggleFavorite(item)}
+        className={`${isFavorite ? '--favorite' : ''} ${getClassName('', isChild)}`}
+        onClick={handleFavoriteClick}
       ></CardButton>
     </CardDescription>
   );
 }
 
-export default SmallCard;
+export default memo(SmallCard);

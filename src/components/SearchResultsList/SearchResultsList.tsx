@@ -1,10 +1,6 @@
 import { Loader } from '@components/CardList/styled';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
-import SmallCard from '@components/SmallCard/SmallCard';
-import {
-  CardImageSmall,
-  CardListWrapper,
-} from '@components/SmallCardList/styled';
+import { CardListWrapper } from '@components/SmallCardList/styled';
 import SortDropdown from '@components/SortDropdown/SortDropdown';
 import { DEFAULT_SORT_CRITERIA, MESSAGES, NO_RESULTS } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
@@ -13,7 +9,7 @@ import {
   handleSortCriteriaChange,
 } from '@helpers/searchResultsListHelpers';
 import { sortResults } from '@helpers/sortHelpers';
-import { urlImage } from '@utils/api/api';
+import { renderSmallCards } from '@utils/renderSmallCards';
 import { JSX, memo, useCallback, useEffect, useMemo, useState } from 'react';
 
 interface SearchResultsListProps {
@@ -55,15 +51,7 @@ function SearchResultsList({
             sortCriteria={sortCriteria}
             setSortCriteria={handleSortChange}
           />
-          <CardListWrapper>
-            {sortedResults.map((item, index) => (
-              <SmallCard item={item} key={index}>
-                <CardImageSmall
-                  imageUrl={urlImage({ imageId: item.imageId })}
-                />
-              </SmallCard>
-            ))}
-          </CardListWrapper>
+          <CardListWrapper>{renderSmallCards(sortedResults)}</CardListWrapper>
         </>
       ) : (
         <Loader>{MESSAGES.NO_RESULTS}</Loader>

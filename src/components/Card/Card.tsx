@@ -1,9 +1,10 @@
+import { urlImage } from '@api/images';
 import { CardContainer, CardImage } from '@components/Card/styled';
 import SmallCard from '@components/SmallCard/SmallCard';
 import { ImageLink } from '@components/SmallCard/styled';
+import { PATH } from '@constants/paths';
 import { ArtInfo } from '@custom-types/artInfo';
-import { urlImage } from '@utils/api/api';
-import { JSX, memo } from 'react';
+import { JSX } from 'react';
 
 interface CardProps {
   item: ArtInfo;
@@ -14,14 +15,12 @@ function Card({ item }: CardProps): JSX.Element {
 
   return (
     <CardContainer>
-      <ImageLink to={`/task-art-museum-react/art/${item.id}`}>
+      <ImageLink to={`${PATH.FROM_CARD_TO_ART}/${item.id}`}>
         <CardImage imageUrl={imageUrl} />
       </ImageLink>
-      <SmallCard item={item} isChild={'true'}>
-        <></>
-      </SmallCard>
+      <SmallCard item={item} isChild={true} />
     </CardContainer>
   );
 }
 
-export default memo(Card);
+export default Card;

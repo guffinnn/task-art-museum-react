@@ -1,12 +1,10 @@
+import { fetchGlobalData } from '@api/fetchGlobalData';
 import { Loader } from '@components/CardList/styled';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
-import SmallCard from '@components/SmallCard/SmallCard';
-import {
-  CardImageSmall,
-  CardListWrapper,
-} from '@components/SmallCardList/styled';
+import { CardListWrapper } from '@components/SmallCardList/styled';
+import { MESSAGES } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
-import { getGlobalData, urlImage } from '@utils/api/api';
+import { renderSmallCards } from '@utils/renderSmallCards';
 import { JSX, useEffect, useMemo, useState } from 'react';
 
 function SmallCardList(): JSX.Element {
@@ -14,21 +12,7 @@ function SmallCardList(): JSX.Element {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-
-      try {
-        const result = await getGlobalData(9, 9);
-
-        setData(result.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    fetchGlobalData({ setLoading, setData });
   }, []);
 
   const memoizedData = useMemo(() => data, [data]);
@@ -36,15 +20,9 @@ function SmallCardList(): JSX.Element {
   return (
     <ErrorBoundary>
       {!loading ? (
-        <CardListWrapper>
-          {memoizedData.map((item, index) => (
-            <SmallCard key={index} item={item}>
-              <CardImageSmall imageUrl={urlImage({ imageId: item.imageId })} />
-            </SmallCard>
-          ))}
-        </CardListWrapper>
+        <CardListWrapper>{renderSmallCards(memoizedData)}</CardListWrapper>
       ) : (
-        <Loader>Loading...</Loader>
+        <Loader>{MESSAGES.LOADING}</Loader>
       )}
     </ErrorBoundary>
   );

@@ -1,44 +1,52 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const CardDescription = styled.div<{ isChild: 'true' | 'false' }>`
+export const CardDescription = styled.div`
   box-sizing: border-box;
 
-  width: ${({ isChild }) => (isChild === 'true' ? '334px' : '415px')};
-  height: ${({ isChild }) => (isChild === 'true' ? 'auto' : 'fit-content')};
+  width: 415px;
+  height: fit-content;
 
   display: grid;
   align-items: start;
   justify-content: start;
   align-content: center;
   justify-items: stretch;
-  grid-template-columns: ${({ isChild }) =>
-    isChild === 'true' ? '1fr auto' : 'auto 1fr auto'};
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: repeat(3, auto);
   gap: 8px;
   padding: 17px 24px;
 
-  position: ${({ isChild }) => (isChild === 'true' ? 'absolute' : 'relative')};
+  position: relative;
 
   background: var(--white);
   border: 1px solid var(--gray);
   z-index: 1;
-  bottom: ${({ isChild }) => isChild === 'true' && '0'};
+
+  &.--separated {
+    width: 334px;
+    height: auto;
+    grid-template-columns: 1fr auto;
+    position: absolute;
+    bottom: 0;
+  }
 
   @media (max-width: 720px) {
-    width: ${({ isChild }) => (isChild === 'true' ? '334px' : '100%')};
+    width: 100%;
+    &.--separated {
+      width: 334px;
+    }
   }
 `;
 
-export const TextHeading = styled.p<{ isChild: 'true' | 'false' }>`
+export const TextHeading = styled.p`
   grid-row: 1;
-  grid-column: ${({ isChild }) => (isChild === 'true' ? '1' : '2')};
+  grid-column: 2;
 
   width: 100%;
   height: fit-content;
 
-  font-family: ${({ isChild }) =>
-    isChild === 'true' ? `'Lexend Deca', sans-serif` : `'Inter', serif`};
+  font-family: 'Inter', serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -49,18 +57,22 @@ export const TextHeading = styled.p<{ isChild: 'true' | 'false' }>`
   letter-spacing: -0.03em;
 
   color: var(--black);
+
+  &.--separated {
+    grid-column: 1;
+    font-family: 'Lexend Deca', sans-serif;
+  }
 `;
 
-export const TextSubheading = styled.p<{ isChild: 'true' | 'false' }>`
+export const TextSubheading = styled.p`
   margin-top: -7px;
   grid-row: 2;
-  grid-column: ${({ isChild }) => (isChild === 'true' ? '1' : '2')};
+  grid-column: 2;
 
   width: auto;
   height: fit-content;
 
-  font-family: ${({ isChild }) =>
-    isChild === 'true' ? `'Lexend Deca', sans-serif` : `'Inter', serif`};
+  font-family: 'Inter', serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -71,17 +83,21 @@ export const TextSubheading = styled.p<{ isChild: 'true' | 'false' }>`
   letter-spacing: -0.01em;
 
   color: var(--primary-lighter);
+
+  &.--separated {
+    grid-column: 1;
+    font-family: 'Lexend Deca', sans-serif;
+  }
 `;
 
-export const TextStatus = styled.p<{ isChild: 'true' | 'false' }>`
+export const TextStatus = styled.p`
   grid-row: 3;
-  grid-column: ${({ isChild }) => (isChild === 'true' ? '1' : '2')};
+  grid-column: 2;
 
   width: auto;
   height: fit-content;
 
-  font-family: ${({ isChild }) =>
-    isChild === 'true' ? `'Lexend Deca', sans-serif` : `'Inter', serif`};
+  font-family: 'Inter', serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -92,6 +108,11 @@ export const TextStatus = styled.p<{ isChild: 'true' | 'false' }>`
   letter-spacing: -0.01em;
 
   color: var(--black);
+
+  &.--separated {
+    grid-column: 1;
+    font-family: 'Lexend Deca', sans-serif;
+  }
 `;
 
 export const ImageLink = styled(Link)`

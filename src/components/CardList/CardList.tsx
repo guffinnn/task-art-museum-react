@@ -1,16 +1,22 @@
+import { fetchGlobalData } from '@api/fetchGlobalData';
 import Card from '@components/Card/Card';
 import { CardListWrapper, Loader } from '@components/CardList/styled';
 import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
 import Pagination from '@components/Pagination/Pagination';
-import { ERROR } from '@constants/errors';
 import {
-  DEFAULT_PAGES_LIMIT,
   INITIAL_CURRENT_PAGE,
   INITIAL_TOTAL_PAGES,
+  MESSAGES,
 } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
-import { getGlobalData } from '@utils/api/api';
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  JSX,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 function CardList(): JSX.Element {
   const [data, setData] = useState<ArtInfo[]>([]);
@@ -18,23 +24,8 @@ function CardList(): JSX.Element {
   const [currentPage, setCurrentPage] = useState<number>(INITIAL_CURRENT_PAGE);
   const [totalPages, setTotalPages] = useState<number>(INITIAL_TOTAL_PAGES);
 
-  const fetchData = async () => {
-    setLoading(true);
-
-    try {
-      const result = await getGlobalData(currentPage, DEFAULT_PAGES_LIMIT);
-
-      setData(result.data);
-      setTotalPages(result.total);
-    } catch (error) {
-      console.error(ERROR.INVALID_FETCH, error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchData();
+    fetchGlobalData({ setLoading, setData, setTotalPages, currentPage });
   }, [currentPage]);
 
   const handlePageChange = useCallback((page: number) => {
@@ -54,7 +45,7 @@ function CardList(): JSX.Element {
         {!loading ? (
           <CardListWrapper>{memoizedData.map(renderCard)}</CardListWrapper>
         ) : (
-          <Loader>Loading...</Loader>
+          <Loader>{MESSAGES.LOADING}</Loader>
         )}
         <Pagination
           currentPage={currentPage}

@@ -8,7 +8,7 @@ import {
 } from '@components/Header/styled';
 import { PATH } from '@constants/paths';
 import { Wrapper } from '@styles/global';
-import { JSX, memo } from 'react';
+import { JSX } from 'react';
 
 interface HeaderProps {
   isHomePage?: boolean;
@@ -51,4 +51,4 @@ function Header({
   );
 }
 
-export default memo(Header);
+export default Header;
