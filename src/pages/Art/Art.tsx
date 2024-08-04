@@ -1,4 +1,5 @@
 import { urlImage } from '@api/images';
+import { ErrorDisplay } from '@components/error/ErrorDisplay';
 import { Footer } from '@components/Footer/Footer';
 import { Header } from '@components/Header/Header';
 import { Loader } from '@components/lists/CardList/styled';
@@ -9,6 +10,7 @@ import {
   getThemeTitlesArray,
   useFavoriteStatus,
 } from '@helpers/artHelpers';
+import { useErrorHandler } from '@hooks/useErrorHandler';
 import { ArtDetails } from '@pages/Art/ArtDetails/ArtDetails';
 import { ArtOverview } from '@pages/Art/ArtOverview/ArtOverview';
 import { CardImage, InfoContainer, Main, MainSection } from '@pages/Art/styled';
@@ -18,13 +20,14 @@ import { useParams } from 'react-router-dom';
 
 export function Art(): JSX.Element {
   const { id } = useParams();
-  const [artwork, setArtwork] = useState<ArtInfo | null>(null);
   const [loading, setLoading] = useState(false);
+  const [artwork, setArtwork] = useState<ArtInfo | null>(null);
+  const { error, setError } = useErrorHandler();
   const { isFavorite, clickHandler } = useFavoriteStatus(artwork);
 
   useEffect(() => {
     if (id) {
-      fetchArtworkData(id, setLoading, setArtwork);
+      fetchArtworkData(id, setLoading, setArtwork, setError);
     }
   }, [id]);
 
@@ -85,6 +88,7 @@ export function Art(): JSX.Element {
         </Wrapper>
       </Main>
       <Footer />
+      <ErrorDisplay error={error} />
     </>
   );
 }
