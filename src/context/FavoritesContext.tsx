@@ -1,3 +1,4 @@
+import { ERROR } from '@constants/errors';
 import { ArtInfo } from '@custom-types/artInfo';
 import {
   getSavedFavorites,
@@ -25,7 +26,7 @@ const FavoritesContext = createContext<FavoritesContextProps | undefined>(
 export function useFavorites(): FavoritesContextProps {
   const context = useContext(FavoritesContext);
   if (!context) {
-    throw new Error('useFavorites must be used within a FavoritesProvider');
+    throw new Error(ERROR.NO_FAVORITES_PROVIDER);
   }
   return context;
 }

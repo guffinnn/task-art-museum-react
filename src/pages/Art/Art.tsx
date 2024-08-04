@@ -1,6 +1,7 @@
 import { urlImage } from '@api/images';
-import { Footer } from '@components/Footer/Footer';
-import { Header } from '@components/Header/Header';
+import { ErrorDisplay } from '@components/error/ErrorDisplay';
+import { Footer } from '@components/Footer';
+import { Header } from '@components/Header';
 import { Loader } from '@components/lists/CardList/styled';
 import { MESSAGES } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
@@ -9,8 +10,9 @@ import {
   getThemeTitlesArray,
   useFavoriteStatus,
 } from '@helpers/artHelpers';
-import { ArtDetails } from '@pages/Art/ArtDetails/ArtDetails';
-import { ArtOverview } from '@pages/Art/ArtOverview/ArtOverview';
+import { useErrorHandler } from '@hooks/useErrorHandler';
+import { ArtDetails } from '@pages/Art/ArtDetails';
+import { ArtOverview } from '@pages/Art/ArtOverview';
 import { CardImage, InfoContainer, Main, MainSection } from '@pages/Art/styled';
 import { CardButton, Wrapper } from '@styles/global';
 import React, { JSX, useEffect, useMemo, useState } from 'react';
@@ -18,13 +20,14 @@ import { useParams } from 'react-router-dom';
 
 export function Art(): JSX.Element {
   const { id } = useParams();
-  const [artwork, setArtwork] = useState<ArtInfo | null>(null);
   const [loading, setLoading] = useState(false);
+  const [artwork, setArtwork] = useState<ArtInfo | null>(null);
+  const { error, setError } = useErrorHandler();
   const { isFavorite, clickHandler } = useFavoriteStatus(artwork);
 
   useEffect(() => {
     if (id) {
-      fetchArtworkData(id, setLoading, setArtwork);
+      fetchArtworkData(id, setLoading, setArtwork, setError);
     }
   }, [id]);
 
@@ -54,7 +57,7 @@ export function Art(): JSX.Element {
         <Wrapper>
           {!loading ? (
             <MainSection className="--description">
-              <CardImage image_url={urlImage({ imageId: imageId })}>
+              <CardImage imageurl={urlImage({ imageId: imageId })}>
                 <CardButton
                   data-testid="fav-button"
                   className={`--white ${isFavorite && '--favorite'}`}
@@ -85,6 +88,7 @@ export function Art(): JSX.Element {
         </Wrapper>
       </Main>
       <Footer />
+      <ErrorDisplay error={error} />
     </>
   );
 }

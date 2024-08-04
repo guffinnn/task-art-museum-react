@@ -1,7 +1,7 @@
-import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from '@components/error/ErrorBoundary';
 import { Loader } from '@components/lists/CardList/styled';
 import { CardListWrapper } from '@components/lists/SmallCardList/styled';
-import { SortDropdown } from '@components/SortDropdown/SortDropdown';
+import { SortDropdown } from '@components/SortDropdown';
 import { DEFAULT_SORT_CRITERIA, MESSAGES, NO_RESULTS } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
 import {

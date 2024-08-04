@@ -11,7 +11,7 @@ import {
   MIN_SEARCH_TERM_LENGTH,
 } from '@constants/values';
 import { handleSearch } from '@helpers/searchBarHelpers';
-import useDebounce from '@hooks/useDebounce';
+import { useDebounce } from '@hooks/useDebounce';
 import { useFormik } from 'formik';
 import { JSX, useEffect, useRef } from 'react';
 import * as yup from 'yup';
@@ -42,7 +42,10 @@ export function SearchBar({
     },
   });
 
-  const debouncedValue = useDebounce(formik.values.searchTerm, DEBOUNCE_DELAY);
+  const debouncedValue = useDebounce({
+    value: formik.values.searchTerm,
+    delay: DEBOUNCE_DELAY,
+  });
   const isLoading = useRef(false);
 
   useEffect(() => {

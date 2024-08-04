@@ -11,12 +11,12 @@ export const getGlobalData = async (
   const data = await fetchData<ApiResponse>({
     url: urlGlobal({ currentPage, limit }),
   });
-  return toCamelCase(data);
+  return toCamelCase(data) as ApiResponse;
 };
 
 export const getArtworkData = async (artworkId: string): Promise<ArtInfo> => {
   const response = await fetchData<ApiResponse>({
     url: urlArtwork({ artworkId }),
   });
-  return toCamelCase(response.data);
+  return toCamelCase(response.data) as ArtInfo;
 };

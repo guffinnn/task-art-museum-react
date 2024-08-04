@@ -1,4 +1,5 @@
-import Home from '@pages/Home/Home';
+import { MESSAGES } from '@constants/home';
+import { Home } from '@pages/Home/Home';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -21,8 +22,8 @@ describe('Home should', () => {
       </MemoryRouter>,
     );
 
-    const topicsSection = screen.getByText('Topics for you');
-    const moreWorksSection = screen.getByText('Here some more');
+    const topicsSection = screen.getByText(MESSAGES.TOPICS_TITLE);
+    const moreWorksSection = screen.getByText(MESSAGES.MORE_TITLE);
 
     expect(topicsSection).toBeDefined();
     expect(moreWorksSection).toBeDefined();

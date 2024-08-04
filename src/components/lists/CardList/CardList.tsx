@@ -1,14 +1,16 @@
 import { fetchGlobalData } from '@api/fetchGlobalData';
-import { Card } from '@components/cards/Card/Card';
-import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
+import { Card } from '@components/cards/Card';
+import { ErrorBoundary } from '@components/error/ErrorBoundary';
+import { ErrorDisplay } from '@components/error/ErrorDisplay';
 import { CardListWrapper, Loader } from '@components/lists/CardList/styled';
-import { Pagination } from '@components/Pagination/Pagination';
+import { Pagination } from '@components/Pagination';
 import {
   INITIAL_CURRENT_PAGE,
   INITIAL_TOTAL_PAGES,
   MESSAGES,
 } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
+import { useErrorHandler } from '@hooks/useErrorHandler';
 import React, {
   JSX,
   memo,
@@ -23,9 +25,16 @@ export function CardListComponent(): JSX.Element {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(INITIAL_CURRENT_PAGE);
   const [totalPages, setTotalPages] = useState<number>(INITIAL_TOTAL_PAGES);
+  const { error, setError } = useErrorHandler();
 
   useEffect(() => {
-    fetchGlobalData({ setLoading, setData, setTotalPages, currentPage });
+    fetchGlobalData({
+      setLoading,
+      setData,
+      setTotalPages,
+      currentPage,
+      setError,
+    });
   }, [currentPage]);
 
   const handlePageChange = useCallback((page: number) => {
@@ -52,6 +61,7 @@ export function CardListComponent(): JSX.Element {
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
+        <ErrorDisplay error={error} />
       </>
     </ErrorBoundary>
   );

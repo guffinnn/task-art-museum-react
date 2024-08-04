@@ -7,7 +7,7 @@ import { JSX } from 'react';
 export const renderSmallCards = (items: ArtInfo[]): JSX.Element[] => {
   return items.map((item) => (
     <SmallCard key={item.id} item={item}>
-      <CardImageSmall imageUrl={urlImage({ imageId: item.imageId })} />
+      <CardImageSmall imageurl={urlImage({ imageId: item.imageId })} />
     </SmallCard>
   ));
 };

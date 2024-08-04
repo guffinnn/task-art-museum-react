@@ -1,4 +1,5 @@
-import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from '@components/error/ErrorBoundary';
+import { MESSAGES } from '@constants/values';
 import { render, screen } from '@testing-library/react';
 import React, { JSX } from 'react';
 
@@ -14,9 +15,7 @@ describe('ErrorBoundary', () => {
       </ErrorBoundary>,
     );
 
-    const element = screen.getByText(
-      'Something went wrong. Please refresh the page.',
-    );
+    const element = screen.getByText(MESSAGES.ERROR_OCCURRED);
     expect(element).toBeDefined();
   });
 
