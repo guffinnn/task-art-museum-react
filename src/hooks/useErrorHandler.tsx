@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { DEFAULT_TIMER_DELAY } from '@constants/values';
+import { useTimeout } from '@hooks/useTimeout';
+import { useState } from 'react';
 
 interface UseErrorHandlerReturn {
   error: string | null;
@@ -8,15 +10,12 @@ interface UseErrorHandlerReturn {
 export function useErrorHandler(): UseErrorHandlerReturn {
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        setError(null);
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [error]);
+  useTimeout(
+    () => {
+      setError(null);
+    },
+    error ? DEFAULT_TIMER_DELAY : null,
+  );
 
   return { error, setError };
 }
