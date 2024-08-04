@@ -1,59 +1,30 @@
-import SearchResultsList from '@components/lists/SearchResultsList/SearchResultsList';
+import { SearchResultsList } from '@components/lists/SearchResultsList/SearchResultsList';
+import { PATH } from '@constants/paths';
+import {
+  DEFAULT_SORT_CRITERIA,
+  MESSAGES,
+  SORT_OPTIONS,
+} from '@constants/values';
 import { FavoritesProvider } from '@context/FavoritesContext';
-import { ArtInfo } from '@custom-types/artInfo';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-const mockSearchResults: ArtInfo[] = [
-  {
-    id: 1,
-    title: 'Art A',
-    artist_title: 'Artist A',
-    is_public_domain: true,
-    date_start: 2020,
-    date_end: 2023,
-    place_of_origin: 'Place A',
-    dimensions: '10x10',
-    credit_line: 'Credit A',
-    image_id: 'image1',
-    theme_titles: [],
-  },
-  {
-    id: 2,
-    title: 'Art B',
-    artist_title: 'Artist B',
-    is_public_domain: true,
-    date_start: 2019,
-    date_end: 2022,
-    place_of_origin: 'Place B',
-    dimensions: '20x20',
-    credit_line: 'Credit B',
-    image_id: 'image2',
-    theme_titles: [],
-  },
-  {
-    id: 3,
-    title: 'Art C',
-    artist_title: 'Artist C',
-    is_public_domain: true,
-    date_start: 2018,
-    date_end: 2021,
-    place_of_origin: 'Place C',
-    dimensions: '30x30',
-    credit_line: 'Credit C',
-    image_id: 'image3',
-    theme_titles: [],
-  },
-];
+import { ARTWORK_LIST_EXAMPLE } from './index';
 
 describe('SearchResultsList should', () => {
+  const setLoading = jest.fn();
+
   test('render loading state correctly', () => {
     render(
       <MemoryRouter>
-        <SearchResultsList loading={true} searchResults={[]} />
+        <SearchResultsList
+          loading={true}
+          searchResults={[]}
+          setLoading={setLoading}
+        />
       </MemoryRouter>,
     );
-    expect(screen.getByText('Loading...')).toBeDefined();
+    expect(screen.getByText(MESSAGES.LOADING)).toBeDefined();
   });
 
   test('render search results correctly', () => {
@@ -62,12 +33,15 @@ describe('SearchResultsList should', () => {
         <MemoryRouter>
           <SearchResultsList
             loading={false}
-            searchResults={mockSearchResults}
+            searchResults={ARTWORK_LIST_EXAMPLE}
+            setLoading={setLoading}
           />
         </MemoryRouter>
       </FavoritesProvider>,
     );
-    expect(screen.getAllByRole('link')).toHaveLength(mockSearchResults.length);
+    expect(screen.getAllByRole('link')).toHaveLength(
+      ARTWORK_LIST_EXAMPLE.length,
+    );
   });
 
   test('sort search results correctly by date', () => {
@@ -76,19 +50,22 @@ describe('SearchResultsList should', () => {
         <MemoryRouter>
           <SearchResultsList
             loading={false}
-            searchResults={mockSearchResults}
+            searchResults={ARTWORK_LIST_EXAMPLE}
+            setLoading={setLoading}
           />
         </MemoryRouter>
       </FavoritesProvider>,
     );
 
     const sortDropdown = screen.getByRole('combobox');
-    fireEvent.change(sortDropdown, { target: { value: 'date' } });
+    fireEvent.change(sortDropdown, {
+      target: { value: DEFAULT_SORT_CRITERIA },
+    });
 
     const links = screen.getAllByRole('link');
-    expect(links[0].getAttribute('href')).toBe('/task-art-museum-react/art/3');
-    expect(links[1].getAttribute('href')).toBe('/task-art-museum-react/art/2');
-    expect(links[2].getAttribute('href')).toBe('/task-art-museum-react/art/1');
+    expect(links[0].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/3`);
+    expect(links[1].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/2`);
+    expect(links[2].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/1`);
   });
 
   test('sort search results correctly by date_reverse', () => {
@@ -97,19 +74,22 @@ describe('SearchResultsList should', () => {
         <MemoryRouter>
           <SearchResultsList
             loading={false}
-            searchResults={mockSearchResults}
+            searchResults={ARTWORK_LIST_EXAMPLE}
+            setLoading={setLoading}
           />
         </MemoryRouter>
       </FavoritesProvider>,
     );
 
     const sortDropdown = screen.getByRole('combobox');
-    fireEvent.change(sortDropdown, { target: { value: 'date_reverse' } });
+    fireEvent.change(sortDropdown, {
+      target: { value: SORT_OPTIONS.DATE_REVERSE },
+    });
 
     const links = screen.getAllByRole('link');
-    expect(links[0].getAttribute('href')).toBe('/task-art-museum-react/art/1');
-    expect(links[1].getAttribute('href')).toBe('/task-art-museum-react/art/2');
-    expect(links[2].getAttribute('href')).toBe('/task-art-museum-react/art/3');
+    expect(links[0].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/1`);
+    expect(links[1].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/2`);
+    expect(links[2].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/3`);
   });
 
   test('sort search results correctly by alphabet', () => {
@@ -118,19 +98,22 @@ describe('SearchResultsList should', () => {
         <MemoryRouter>
           <SearchResultsList
             loading={false}
-            searchResults={mockSearchResults}
+            searchResults={ARTWORK_LIST_EXAMPLE}
+            setLoading={setLoading}
           />
         </MemoryRouter>
       </FavoritesProvider>,
     );
 
     const sortDropdown = screen.getByRole('combobox');
-    fireEvent.change(sortDropdown, { target: { value: 'alphabet' } });
+    fireEvent.change(sortDropdown, {
+      target: { value: SORT_OPTIONS.ALPHABET },
+    });
 
     const links = screen.getAllByRole('link');
-    expect(links[0].getAttribute('href')).toBe('/task-art-museum-react/art/1');
-    expect(links[1].getAttribute('href')).toBe('/task-art-museum-react/art/2');
-    expect(links[2].getAttribute('href')).toBe('/task-art-museum-react/art/3');
+    expect(links[0].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/1`);
+    expect(links[1].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/2`);
+    expect(links[2].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/3`);
   });
 
   test('sort search results correctly by alphabet_reverse', () => {
@@ -139,18 +122,21 @@ describe('SearchResultsList should', () => {
         <MemoryRouter>
           <SearchResultsList
             loading={false}
-            searchResults={mockSearchResults}
+            searchResults={ARTWORK_LIST_EXAMPLE}
+            setLoading={setLoading}
           />
         </MemoryRouter>
       </FavoritesProvider>,
     );
 
     const sortDropdown = screen.getByRole('combobox');
-    fireEvent.change(sortDropdown, { target: { value: 'alphabet_reverse' } });
+    fireEvent.change(sortDropdown, {
+      target: { value: SORT_OPTIONS.ALPHABET_REVERSE },
+    });
 
     const links = screen.getAllByRole('link');
-    expect(links[0].getAttribute('href')).toBe('/task-art-museum-react/art/3');
-    expect(links[1].getAttribute('href')).toBe('/task-art-museum-react/art/2');
-    expect(links[2].getAttribute('href')).toBe('/task-art-museum-react/art/1');
+    expect(links[0].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/3`);
+    expect(links[1].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/2`);
+    expect(links[2].getAttribute('href')).toBe(`${PATH.FROM_CARD_TO_ART}/1`);
   });
 });

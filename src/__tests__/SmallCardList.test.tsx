@@ -1,50 +1,33 @@
-import SmallCardList from '@components/lists/SmallCardList/SmallCardList';
+import { fetchGlobalData } from '@api/fetchGlobalData';
+import { ErrorBoundary } from '@components/ErrorBoundary';
+import { SmallCardList } from '@components/lists/SmallCardList/SmallCardList';
+import { MESSAGES } from '@constants/values';
 import { FavoritesProvider } from '@context/FavoritesContext';
-import { ArtInfo } from '@custom-types/artInfo';
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-jest.mock('', () => ({
-  ...jest.requireActual(''),
-  getJSON: jest.fn(),
-}));
+import { ARTWORK_LIST_EXAMPLE } from './index';
 
-const mockData: ArtInfo[] = [
-  {
-    id: '1',
-    title: 'Art A',
-    artistTitle: 'Artist A',
-    isPublicDomain: true,
-    dateStart: 2020,
-    dateEnd: 2023,
-    placeOfOrigin: 'Place A',
-    dimensions: '10x10',
-    creditLine: 'Credit A',
-    imageId: 'image1',
-    themeTitles: [],
-  },
-  {
-    id: '2',
-    title: 'Art B',
-    artistTitle: 'Artist B',
-    isPublicDomain: true,
-    dateStart: 2019,
-    dateEnd: 2022,
-    placeOfOrigin: 'Place B',
-    dimensions: '20x20',
-    creditLine: 'Credit B',
-    imageId: 'image2',
-    themeTitles: [],
-  },
-];
+jest.mock('@api/fetchGlobalData', () => ({
+  fetchGlobalData: jest.fn(),
+}));
 
 describe('SmallCardList should', () => {
   beforeEach(() => {
-    (getJSON as jest.Mock).mockResolvedValue({ data: mockData });
+    (fetchGlobalData as jest.Mock).mockImplementation(
+      ({ setLoading, setData }) => {
+        setLoading(false);
+        setData(ARTWORK_LIST_EXAMPLE);
+      },
+    );
   });
 
   test('render loading state correctly', () => {
+    (fetchGlobalData as jest.Mock).mockImplementation(({ setLoading }) => {
+      setLoading(true);
+    });
+
     render(
       <FavoritesProvider>
         <MemoryRouter>
@@ -52,7 +35,7 @@ describe('SmallCardList should', () => {
         </MemoryRouter>
       </FavoritesProvider>,
     );
-    expect(screen.getByText('Loading...')).toBeDefined();
+    expect(screen.getByText(MESSAGES.LOADING)).toBeDefined();
   });
 
   test('render data correctly', async () => {
@@ -67,30 +50,37 @@ describe('SmallCardList should', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('Art A')).toBeDefined();
-      expect(screen.getByText('Artist A')).toBeDefined();
-      expect(screen.getByText('Art B')).toBeDefined();
-      expect(screen.getByText('Artist B')).toBeDefined();
+      expect(screen.getByText(ARTWORK_LIST_EXAMPLE[0].title)).toBeDefined();
+      expect(
+        screen.getByText(ARTWORK_LIST_EXAMPLE[0].artistTitle),
+      ).toBeDefined();
+      expect(screen.getByText(ARTWORK_LIST_EXAMPLE[1].title)).toBeDefined();
+      expect(
+        screen.getByText(ARTWORK_LIST_EXAMPLE[1].artistTitle),
+      ).toBeDefined();
     });
   });
 
   test('handle errors with ErrorBoundary', async () => {
-    (getJSON as jest.Mock).mockRejectedValue(new Error('Test error'));
+    (fetchGlobalData as jest.Mock).mockImplementation(({ setLoading }) => {
+      setLoading(false);
+      throw new Error('Test error');
+    });
 
     await act(async () => {
       render(
         <FavoritesProvider>
           <MemoryRouter>
-            <SmallCardList />
+            <ErrorBoundary>
+              <SmallCardList />
+            </ErrorBoundary>
           </MemoryRouter>
         </FavoritesProvider>,
       );
     });
 
     await waitFor(() => {
-      expect(
-        screen.queryByText('Something went wrong. Please refresh the page.'),
-      ).toBeDefined();
+      expect(screen.queryByText(MESSAGES.ERROR_OCCURRED)).toBeDefined();
     });
   });
 });
