@@ -22,6 +22,6 @@ export const Loader = styled.div`
   max-width: 416px;
   height: 130px;
 
-  background: #ffffff;
-  border: 1px solid #f0f1f1;
+  background: var(--white);
+  border: 1px solid var(--gray);
 `;
