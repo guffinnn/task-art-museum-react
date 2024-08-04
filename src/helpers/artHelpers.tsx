@@ -9,6 +9,7 @@ export const fetchArtworkData = async (
   id: string,
   setLoading: (loading: boolean) => void,
   setArtwork: (artwork: ArtInfo | null) => void,
+  setError: (error: string | null) => void,
 ) => {
   setLoading(true);
   try {
@@ -16,6 +17,7 @@ export const fetchArtworkData = async (
     setArtwork(result);
   } catch (error) {
     console.error(ERROR.INVALID_FETCH, error);
+    setError(ERROR.INVALID_FETCH);
   } finally {
     setLoading(false);
   }

@@ -43,3 +43,5 @@ export const SORT_LABELS = {
   ALPHABET_REVERSE: 'Z > A',
 };
 export const LABEL_TEXT = 'Sorting parameters:';
+// Constants for Timer
+export const DEFAULT_TIMER_DELAY = 3000;

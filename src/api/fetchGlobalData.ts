@@ -12,6 +12,7 @@ export const fetchGlobalData = async ({
   setData,
   setTotalPages,
   currentPage,
+  setError,
 }: FetchDataParams) => {
   setLoading(true);
 
@@ -27,6 +28,7 @@ export const fetchGlobalData = async ({
     }
   } catch (error) {
     console.error(ERROR.INVALID_FETCH, error);
+    setError(ERROR.INVALID_FETCH);
   } finally {
     setLoading(false);
   }
