@@ -5,4 +5,5 @@ export interface FetchDataParams {
   setData: (data: ArtInfo[]) => void;
   setTotalPages?: (totalPages: number) => void;
   currentPage?: number;
+  setError: (error: string) => void;
 }
