@@ -10,6 +10,7 @@ export const fetchSearchResults = async (
   setLoading: (loading: boolean) => void,
   setSearchResults: (results: ArtInfo[]) => void,
   requestCount: React.MutableRefObject<number>,
+  setError: (error: string | null) => void,
 ) => {
   setLoading(true);
   requestCount.current += 1;
@@ -28,6 +29,7 @@ export const fetchSearchResults = async (
     setSearchResults(detailedArtworks);
   } catch (error) {
     console.error(ERROR.INVALID_FETCH, error);
+    setError(ERROR.INVALID_FETCH);
   } finally {
     setLoading(false);
   }

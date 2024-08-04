@@ -1,4 +1,4 @@
-import { ErrorDisplay } from '@components/ErrorDisplay';
+import { ErrorDisplay } from '@components/error/ErrorDisplay';
 import { Footer } from '@components/Footer/Footer';
 import { GallerySection } from '@components/GallerySection/GallerySection';
 import { Header } from '@components/Header/Header';
@@ -6,20 +6,20 @@ import { CardList } from '@components/lists/CardList/CardList';
 import { SearchResultsList } from '@components/lists/SearchResultsList/SearchResultsList';
 import { SmallCardList } from '@components/lists/SmallCardList/SmallCardList';
 import { SearchBar } from '@components/SearchBar/SearchBar';
-import { ERROR } from '@constants/errors';
 import { MESSAGES } from '@constants/home';
 import { MIN_SEARCH_TERM_LENGTH } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
 import { fetchSearchResults } from '@helpers/homeHelpers';
 import { useErrorHandler } from '@hooks/useErrorHandler';
 import { MainSection, PrimaryText, Title, Wrapper } from '@styles/global';
-import { JSX, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { JSX, memo, useCallback, useRef, useState } from 'react';
 
 function HomePage(): JSX.Element {
   const [searchResults, setSearchResults] = useState<ArtInfo[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const requestCount = useRef(0);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const { error, setError } = useErrorHandler();
 
   const handleSearch = useCallback(
     async (searchTerm: string) => {
@@ -28,17 +28,12 @@ function HomePage(): JSX.Element {
         setLoading,
         setSearchResults,
         requestCount,
+        setError,
       );
       setSearchTerm(searchTerm);
     },
     [setLoading, setSearchResults, requestCount],
   );
-
-  //TODO: DELETE
-  const { error, setError } = useErrorHandler();
-  useEffect(() => {
-    setError(ERROR.INVALID_FETCH);
-  }, [setError]);
 
   return (
     <>
@@ -78,7 +73,7 @@ function HomePage(): JSX.Element {
         </Wrapper>
       </main>
       <Footer />
-      {error && <ErrorDisplay error={error} />}
+      <ErrorDisplay error={error} />
     </>
   );
 }
