@@ -1,4 +1,4 @@
-import { SearchBar } from '@components/SearchBar/SearchBar';
+import { SearchBar } from '@components/SearchBar';
 import { ERROR } from '@constants/errors';
 import { DEBOUNCE_DELAY } from '@constants/values';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
