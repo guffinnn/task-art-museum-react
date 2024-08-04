@@ -29,7 +29,9 @@ const config: Config = {
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.svg$': '<rootDir>/jest-svg-transform.ts',
+    '^.+\\.tsx?$': 'ts-jest',
   },
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
 };
 
 export default config;

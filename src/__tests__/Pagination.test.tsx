@@ -1,4 +1,4 @@
-import Pagination from '@components/Pagination/Pagination';
+import { Pagination } from '@components/Pagination/Pagination';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('Pagination should', () => {
