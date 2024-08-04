@@ -57,7 +57,7 @@ export function Art(): JSX.Element {
         <Wrapper>
           {!loading ? (
             <MainSection className="--description">
-              <CardImage image_url={urlImage({ imageId: imageId })}>
+              <CardImage imageurl={urlImage({ imageId: imageId })}>
                 <CardButton
                   data-testid="fav-button"
                   className={`--white ${isFavorite && '--favorite'}`}

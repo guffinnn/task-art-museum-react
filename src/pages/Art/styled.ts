@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CardImage = styled.div<{ image_url: string }>`
+export const CardImage = styled.div<{ imageurl: string }>`
   grid-column: 1;
   grid-row: 1 / 3;
 
@@ -11,7 +11,7 @@ export const CardImage = styled.div<{ image_url: string }>`
   top: 0;
   left: 0;
 
-  background: ${({ image_url }) => `url(${image_url})`} no-repeat center center;
+  background: ${({ imageurl }) => `url(${imageurl})`} no-repeat center center;
   background-size: cover;
   z-index: 0;
   transition: all 0.45s ease-in-out;

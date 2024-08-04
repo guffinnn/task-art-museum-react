@@ -16,7 +16,7 @@ export function Card({ item }: CardProps): JSX.Element {
   return (
     <CardContainer>
       <ImageLink to={`${PATH.FROM_CARD_TO_ART}/${item.id}`}>
-        <CardImage imageUrl={imageUrl} />
+        <CardImage imageurl={imageUrl} />
       </ImageLink>
       <SmallCard item={item} isChild={true} />
     </CardContainer>
