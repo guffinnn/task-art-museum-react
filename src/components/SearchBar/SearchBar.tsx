@@ -11,7 +11,7 @@ import {
   MIN_SEARCH_TERM_LENGTH,
 } from '@constants/values';
 import { handleSearch } from '@helpers/searchBarHelpers';
-import useDebounce from '@hooks/useDebounce';
+import { useDebounce } from '@hooks/useDebounce';
 import { useFormik } from 'formik';
 import { JSX, useEffect, useRef } from 'react';
 import * as yup from 'yup';
