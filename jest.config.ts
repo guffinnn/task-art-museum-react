@@ -20,6 +20,7 @@ const config: Config = {
   },
   coveragePathIgnorePatterns: ['/node_modules/'],
   moduleNameMapper: {
+    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.ts',
     '\\.(css|less|scss|sass)$': '<rootDir>/jest-css-modules.ts',
     '\\.svg$': '<rootDir>/jest-svg-transform.ts',
     ...pathsToModuleNameMapper(compilerOptions.paths, {
@@ -29,7 +30,7 @@ const config: Config = {
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.svg$': '<rootDir>/jest-svg-transform.ts',
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.(ts|tsx)$': 'ts-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/'],
 };
