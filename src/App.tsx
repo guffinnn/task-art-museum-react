@@ -1,7 +1,7 @@
 import { PATH } from '@constants/paths';
-import { Art } from '@pages/Art/Art';
-import { Favorites } from '@pages/Favorites/Favorites';
-import { Home } from '@pages/Home/Home';
+import { Art } from '@pages/Art';
+import { Favorites } from '@pages/Favorites';
+import { Home } from '@pages/Home';
 import { JSX } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 

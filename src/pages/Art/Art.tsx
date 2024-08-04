@@ -1,7 +1,7 @@
 import { urlImage } from '@api/images';
 import { ErrorDisplay } from '@components/error/ErrorDisplay';
-import { Footer } from '@components/Footer/Footer';
-import { Header } from '@components/Header/Header';
+import { Footer } from '@components/Footer';
+import { Header } from '@components/Header';
 import { Loader } from '@components/lists/CardList/styled';
 import { MESSAGES } from '@constants/values';
 import { ArtInfo } from '@custom-types/artInfo';
@@ -11,8 +11,8 @@ import {
   useFavoriteStatus,
 } from '@helpers/artHelpers';
 import { useErrorHandler } from '@hooks/useErrorHandler';
-import { ArtDetails } from '@pages/Art/ArtDetails/ArtDetails';
-import { ArtOverview } from '@pages/Art/ArtOverview/ArtOverview';
+import { ArtDetails } from '@pages/Art/ArtDetails';
+import { ArtOverview } from '@pages/Art/ArtOverview';
 import { CardImage, InfoContainer, Main, MainSection } from '@pages/Art/styled';
 import { CardButton, Wrapper } from '@styles/global';
 import React, { JSX, useEffect, useMemo, useState } from 'react';
