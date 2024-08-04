@@ -1,3 +1,4 @@
+import { ERROR } from '@constants/errors';
 import { theme, ThemeType } from '@styles/theme';
 import React, { createContext, ReactNode, useContext } from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
@@ -19,7 +20,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error(ERROR.NO_THEME_PROVIDER);
   }
   return context;
 };

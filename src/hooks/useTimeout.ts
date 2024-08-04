@@ -1,6 +1,7 @@
+import { TimeoutProps } from '@custom-types/timeoutProps';
 import { useEffect, useRef } from 'react';
 
-export function useTimeout(callback: () => void, delay: number | null) {
+export function useTimeout({ callback, delay }: TimeoutProps): void {
   const savedCallback = useRef(callback);
 
   useEffect(() => {

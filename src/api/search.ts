@@ -7,5 +7,5 @@ export const searchArtworks = async (
   searchTerm: string,
 ): Promise<ApiResponse> => {
   const data = await fetchData<ApiResponse>({ url: urlSearch({ searchTerm }) });
-  return toCamelCase(data);
+  return toCamelCase(data) as ApiResponse;
 };

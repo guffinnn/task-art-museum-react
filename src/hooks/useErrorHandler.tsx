@@ -1,21 +1,17 @@
 import { DEFAULT_TIMER_DELAY } from '@constants/values';
+import { UseErrorHandlerReturn } from '@custom-types/useErrorHandlerReturn';
 import { useTimeout } from '@hooks/useTimeout';
 import { useState } from 'react';
-
-interface UseErrorHandlerReturn {
-  error: string | null;
-  setError: (error: string | null) => void;
-}
 
 export function useErrorHandler(): UseErrorHandlerReturn {
   const [error, setError] = useState<string | null>(null);
 
-  useTimeout(
-    () => {
+  useTimeout({
+    callback: () => {
       setError(null);
     },
-    error ? DEFAULT_TIMER_DELAY : null,
-  );
+    delay: error ? DEFAULT_TIMER_DELAY : null,
+  });
 
   return { error, setError };
 }

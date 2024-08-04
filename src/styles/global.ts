@@ -1,8 +1,7 @@
 import bookmarkPrimary from '@assets/bookmark--primary.svg';
 import bigBookmark from '@assets/bookmark--primary--big.svg';
+import { ThemeType } from '@styles/theme';
 import styled, { createGlobalStyle } from 'styled-components';
-
-import { ThemeType } from './theme';
 
 export const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   :root {
@@ -146,10 +145,10 @@ export const PrimaryText = styled.span`
   }
 `;
 
-export const CardButton = styled.div<{ isChild?: 'true' | 'false' }>`
+export const CardButton = styled.div<{ ischild?: 'true' | 'false' }>`
   position: relative;
   grid-row: 1 / 4;
-  grid-column: ${({ isChild }) => (isChild === 'true' ? '2' : '3')};
+  grid-column: ${({ ischild }) => (ischild === 'true' ? '2' : '3')};
   align-self: center;
 
   display: flex;

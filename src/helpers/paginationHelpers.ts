@@ -1,3 +1,5 @@
+import { INITIAL_PAGE_OFFSET } from '@constants/values';
+
 export const getPages = (
   pageOffset: number,
   pagesPerSet: number,
@@ -22,5 +24,5 @@ export const handlePreviousSet = (
   pagesPerSet: number,
   setPageOffset: (offset: number) => void,
 ) => {
-  setPageOffset(Math.max(pageOffset - pagesPerSet, 0));
+  setPageOffset(Math.max(pageOffset - pagesPerSet, INITIAL_PAGE_OFFSET));
 };

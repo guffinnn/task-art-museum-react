@@ -1,3 +1,4 @@
+import { NO_RESULTS } from '@constants/values';
 import { HandleLoadingStateParams } from '@custom-types/handleLoadingStateParams';
 import React from 'react';
 
@@ -6,7 +7,7 @@ export const handleLoadingState = ({
   searchResults,
   setLoading,
 }: HandleLoadingStateParams) => {
-  if (!loading && searchResults.length === 0) {
+  if (!loading && searchResults.length === NO_RESULTS) {
     setLoading(false);
   }
 };
