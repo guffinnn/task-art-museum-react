@@ -2,7 +2,7 @@ import {
   ErrorContainer,
   ErrorHeading,
   ErrorMessage,
-} from '@components/ErrorDisplay/styled';
+} from '@components/error/ErrorDisplay/styled';
 import React, { useEffect, useState } from 'react';
 import { JSX } from 'react';
 
