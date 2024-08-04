@@ -1,4 +1,4 @@
-import { ErrorBoundary } from '@components/ErrorBoundary/ErrorBoundary';
+import { ErrorBoundary } from '@components/error/ErrorBoundary';
 import { MESSAGES } from '@constants/values';
 import { render, screen } from '@testing-library/react';
 import React, { JSX } from 'react';
