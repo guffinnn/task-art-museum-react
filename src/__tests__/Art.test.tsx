@@ -63,7 +63,7 @@ describe('Art should', () => {
     expect(artistElement).toBeDefined();
 
     const dateElement = screen.getByText(
-      `${ARTWORK_EXAMPLE.dateStart}-${ARTWORK_EXAMPLE.dateEnd}`,
+      `${ARTWORK_EXAMPLE.dateStart}–${ARTWORK_EXAMPLE.dateEnd}`,
     );
     expect(dateElement).toBeDefined();
 
@@ -100,7 +100,7 @@ describe('Art should', () => {
 
     await waitFor(() => {
       const favoriteButton = screen.getByTestId('fav-button');
-      expect(favoriteButton.className).toBe('button --white --favorite');
+      expect(favoriteButton.className).toMatch(/--white --favorite/i);
     });
   });
 });

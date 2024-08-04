@@ -1,4 +1,9 @@
 import { Pagination } from '@components/Pagination/Pagination';
+import {
+  DEFAULT_TOTAL_PAGES,
+  INITIAL_CURRENT_PAGE,
+  PAGES_PER_SET,
+} from '@constants/values';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 describe('Pagination should', () => {
@@ -7,14 +12,14 @@ describe('Pagination should', () => {
   test('render pagination buttons correctly', () => {
     render(
       <Pagination
-        currentPage={1}
-        totalPages={12}
+        currentPage={INITIAL_CURRENT_PAGE}
+        totalPages={DEFAULT_TOTAL_PAGES}
         onPageChange={onPageChange}
       />,
     );
 
     const pageButtons = screen.getAllByRole('button');
-    expect(pageButtons).toHaveLength(4);
+    expect(pageButtons).toHaveLength(PAGES_PER_SET);
     expect(pageButtons[0].textContent).toBe('1');
     expect(pageButtons[1].textContent).toBe('2');
     expect(pageButtons[2].textContent).toBe('3');
@@ -24,8 +29,8 @@ describe('Pagination should', () => {
   test('call onPageChange with correct page number', () => {
     render(
       <Pagination
-        currentPage={1}
-        totalPages={12}
+        currentPage={INITIAL_CURRENT_PAGE}
+        totalPages={DEFAULT_TOTAL_PAGES}
         onPageChange={onPageChange}
       />,
     );
@@ -39,8 +44,8 @@ describe('Pagination should', () => {
   test('render next and previous arrow buttons correctly', () => {
     render(
       <Pagination
-        currentPage={1}
-        totalPages={12}
+        currentPage={INITIAL_CURRENT_PAGE}
+        totalPages={DEFAULT_TOTAL_PAGES}
         onPageChange={onPageChange}
       />,
     );
@@ -55,8 +60,8 @@ describe('Pagination should', () => {
   test('handle next and previous set of pages correctly', () => {
     render(
       <Pagination
-        currentPage={1}
-        totalPages={12}
+        currentPage={INITIAL_CURRENT_PAGE}
+        totalPages={DEFAULT_TOTAL_PAGES}
         onPageChange={onPageChange}
       />,
     );
