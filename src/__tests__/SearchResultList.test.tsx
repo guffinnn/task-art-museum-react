@@ -1,5 +1,6 @@
 import { SearchResultsList } from '@components/lists/SearchResultsList/SearchResultsList';
 import { PATH } from '@constants/paths';
+import { ARTWORK_LIST_EXAMPLE } from '@constants/testValues';
 import {
   DEFAULT_SORT_CRITERIA,
   MESSAGES,
@@ -8,8 +9,6 @@ import {
 import { FavoritesProvider } from '@context/FavoritesContext';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-
-import { ARTWORK_LIST_EXAMPLE } from './index';
 
 describe('SearchResultsList should', () => {
   const setLoading = jest.fn();

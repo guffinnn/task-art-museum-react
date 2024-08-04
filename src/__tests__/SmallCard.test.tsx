@@ -1,11 +1,10 @@
 import { SmallCard } from '@components/cards/SmallCard/SmallCard';
+import { ARTWORK_EXAMPLE } from '@constants/testValues';
 import { DEFAULT_TEXT } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import { ARTWORK_EXAMPLE } from './index';
 
 jest.mock('@context/FavoritesContext', () => ({
   useFavorites: jest.fn(),

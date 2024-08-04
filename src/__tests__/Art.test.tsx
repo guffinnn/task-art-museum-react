@@ -1,10 +1,9 @@
+import { ARTWORK_EXAMPLE } from '@constants/testValues';
 import { DEFAULT_TEXT, MESSAGES } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';
 import { Art } from '@pages/Art/Art';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
-import { ARTWORK_EXAMPLE } from './index';
 
 jest.mock('@context/FavoritesContext', () => ({
   useFavorites: jest.fn(),

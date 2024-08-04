@@ -1,13 +1,12 @@
 import { fetchGlobalData } from '@api/fetchGlobalData';
 import { ErrorBoundary } from '@components/ErrorBoundary';
 import { SmallCardList } from '@components/lists/SmallCardList/SmallCardList';
+import { ARTWORK_LIST_EXAMPLE } from '@constants/testValues';
 import { MESSAGES } from '@constants/values';
 import { FavoritesProvider } from '@context/FavoritesContext';
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { MemoryRouter } from 'react-router-dom';
-
-import { ARTWORK_LIST_EXAMPLE } from './index';
 
 jest.mock('@api/fetchGlobalData', () => ({
   fetchGlobalData: jest.fn(),

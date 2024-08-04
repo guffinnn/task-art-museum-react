@@ -1,10 +1,9 @@
 import { Card } from '@components/cards/Card/Card';
 import { PATH } from '@constants/paths';
+import { ARTWORK_EXAMPLE } from '@constants/testValues';
 import { FavoritesProvider } from '@context/FavoritesContext';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-
-import { ARTWORK_EXAMPLE } from './index';
 
 describe('Card should', () => {
   test('render correctly', () => {
