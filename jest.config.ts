@@ -20,16 +20,18 @@ const config: Config = {
   },
   coveragePathIgnorePatterns: ['/node_modules/'],
   moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': '<rootDir>/jest-css-modules.ts',
-    '\\.svg$': '<rootDir>/jest-svg-transform.ts',
+    '\\.(jpg|jpeg|png|gif|svg)$': '<rootDir>/__mocks__/fileMock.ts',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     ...pathsToModuleNameMapper(compilerOptions.paths, {
       prefix: '<rootDir>/src/',
     }),
   },
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.svg$': '<rootDir>/jest-svg-transform.ts',
+    '^.+\\.svg$': 'jest-transform-stub',
+    '^.+\\.(ts|tsx)$': 'ts-jest',
   },
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
 };
 
 export default config;

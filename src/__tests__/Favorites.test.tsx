@@ -1,5 +1,6 @@
+import { MESSAGES } from '@constants/favorites';
 import { FavoritesProvider } from '@context/FavoritesContext';
-import Favorites from '@pages/Favorites/Favorites';
+import { Favorites } from '@pages/Favorites/Favorites';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -13,7 +14,7 @@ describe('Favorites should', () => {
       </FavoritesProvider>,
     );
 
-    const headingElement = screen.getByText(/here are your/i);
+    const headingElement = screen.getByText(MESSAGES.TITLE);
     expect(headingElement).toBeDefined();
   });
 
@@ -26,8 +27,8 @@ describe('Favorites should', () => {
       </FavoritesProvider>,
     );
 
-    const topicsSection = screen.getByText('Your favorites list');
-    const moreWorksSection = screen.getByText('Saved by you');
+    const topicsSection = screen.getByText(MESSAGES.GALLERY_TITLE);
+    const moreWorksSection = screen.getByText(MESSAGES.GALLERY_SUBTITLE);
 
     expect(topicsSection).toBeDefined();
     expect(moreWorksSection).toBeDefined();

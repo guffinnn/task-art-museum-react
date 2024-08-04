@@ -1,4 +1,5 @@
-import Header from '@components/Header/Header';
+import { Header } from '@components/Header/Header';
+import { PATH } from '@constants/paths';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ describe('Header should', () => {
 
     const favoriteLink = screen.getByRole('link', { name: 'Your favorites' });
     expect(favoriteLink).toBeDefined();
-    expect(favoriteLink.getAttribute('href')).toBe('/favorites');
+    expect(favoriteLink.getAttribute('href')).toBe(PATH.TO_FAVORITES);
   });
 
   test('render for Favorites page', () => {
@@ -27,11 +28,11 @@ describe('Header should', () => {
 
     const homeLink = screen.getByRole('link', { name: 'Home' });
     expect(homeLink).toBeDefined();
-    expect(homeLink.getAttribute('href')).toBe('/task-art-museum-react');
+    expect(homeLink.getAttribute('href')).toBe(PATH.TO_HOME);
 
     const favoriteLink = screen.getByRole('link', { name: 'Your favorites' });
     expect(favoriteLink).toBeDefined();
-    expect(favoriteLink.getAttribute('href')).toBe('/');
+    expect(favoriteLink.getAttribute('href')).toBe(PATH.TO_HOME);
   });
 
   test('render for Art page', () => {
@@ -43,12 +44,10 @@ describe('Header should', () => {
 
     const homeLink = screen.getByRole('link', { name: 'Home' });
     expect(homeLink).toBeDefined();
-    expect(homeLink.getAttribute('href')).toBe('/task-art-museum-react');
+    expect(homeLink.getAttribute('href')).toBe(PATH.TO_HOME);
 
     const favoriteLink = screen.getByRole('link', { name: 'Your favorites' });
     expect(favoriteLink).toBeDefined();
-    expect(favoriteLink.getAttribute('href')).toBe(
-      '/task-art-museum-react/favorites',
-    );
+    expect(favoriteLink.getAttribute('href')).toBe(PATH.TO_FAVORITES);
   });
 });

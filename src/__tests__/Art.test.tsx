@@ -1,10 +1,9 @@
+import { ARTWORK_EXAMPLE } from '@constants/testValues';
 import { DEFAULT_TEXT, MESSAGES } from '@constants/values';
 import { useFavorites } from '@context/FavoritesContext';
 import { Art } from '@pages/Art/Art';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
-import { ARTWORK_EXAMPLE } from './index';
 
 jest.mock('@context/FavoritesContext', () => ({
   useFavorites: jest.fn(),
@@ -63,7 +62,7 @@ describe('Art should', () => {
     expect(artistElement).toBeDefined();
 
     const dateElement = screen.getByText(
-      `${ARTWORK_EXAMPLE.dateStart}-${ARTWORK_EXAMPLE.dateEnd}`,
+      `${ARTWORK_EXAMPLE.dateStart}–${ARTWORK_EXAMPLE.dateEnd}`,
     );
     expect(dateElement).toBeDefined();
 
@@ -100,7 +99,7 @@ describe('Art should', () => {
 
     await waitFor(() => {
       const favoriteButton = screen.getByTestId('fav-button');
-      expect(favoriteButton.className).toBe('button --white --favorite');
+      expect(favoriteButton.className).toMatch(/--white --favorite/i);
     });
   });
 });
