@@ -42,7 +42,10 @@ export function SearchBar({
     },
   });
 
-  const debouncedValue = useDebounce(formik.values.searchTerm, DEBOUNCE_DELAY);
+  const debouncedValue = useDebounce({
+    value: formik.values.searchTerm,
+    delay: DEBOUNCE_DELAY,
+  });
   const isLoading = useRef(false);
 
   useEffect(() => {
